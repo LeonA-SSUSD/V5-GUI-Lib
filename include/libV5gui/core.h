@@ -94,6 +94,7 @@ class Screen
     /// @brief The screen's element list
     mutable std::list<ScreenObject*> elements;
 
+    /// @brief The screen's main color
     vex::color bgColor;
 
   public:

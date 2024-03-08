@@ -119,7 +119,7 @@ void Screen::add(ScreenObject & element) const
   elements.push_back(&element);
 }
 
-/// @brief Draws all elements on the screen after ensuring it has its background color
+/// @brief Draws the screen's background and all elements
 void Screen::draw() const
 { 
   clear();
