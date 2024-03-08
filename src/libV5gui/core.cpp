@@ -103,11 +103,11 @@ bool ButtonObject::isPressed() { return false; }
 
 
 /// @brief Initializes a screen with a black background
-Screen::Screen() {}
+Screen::Screen() : bgColor(vex::black), firstDraw(true) {}
 
 /// @brief Initializes a screen with a chosen color
 /// @param bgColor Screen background color
-Screen::Screen(vex::color bgColor) : bgColor(bgColor) {}
+Screen::Screen(vex::color bgColor) : bgColor(bgColor), firstDraw(true) {}
 
 /// @brief Adds an element to the screen
 /// @param element The screen element to add

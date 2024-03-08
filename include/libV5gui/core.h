@@ -94,11 +94,11 @@ class Screen
     /// @brief The screen's element list
     mutable std::list<ScreenObject*> elements;
 
-    vex::color bgColor = vex::black;
+    vex::color bgColor;
 
   public:
     /// @brief Determines if the screen needs to fill the background color first
-    mutable bool firstDraw = false;
+    mutable bool firstDraw;
 
 
 
