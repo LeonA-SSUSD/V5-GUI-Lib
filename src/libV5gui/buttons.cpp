@@ -2,9 +2,11 @@
 
 
 
-int getCenterRow(int posY, int sizeY) { return floorf((posY + sizeY / 2) / 20) + 1; }
+int getCenterRow(int posY, int sizeY) { return floor((posY + sizeY / 2) / 20) + 1; }
 
-int getCenterColumn(int posX, int sizeX, std::string text) { return ceilf((posX + sizeX / 2) / 10 - text.length() / 2) + 1; }
+int getCenterColumn(int posX, int sizeX, std::string text) { return ceil((posX + sizeX / 2) / 10 - text.length() / 2) + 1; }
+
+
 
 RectButton::RectButton(int posX, int posY, int sizeX, int sizeY, std::string text, vex::color penColor, vex::color fillColor)
           : ButtonObject(posX, posY, penColor, fillColor),
@@ -36,6 +38,8 @@ bool RectButton::isPressed()
 
   return (inX && inY);
 }
+
+
 
 CircButton::CircButton(int posX, int posY, int radius, std::string text, vex::color penColor, vex::color fillColor)
             : ButtonObject(posX, posY, penColor, fillColor),

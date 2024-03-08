@@ -97,11 +97,6 @@ class Screen
     vex::color bgColor;
 
   public:
-    /// @brief Determines if the screen needs to fill the background color first
-    mutable bool firstDraw;
-
-
-
     Screen();
 
     Screen(vex::color screenColor);

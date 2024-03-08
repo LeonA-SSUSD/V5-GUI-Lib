@@ -55,7 +55,7 @@ void Text::setText(std::string newText) const
 
 /// @brief Behaves like Text::setText() but with built-in formatting
 /// @param format Format string
-/// @param  ... Arguments for the format string
+/// @param ... Arguments for the format string
 void Text::setTextFormat(const char * format, ...) const
 {
   va_list args;
@@ -102,12 +102,13 @@ bool ButtonObject::getNewPress()
 bool ButtonObject::isPressed() { return false; }
 
 
+
 /// @brief Initializes a screen with a black background
-Screen::Screen() : bgColor(vex::black), firstDraw(true) {}
+Screen::Screen() : bgColor(vex::black) {}
 
 /// @brief Initializes a screen with a chosen color
 /// @param bgColor Screen background color
-Screen::Screen(vex::color bgColor) : bgColor(bgColor), firstDraw(true) {}
+Screen::Screen(vex::color bgColor) : bgColor(bgColor) {}
 
 /// @brief Adds an element to the screen
 /// @param element The screen element to add
@@ -121,12 +122,7 @@ void Screen::add(ScreenObject & element) const
 /// @brief Draws all elements on the screen after ensuring it has its background color
 void Screen::draw() const
 { 
-  if (firstDraw) 
-  {
-    firstDraw = false;
-
-    clear();
-  }
+  clear();
 
   for (auto & element : elements) if (element -> drawable) element -> draw();
 }
