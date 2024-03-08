@@ -56,6 +56,7 @@ class Text : public ScreenObject
 
     Text(std::string text, int  row, int column, vex::color penColor = vex::white, vex::color fillColor = vex::black);
 
+    Text(int row, int column, vex::color penColor = vex::white, vex::color fillColor = vex::black);
 
 
     void draw() override;

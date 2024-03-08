@@ -22,6 +22,10 @@ Text::Text(std::string text, int row, int column, vex::color penColor, vex::colo
     : ScreenObject(penColor, fillColor, true), printedText(text), text(text), row(row), column(column)
 {}
 
+Text::Text(int row, int column, vex::color penColor, vex::color fillColor)
+    : ScreenObject(penColor, fillColor, true), printedText(""), text(""), row(row), column(column)
+{}
+
 void Text::draw()
 {
   if (!enabled) return;
