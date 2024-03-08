@@ -1,0 +1,6 @@
+.vscode/
+include/vex.h
+src/main.cpp
+/bin
+/build
+compile_commands.json
