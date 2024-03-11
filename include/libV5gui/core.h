@@ -16,7 +16,10 @@ class ScreenObject
     mutable vex::color penColor;
     mutable vex::color fillColor;
 
+    /// @brief Whether the ScreenObject should be drawn
     mutable bool enabled = true;
+
+    /// @brief Whether the ScreenObject should be redrawn
     mutable bool refreshable = false;
     
     bool isText;
@@ -42,9 +45,11 @@ class ScreenObject
 class Text : public ScreenObject
 {
   private:
+    /// @brief The whitespaced, printed string
     mutable std::string printedText;
     
   public:
+    /// @brief The stored string
     mutable std::string text;
 
     int row;
@@ -68,6 +73,7 @@ class Text : public ScreenObject
 class ButtonObject : public ScreenObject
 {
   private:
+    /// @brief Internal variable for tracking new button presses
     mutable bool buttonDown = false;
 
   public:
