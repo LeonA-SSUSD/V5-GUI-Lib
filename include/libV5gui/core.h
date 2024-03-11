@@ -21,8 +21,6 @@ class ScreenObject
     
     bool isText;
 
-    bool drawable = true;
-
     
 
     ScreenObject(vex::color penColor, vex::color fillColor, bool isText = false);

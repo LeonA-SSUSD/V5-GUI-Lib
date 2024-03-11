@@ -14,6 +14,7 @@ RectButton::RectButton(int posX, int posY, int sizeX, int sizeY, std::string tex
             text(text, getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX, text), penColor, fillColor)
 {}
 
+/// @brief Draws the RectButton, overrides ScreenObject::draw()
 void RectButton::draw()
 {
   if (!enabled) return;
@@ -26,6 +27,8 @@ void RectButton::draw()
   text.draw();
 }
 
+/// @brief Detects if the RectButton is pressed, overrides ButtonObject::isPressed()
+/// @return Whether the RectButton is currently pressed
 bool RectButton::isPressed()
 {
   if (!enabled || !Brain.Screen.pressing()) return false;
@@ -48,6 +51,7 @@ CircButton::CircButton(int posX, int posY, int radius, std::string text, vex::co
               centerX(posX + radius), centerY(posY + radius)
 {}
 
+/// @brief Draws the CircButton, overrides ScreenObject::draw()
 void CircButton::draw()
 {
   if (!enabled) return;
@@ -60,6 +64,8 @@ void CircButton::draw()
   text.draw();
 }
 
+/// @brief Detects if the CircButton is pressed, overrides ButtonObject::isPressed()
+/// @return Whether the CircButton is currently pressed
 bool CircButton::isPressed()
 {
   if (!enabled || !Brain.Screen.pressing()) return false;

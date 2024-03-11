@@ -8,12 +8,21 @@ ScreenObject::ScreenObject(vex::color penColor, vex::color fillColor, bool isTex
             : penColor(penColor), fillColor(fillColor), enabled(true), refreshable(false), isText(isText)
 {}
 
+/// @brief Sets the ScreenObject's text/border color
+/// @param newColor The new pen color
 void ScreenObject::setPenColor(vex::color newColor) const { penColor = newColor; }
+
+/// @brief Sets the ScreenObject's main color
+/// @param newColor The new fill color
 void ScreenObject::setFillColor(vex::color newColor) const { fillColor = newColor; }
 
+/// @brief Enables the ScreenObject to be drawn
 void ScreenObject::enable() const { enabled = true; }
+
+/// @brief Disables drawing the ScreenObject
 void ScreenObject::disable() const { enabled = false; }
 
+/// @brief Draws the ScreenObject, overridden by derived classes
 void ScreenObject::draw() {}
 
 
@@ -26,6 +35,7 @@ Text::Text(int row, int column, vex::color penColor, vex::color fillColor)
     : ScreenObject(penColor, fillColor, true), printedText(""), text(""), row(row), column(column)
 {}
 
+/// @brief Draws the text, overrides ScreenObject::draw()
 void Text::draw()
 {
   if (!enabled) return;
@@ -44,6 +54,8 @@ void Text::draw()
   printedText = text;
 }
 
+/// @brief Sets the text to a std::string
+/// @param newText The new text
 void Text::setText(std::string newText) const
 {
   if (newText == text) return;
@@ -57,7 +69,7 @@ void Text::setText(std::string newText) const
   text = newText;
 }
 
-/// @brief Behaves like Text::setText() but with built-in formatting
+/// @brief Uses printf() formatting and sets the text to the result
 /// @param format Format string
 /// @param ... Arguments for the format string
 void Text::setTextFormat(const char * format, ...) const
@@ -84,7 +96,7 @@ ButtonObject::ButtonObject(int posX, int posY, vex::color penColor, vex::color f
 /// @brief NOT thread safe: you should use this function once
 ///        and store its data in a variable afterwards or it
 ///        will not return the same value
-/// @return true if a press has just started
+/// @return If a press has just started
 bool ButtonObject::getNewPress()
 {
   bool pressed = isPressed();
@@ -101,8 +113,8 @@ bool ButtonObject::getNewPress()
   return false;
 }
 
-/// @brief True buttons override this function
-/// @return If a button is currently pressed
+/// @brief Detects if the ButtonObject is pressed, overridden by derived classes
+/// @return false
 bool ButtonObject::isPressed() { return false; }
 
 
@@ -128,11 +140,14 @@ void Screen::draw() const
 { 
   clear();
 
-  for (auto & element : elements) if (element -> drawable) element -> draw();
+  for (auto & element : elements) if (element -> enabled) element -> draw();
 }
 
 /// @brief Refreshes elements on the screen
-void Screen::refresh() const { for (auto & element : elements) if (element -> refreshable) element -> draw(); }
+void Screen::refresh() const
+{
+  for (auto & element : elements) if (element -> enabled && element -> refreshable) element -> draw();
+}
 
 /// @brief Clears the screen to its background color
 void Screen::clear() const { Brain.Screen.clearScreen(bgColor); }
