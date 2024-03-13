@@ -1,7 +1,5 @@
 #include "libV5gui/core.h"
 
-#include<cstdarg>
-
 
 
 ScreenObject::ScreenObject(vex::color penColor, vex::color fillColor, bool isText)
@@ -74,15 +72,15 @@ void Text::setText(std::string newText) const
 /// @param ... Arguments for the format string
 void Text::setTextFormat(const char * format, ...) const
 {
-  va_list args;
+  __builtin_va_list args;
 
-  va_start(args, format);
+  __builtin_va_start(args, format);
 
   char buffer[256];
   
   vsnprintf(buffer, sizeof(buffer), format, args);
 
-  va_end(args);
+  __builtin_va_end(args);
 
   setText(buffer);
 }
