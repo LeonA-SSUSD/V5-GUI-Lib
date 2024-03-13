@@ -57,18 +57,18 @@ bool RectButton::isPressed()
 
 
 
-CircButton::CircButton(int posX, int posY, int radius, std::string text, vex::color penColor, vex::color fillColor)
+CircButton::CircButton(int posX, int posY, int diameter, std::string text, vex::color penColor, vex::color fillColor)
           : ButtonElement(posX, posY, penColor, fillColor),
-            radius(radius),
+            radius(floorf(diameter / 2)),
             centerX(posX + radius), centerY(posY + radius),
-            text(text, getCenterRow(posY - radius, radius*2), getCenterColumn(posX - radius, radius*2, text), penColor, fillColor)
+            text(text, getCenterRow(posY, diameter), getCenterColumn(posX, diameter, text), penColor, fillColor)
 {}
 
-CircButton::CircButton(int posX, int posY, int radius, vex::color penColor, vex::color fillColor)
+CircButton::CircButton(int posX, int posY, int diameter, vex::color penColor, vex::color fillColor)
           : ButtonElement(posX, posY, penColor, fillColor),
-            radius(radius),
+            radius(floorf(diameter / 2)),
             centerX(posX + radius), centerY(posY + radius),
-            text(getCenterRow(posY - radius, radius*2), getCenterColumn(posX - radius, radius*2), penColor, fillColor)
+            text(getCenterRow(posY, diameter), getCenterColumn(posX, diameter), penColor, fillColor)
 {}
 
 /// @brief Draws the CircButton, overrides ScreenElement::draw()

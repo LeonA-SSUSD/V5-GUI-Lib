@@ -40,10 +40,10 @@ class CircButton : public ButtonElement
     Text text;
   
   public:
-    CircButton(int posX, int posY, int radius, std::string text,
+    CircButton(int posX, int posY, int diameter, std::string text,
               vex::color penColor = vex::white, vex::color fillColor = vex::black);
 
-    CircButton(int posX, int posY, int radius,
+    CircButton(int posX, int posY, int diameter,
               vex::color penColor = vex::white, vex::color fillColor = vex::black);
     
 
