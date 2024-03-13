@@ -10,23 +10,23 @@
 
 extern vex::brain Brain;
 
-class ScreenObject
+class ScreenElement
 {
   public:
     mutable vex::color penColor;
     mutable vex::color fillColor;
 
-    /// @brief Whether the ScreenObject should be drawn
+    /// @brief Whether the ScreenElement should be drawn
     mutable bool enabled = true;
 
-    /// @brief Whether the ScreenObject should be redrawn
+    /// @brief Whether the ScreenElement should be redrawn
     mutable bool refreshable = false;
     
     bool isText;
 
     
 
-    ScreenObject(vex::color penColor, vex::color fillColor, bool isText = false);
+    ScreenElement(vex::color penColor, vex::color fillColor, bool isText = false);
 
 
 
@@ -42,7 +42,7 @@ class ScreenObject
 
 
 
-class Text : public ScreenObject
+class Text : public ScreenElement
 {
   private:
     /// @brief The whitespaced, printed string
@@ -70,7 +70,7 @@ class Text : public ScreenObject
 
 
 
-class ButtonElement : public ScreenObject
+class ButtonElement : public ScreenElement
 {
   private:
     /// @brief Internal variable for tracking new button presses
@@ -97,7 +97,7 @@ class Screen
 {
   private:
     /// @brief The screen's element list
-    mutable std::list<ScreenObject*> elements;
+    mutable std::list<ScreenElement*> elements;
 
     /// @brief The screen's main color
     vex::color bgColor;
@@ -109,7 +109,7 @@ class Screen
 
 
 
-    void add(ScreenObject & element) const;
+    void add(ScreenElement & element) const;
 
     void draw() const;
 

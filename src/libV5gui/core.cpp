@@ -2,38 +2,38 @@
 
 
 
-ScreenObject::ScreenObject(vex::color penColor, vex::color fillColor, bool isText)
+ScreenElement::ScreenElement(vex::color penColor, vex::color fillColor, bool isText)
             : penColor(penColor), fillColor(fillColor), enabled(true), refreshable(false), isText(isText)
 {}
 
-/// @brief Sets the ScreenObject's text/border color
+/// @brief Sets the ScreenElement's text/border color
 /// @param newColor The new pen color
-void ScreenObject::setPenColor(vex::color newColor) const { penColor = newColor; }
+void ScreenElement::setPenColor(vex::color newColor) const { penColor = newColor; }
 
-/// @brief Sets the ScreenObject's main color
+/// @brief Sets the ScreenElement's main color
 /// @param newColor The new fill color
-void ScreenObject::setFillColor(vex::color newColor) const { fillColor = newColor; }
+void ScreenElement::setFillColor(vex::color newColor) const { fillColor = newColor; }
 
-/// @brief Enables the ScreenObject to be drawn
-void ScreenObject::enable() const { enabled = true; }
+/// @brief Enables the ScreenElement to be drawn
+void ScreenElement::enable() const { enabled = true; }
 
-/// @brief Disables drawing the ScreenObject
-void ScreenObject::disable() const { enabled = false; }
+/// @brief Disables drawing the ScreenElement
+void ScreenElement::disable() const { enabled = false; }
 
-/// @brief Draws the ScreenObject, overridden by derived classes
-void ScreenObject::draw() {}
+/// @brief Draws the ScreenElement, overridden by derived classes
+void ScreenElement::draw() {}
 
 
 
 Text::Text(std::string text, int row, int column, vex::color penColor, vex::color fillColor)
-    : ScreenObject(penColor, fillColor, true), printedText(text), text(text), row(row), column(column)
+    : ScreenElement(penColor, fillColor, true), printedText(text), text(text), row(row), column(column)
 {}
 
 Text::Text(int row, int column, vex::color penColor, vex::color fillColor)
-    : ScreenObject(penColor, fillColor, true), printedText(""), text(""), row(row), column(column)
+    : ScreenElement(penColor, fillColor, true), printedText(""), text(""), row(row), column(column)
 {}
 
-/// @brief Draws the text, overrides ScreenObject::draw()
+/// @brief Draws the text, overrides ScreenElement::draw()
 void Text::draw()
 {
   if (!enabled) return;
@@ -88,7 +88,7 @@ void Text::setTextFormat(const char * format, ...) const
 
 
 ButtonElement::ButtonElement(int posX, int posY, vex::color penColor, vex::color fillColor)
-            : ScreenObject(penColor, fillColor), posX(posX), posY(posY)
+            : ScreenElement(penColor, fillColor), posX(posX), posY(posY)
 {}
 
 /// @brief NOT thread safe: you should use this function once
@@ -126,7 +126,7 @@ Screen::Screen(vex::color bgColor) : bgColor(bgColor) {}
 
 /// @brief Adds an element to the screen
 /// @param element The screen element to add
-void Screen::add(ScreenObject & element) const
+void Screen::add(ScreenElement & element) const
 {
   if (element.isText) element.setFillColor(bgColor);
 
