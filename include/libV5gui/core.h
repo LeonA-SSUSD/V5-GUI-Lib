@@ -70,7 +70,7 @@ class Text : public ScreenObject
 
 
 
-class ButtonObject : public ScreenObject
+class ButtonElement : public ScreenObject
 {
   private:
     /// @brief Internal variable for tracking new button presses
@@ -82,7 +82,7 @@ class ButtonObject : public ScreenObject
 
 
 
-    ButtonObject(int posX, int posY, vex::color penColor, vex::color fillColor);
+    ButtonElement(int posX, int posY, vex::color penColor, vex::color fillColor);
 
 
 

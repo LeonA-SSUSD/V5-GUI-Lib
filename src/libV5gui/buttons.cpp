@@ -9,7 +9,7 @@ int getCenterColumn(int posX, int sizeX, std::string text) { return ceil((posX +
 
 
 RectButton::RectButton(int posX, int posY, int sizeX, int sizeY, std::string text, vex::color penColor, vex::color fillColor)
-          : ButtonObject(posX, posY, penColor, fillColor),
+          : ButtonElement(posX, posY, penColor, fillColor),
             sizeX(sizeX), sizeY(sizeY),
             text(text, getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX, text), penColor, fillColor)
 {}
@@ -27,7 +27,7 @@ void RectButton::draw()
   text.draw();
 }
 
-/// @brief Detects if the RectButton is pressed, overrides ButtonObject::isPressed()
+/// @brief Detects if the RectButton is pressed, overrides ButtonElement::isPressed()
 /// @return Whether the RectButton is currently pressed
 bool RectButton::isPressed()
 {
@@ -45,7 +45,7 @@ bool RectButton::isPressed()
 
 
 CircButton::CircButton(int posX, int posY, int radius, std::string text, vex::color penColor, vex::color fillColor)
-          : ButtonObject(posX, posY, penColor, fillColor),
+          : ButtonElement(posX, posY, penColor, fillColor),
             radius(radius),
             centerX(posX + radius), centerY(posY + radius),
             text(text, getCenterRow(posY, radius*2), getCenterColumn(posX, radius*2, text), penColor, fillColor)
@@ -64,7 +64,7 @@ void CircButton::draw()
   text.draw();
 }
 
-/// @brief Detects if the CircButton is pressed, overrides ButtonObject::isPressed()
+/// @brief Detects if the CircButton is pressed, overrides ButtonElement::isPressed()
 /// @return Whether the CircButton is currently pressed
 bool CircButton::isPressed()
 {

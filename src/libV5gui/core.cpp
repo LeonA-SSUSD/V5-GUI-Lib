@@ -87,7 +87,7 @@ void Text::setTextFormat(const char * format, ...) const
 
 
 
-ButtonObject::ButtonObject(int posX, int posY, vex::color penColor, vex::color fillColor)
+ButtonElement::ButtonElement(int posX, int posY, vex::color penColor, vex::color fillColor)
             : ScreenObject(penColor, fillColor), posX(posX), posY(posY)
 {}
 
@@ -95,7 +95,7 @@ ButtonObject::ButtonObject(int posX, int posY, vex::color penColor, vex::color f
 ///        and store its data in a variable afterwards or it
 ///        will not return the same value
 /// @return If a press has just started
-bool ButtonObject::getNewPress()
+bool ButtonElement::getNewPress()
 {
   bool pressed = isPressed();
 
@@ -111,9 +111,9 @@ bool ButtonObject::getNewPress()
   return false;
 }
 
-/// @brief Detects if the ButtonObject is pressed, overridden by derived classes
+/// @brief Detects if the ButtonElement is pressed, overridden by derived classes
 /// @return false
-bool ButtonObject::isPressed() { return false; }
+bool ButtonElement::isPressed() { return false; }
 
 
 

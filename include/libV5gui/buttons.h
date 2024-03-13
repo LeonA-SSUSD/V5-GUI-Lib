@@ -5,7 +5,7 @@
 
 
 
-class RectButton : public ButtonObject
+class RectButton : public ButtonElement
 {
   private:
     int sizeX;
@@ -22,7 +22,7 @@ class RectButton : public ButtonObject
     bool isPressed() override;
 };
 
-class CircButton : public ButtonObject
+class CircButton : public ButtonElement
 {
   private:
     int sizeX;
