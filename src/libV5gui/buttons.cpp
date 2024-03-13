@@ -14,6 +14,12 @@ RectButton::RectButton(int posX, int posY, int sizeX, int sizeY, std::string tex
             text(text, getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX, text), penColor, fillColor)
 {}
 
+RectButton::RectButton(int posX, int posY, int sizeX, int sizeY, vex::color penColor, vex::color fillColor)
+          : ButtonElement(posX, posY, penColor, fillColor),
+            sizeX(sizeX), sizeY(sizeY),
+            text("", getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX, ""), penColor, fillColor)
+{}
+
 /// @brief Draws the RectButton, overrides ScreenElement::draw()
 void RectButton::draw()
 {
@@ -49,6 +55,13 @@ CircButton::CircButton(int posX, int posY, int radius, std::string text, vex::co
             radius(radius),
             centerX(posX + radius), centerY(posY + radius),
             text(text, getCenterRow(posY, radius*2), getCenterColumn(posX, radius*2, text), penColor, fillColor)
+{}
+
+CircButton::CircButton(int posX, int posY, int radius, vex::color penColor, vex::color fillColor)
+          : ButtonElement(posX, posY, penColor, fillColor),
+            radius(radius),
+            centerX(posX + radius), centerY(posY + radius),
+            text("", getCenterRow(posY, radius*2), getCenterColumn(posX, radius*2, ""), penColor, fillColor)
 {}
 
 /// @brief Draws the CircButton, overrides ScreenElement::draw()
