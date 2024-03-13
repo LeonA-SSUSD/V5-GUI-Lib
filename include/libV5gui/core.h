@@ -10,6 +10,8 @@
 
 extern vex::brain Brain;
 
+
+
 class ScreenElement
 {
   public:
@@ -70,7 +72,7 @@ class Text : public ScreenElement
 
 
 
-class ButtonObject : public ScreenElement
+class ButtonElement : public ScreenElement
 {
   private:
     /// @brief Internal variable for tracking new button presses
@@ -82,7 +84,7 @@ class ButtonObject : public ScreenElement
 
 
 
-    ButtonObject(int posX, int posY, vex::color penColor, vex::color fillColor);
+    ButtonElement(int posX, int posY, vex::color penColor, vex::color fillColor);
 
 
 

@@ -5,7 +5,7 @@
 
 
 
-class RectButton : public ButtonObject
+class RectButton : public ButtonElement
 {
   private:
     int sizeX;
@@ -14,7 +14,11 @@ class RectButton : public ButtonObject
     Text text;
   
   public:
-    RectButton(int posX, int posY, int sizeX, int sizeY, std::string text, vex::color penColor = vex::white, vex::color fillColor = vex::black);
+    RectButton(int posX, int posY, int sizeX, int sizeY, std::string text,
+              vex::color penColor = vex::white, vex::color fillColor = vex::black);
+
+    RectButton(int posX, int posY, int sizeX, int sizeY,
+              vex::color penColor = vex::white, vex::color fillColor = vex::black);
 
     
 
@@ -22,7 +26,7 @@ class RectButton : public ButtonObject
     bool isPressed() override;
 };
 
-class CircButton : public ButtonObject
+class CircButton : public ButtonElement
 {
   private:
     int sizeX;
@@ -36,9 +40,13 @@ class CircButton : public ButtonObject
     Text text;
   
   public:
-    CircButton(int posX, int posY, int radius, std::string text, vex::color penColor = vex::white, vex::color fillColor = vex::black);
+    CircButton(int posX, int posY, int diameter, std::string text,
+              vex::color penColor = vex::white, vex::color fillColor = vex::black);
 
+    CircButton(int posX, int posY, int diameter,
+              vex::color penColor = vex::white, vex::color fillColor = vex::black);
     
+
 
     void draw() override;
     bool isPressed() override;
