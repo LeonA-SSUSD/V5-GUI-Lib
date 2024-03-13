@@ -36,7 +36,7 @@ Text::Text(int row, int column, vex::color penColor, vex::color fillColor)
 /// @brief Draws the text, overrides ScreenElement::draw()
 void Text::draw()
 {
-  if (!enabled) return;
+  if (!enabled || !printedText.length()) return;
 
   refreshable = false;
 
