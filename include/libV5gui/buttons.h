@@ -14,9 +14,11 @@ class RectButton : public ButtonElement
     Text text;
   
   public:
-    RectButton(int posX, int posY, int sizeX, int sizeY, std::string text, vex::color penColor = vex::white, vex::color fillColor = vex::black);
+    RectButton(int posX, int posY, int sizeX, int sizeY, std::string text,
+              vex::color penColor = vex::white, vex::color fillColor = vex::black);
 
-    RectButton(int posX, int posY, int sizeX, int sizeY, vex::color penColor = vex::white, vex::color fillColor = vex::black);
+    RectButton(int posX, int posY, int sizeX, int sizeY,
+              vex::color penColor = vex::white, vex::color fillColor = vex::black);
 
     
 
@@ -38,11 +40,13 @@ class CircButton : public ButtonElement
     Text text;
   
   public:
-    CircButton(int posX, int posY, int radius, std::string text, vex::color penColor = vex::white, vex::color fillColor = vex::black);
+    CircButton(int posX, int posY, int radius, std::string text,
+              vex::color penColor = vex::white, vex::color fillColor = vex::black);
 
-    CircButton(int posX, int posY, int radius, vex::color penColor = vex::white, vex::color fillColor = vex::black);
+    CircButton(int posX, int posY, int radius,
+              vex::color penColor = vex::white, vex::color fillColor = vex::black);
     
-    
+
 
     void draw() override;
     bool isPressed() override;

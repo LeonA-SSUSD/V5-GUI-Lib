@@ -2,9 +2,15 @@
 
 
 
-int getCenterRow(int posY, int sizeY) { return floor((posY + sizeY / 2) / 20); }
+int getCenterRow(int posY, int sizeY)
+{
+  return floor((posY + sizeY / 2) / 20);
+}
 
-int getCenterColumn(int posX, int sizeX, std::string text) { return ceil((posX + sizeX / 2) / 10 - text.length() / 2); }
+int getCenterColumn(int posX, int sizeX, std::string text)
+{
+  return ceil((posX + sizeX / 2) / 10 - text.length() / 2);
+}
 
 
 
@@ -42,8 +48,9 @@ bool RectButton::isPressed()
   int x = Brain.Screen.xPosition();
   int y = Brain.Screen.yPosition();
 
-  bool inX = (x >= posX && x <= (posX + sizeX));
-  bool inY = (y >= posY && y <= (posY + sizeY));
+  // Absolute value version of a double-sided inequality: posX < x < (posX + sizeX)
+  bool inX = abs((posX + sizeX / 2) - x) <= sizeX / 2;
+  bool inY = abs((posY + sizeY / 2) - y) <= sizeY / 2;
 
   return (inX && inY);
 }
