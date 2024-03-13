@@ -7,7 +7,7 @@ int getCenterRow(int posY, int sizeY)
   return floor((posY + sizeY / 2) / 20);
 }
 
-int getCenterColumn(int posX, int sizeX, std::string text)
+int getCenterColumn(int posX, int sizeX, std::string text = "")
 {
   return ceil((posX + sizeX / 2) / 10 - text.length() / 2);
 }
@@ -23,7 +23,7 @@ RectButton::RectButton(int posX, int posY, int sizeX, int sizeY, std::string tex
 RectButton::RectButton(int posX, int posY, int sizeX, int sizeY, vex::color penColor, vex::color fillColor)
           : ButtonElement(posX, posY, penColor, fillColor),
             sizeX(sizeX), sizeY(sizeY),
-            text("", getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX, ""), penColor, fillColor)
+            text("", getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX), penColor, fillColor)
 {}
 
 /// @brief Draws the RectButton, overrides ScreenElement::draw()
@@ -68,7 +68,7 @@ CircButton::CircButton(int posX, int posY, int radius, vex::color penColor, vex:
           : ButtonElement(posX, posY, penColor, fillColor),
             radius(radius),
             centerX(posX + radius), centerY(posY + radius),
-            text("", getCenterRow(posY - radius, radius*2), getCenterColumn(posX - radius, radius*2, ""), penColor, fillColor)
+            text("", getCenterRow(posY - radius, radius*2), getCenterColumn(posX - radius, radius*2), penColor, fillColor)
 {}
 
 /// @brief Draws the CircButton, overrides ScreenElement::draw()
