@@ -37,6 +37,9 @@ void RectButton::draw()
   Brain.Screen.drawRectangle(posX, posY, sizeX, sizeY);
 
   text.draw();
+
+  Brain.Screen.setPenColor(vex::white);
+  Brain.Screen.setFillColor(vex::transparent);
 }
 
 /// @brief Detects if the RectButton is pressed, overrides ButtonElement::isPressed()
@@ -82,6 +85,9 @@ void CircButton::draw()
   Brain.Screen.drawCircle(centerX, centerY, radius);
 
   text.draw();
+
+  Brain.Screen.setPenColor(vex::white);
+  Brain.Screen.setFillColor(vex::transparent);
 }
 
 /// @brief Detects if the CircButton is pressed, overrides ButtonElement::isPressed()

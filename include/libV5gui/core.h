@@ -59,9 +59,9 @@ class Text : public ScreenElement
 
 
 
-    Text(std::string text, int  row, int column, vex::color penColor = vex::white, vex::color fillColor = vex::black);
+    Text(std::string text, int  row, int column, vex::color penColor = vex::white, vex::color fillColor = vex::transparent);
 
-    Text(int row, int column, vex::color penColor = vex::white, vex::color fillColor = vex::black);
+    Text(int row, int column, vex::color penColor = vex::white, vex::color fillColor = vex::transparent);
 
 
     void draw() override;

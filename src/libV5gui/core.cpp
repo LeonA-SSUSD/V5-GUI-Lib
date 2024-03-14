@@ -47,7 +47,7 @@ void Text::draw()
   Brain.Screen.print(printedText.c_str());
 
   Brain.Screen.setPenColor(vex::white);
-  Brain.Screen.setFillColor(vex::black);
+  Brain.Screen.setFillColor(vex::transparent);
 
   printedText = text;
 }
@@ -128,7 +128,7 @@ Screen::Screen(vex::color bgColor) : bgColor(bgColor) {}
 /// @param element The screen element to add
 void Screen::add(ScreenElement & element) const
 {
-  if (element.isText) element.setFillColor(bgColor);
+  if (element.isText) element.setFillColor(vex::transparent);
 
   elements.push_back(&element);
 }
