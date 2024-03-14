@@ -4,12 +4,12 @@
 
 int getCenterRow(int posY, int sizeY)
 {
-  return floor((posY + sizeY / 2) / 20);
+  return ceil((posY + sizeY / 2) / 20) + 1;
 }
 
 int getCenterColumn(int posX, int sizeX, std::string text = "")
 {
-  return ceil((posX + sizeX / 2) / 10 - text.length() / 2);
+  return ceil((posX + sizeX / 2) / 10 - text.length() / 2) + 1;
 }
 
 
