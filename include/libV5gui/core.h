@@ -19,10 +19,10 @@ class ScreenElement
     mutable vex::color fillColor;
 
     /// @brief Whether the ScreenElement should be drawn
-    mutable bool enabled = true;
+    mutable bool enabled;
 
     /// @brief Whether the ScreenElement should be redrawn
-    mutable bool refreshable = false;
+    mutable bool refreshable;
     
     bool isText;
 
