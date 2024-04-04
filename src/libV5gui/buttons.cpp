@@ -31,6 +31,8 @@ void RectButton::draw()
 {
   if (!enabled) return;
 
+  refreshable = false;
+
   Brain.Screen.setPenColor(penColor);
   Brain.Screen.setFillColor(fillColor);
 
@@ -78,6 +80,8 @@ CircButton::CircButton(int posX, int posY, int diameter, vex::color penColor, ve
 void CircButton::draw()
 {
   if (!enabled) return;
+
+  refreshable = false;
 
   Brain.Screen.setPenColor(penColor);
   Brain.Screen.setFillColor(fillColor);
