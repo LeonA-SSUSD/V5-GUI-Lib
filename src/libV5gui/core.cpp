@@ -6,20 +6,6 @@ ScreenElement::ScreenElement(vex::color penColor, vex::color fillColor, bool isT
             : penColor(penColor), fillColor(fillColor), enabled(true), refreshable(false), isText(isText)
 {}
 
-/// @brief Sets the ScreenElement's text/border color
-/// @param newColor The new pen color
-void ScreenElement::setPenColor(vex::color newColor) const { penColor = newColor; }
-
-/// @brief Sets the ScreenElement's main color
-/// @param newColor The new fill color
-void ScreenElement::setFillColor(vex::color newColor) const { fillColor = newColor; }
-
-/// @brief Enables the ScreenElement to be drawn
-void ScreenElement::enable() const { enabled = true; }
-
-/// @brief Disables drawing the ScreenElement
-void ScreenElement::disable() const { enabled = false; }
-
 /// @brief Draws the ScreenElement, overridden by derived classes
 void ScreenElement::draw() {}
 
@@ -126,11 +112,16 @@ Screen::Screen(vex::color bgColor) : bgColor(bgColor) {}
 
 /// @brief Adds an element to the screen
 /// @param element The screen element to add
-void Screen::add(ScreenElement & element) const
+/// @param zIndex The "layer" that the screen element will be drawn on
+void Screen::add(ScreenElement & element, int zIndex) const
 {
-  if (element.isText) element.setFillColor(vex::transparent);
+  element.zIndex = (zIndex == -1) ? elements.size() : zIndex;
+
+  if (element.isText) element.fillColor = vex::transparent;
 
   elements.push_back(&element);
+
+  elements.sort([](const ScreenElement * A, const ScreenElement * B) { return A -> zIndex > B -> zIndex; });
 }
 
 /// @brief Draws the screen's background and all elements
@@ -138,20 +129,27 @@ void Screen::draw() const
 { 
   clear();
 
-  for (auto & element : elements) if (element -> enabled) element -> draw();
+  for (const auto & element : elements) if (element -> enabled) element -> draw();
 }
 
 /// @brief Refreshes elements on the screen
 void Screen::refresh() const
 {
-  for (auto & element : elements) if (element -> enabled && element -> refreshable) element -> draw();
+  int refreshZ = -1;
+
+  for (const auto & element: elements) 
+  {
+    if (element -> enabled && element -> refreshable) refreshZ = element -> zIndex, element -> draw();
+
+    else if (refreshZ > -1 && element -> zIndex > refreshZ) element -> draw();
+  }
 }
 
 /// @brief Clears the screen to its background color
 void Screen::clear() const { Brain.Screen.clearScreen(bgColor); }
 
 /// @brief Enables all elements on the screen
-void Screen::enable() const { for (auto & element : elements) element -> enabled = true; }
+void Screen::enable() const { for (const auto & element : elements) element -> enabled = true; }
 
 /// @brief Disables all elements on the screen
-void Screen::disable() const { for (auto & element : elements) element -> enabled = false; }
+void Screen::disable() const { for (const auto & element : elements) element -> enabled = false; }

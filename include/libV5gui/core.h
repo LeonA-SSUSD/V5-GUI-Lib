@@ -26,18 +26,13 @@ class ScreenElement
     
     bool isText;
 
+    bool zIndex;
+
     
 
     ScreenElement(vex::color penColor, vex::color fillColor, bool isText = false);
 
 
-
-    void setPenColor(vex::color newColor) const;
-    void setFillColor(vex::color newColor) const;
-
-    void enable() const;
-    
-    void disable() const;
 
     virtual void draw();
 };
@@ -59,7 +54,7 @@ class Text : public ScreenElement
 
 
 
-    Text(std::string text, int  row, int column, vex::color penColor = vex::white, vex::color fillColor = vex::transparent);
+    Text(std::string text, int row, int column, vex::color penColor = vex::white, vex::color fillColor = vex::transparent);
 
     Text(int row, int column, vex::color penColor = vex::white, vex::color fillColor = vex::transparent);
 
@@ -111,7 +106,7 @@ class Screen
 
 
 
-    void add(ScreenElement & element) const;
+    void add(ScreenElement & element, int zIndex = -1) const;
 
     void draw() const;
 
