@@ -30,7 +30,7 @@ RectButton::RectButton(int posX, int posY, int sizeX, int sizeY, vex::color penC
 /// @param newText The new text
 void RectButton::setText(std::string newText) const { refreshable = text.setText(newText); }
 
-/// @brief Uses printf() formatting and sets the CircButton's text to the result
+/// @brief Uses printf() formatting and sets the RectButton's text to the result
 /// @param format Format string
 /// @param ... Arguments for the format string
 void RectButton::setTextFormat(const char * format, ...) const
