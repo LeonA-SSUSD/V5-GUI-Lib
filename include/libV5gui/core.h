@@ -63,8 +63,8 @@ class Text : public ScreenElement
 
 
 
-    void setText(std::string newText) const;
-    void setTextFormat(const char * format, ...) const;
+    bool setText(std::string newText) const;
+    bool setTextFormat(const char * format, ...) const;
 
     void draw() override;
 };

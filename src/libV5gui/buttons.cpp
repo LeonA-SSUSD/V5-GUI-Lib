@@ -26,6 +26,24 @@ RectButton::RectButton(int posX, int posY, int sizeX, int sizeY, vex::color penC
             text(getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX), penColor, fillColor)
 {}
 
+/// @brief Sets the RectButton's text to a std::string
+/// @param newText The new text
+void RectButton::setText(std::string newText) const { refreshable = text.setText(newText); }
+
+/// @brief Uses printf() formatting and sets the CircButton's text to the result
+/// @param format Format string
+/// @param ... Arguments for the format string
+void RectButton::setTextFormat(const char * format, ...) const
+{
+  __builtin_va_list args;
+
+  __builtin_va_start(args, format);
+
+  refreshable = text.setTextFormat(format, args);
+
+  __builtin_va_end(args);
+}
+
 /// @brief Draws the RectButton, overrides ScreenElement::draw()
 void RectButton::draw()
 {
@@ -75,6 +93,24 @@ CircButton::CircButton(int posX, int posY, int diameter, vex::color penColor, ve
             centerX(posX + radius), centerY(posY + radius),
             text(getCenterRow(posY, diameter), getCenterColumn(posX, diameter), penColor, fillColor)
 {}
+
+/// @brief Sets the CircButton's text to a std::string
+/// @param newText The new text
+void CircButton::setText(std::string newText) const { refreshable = text.setText(newText); }
+
+/// @brief Uses printf() formatting and sets the CircButton's text to the result
+/// @param format Format string
+/// @param ... Arguments for the format string
+void CircButton::setTextFormat(const char * format, ...) const
+{
+  __builtin_va_list args;
+
+  __builtin_va_start(args, format);
+
+  refreshable = text.setTextFormat(format, args);
+
+  __builtin_va_end(args);
+}
 
 /// @brief Draws the CircButton, overrides ScreenElement::draw()
 void CircButton::draw()

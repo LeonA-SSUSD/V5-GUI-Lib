@@ -58,9 +58,10 @@ void Text::draw()
 
 /// @brief Sets the text to a std::string
 /// @param newText The new text
-void Text::setText(std::string newText) const
+/// @return Whether the text is refreshable
+bool Text::setText(std::string newText) const
 {
-  if (newText == text) return;
+  if (newText == text) return false;
 
   refreshable = true;
 
@@ -69,12 +70,15 @@ void Text::setText(std::string newText) const
   printedText = text.length() > newText.length() ? newText.append(whitespaces, ' ') : newText;
 
   text = newText;
+
+  return true;
 }
 
 /// @brief Uses printf() formatting and sets the text to the result
 /// @param format Format string
 /// @param ... Arguments for the format string
-void Text::setTextFormat(const char * format, ...) const
+/// @return Whether the text is refreshable
+bool Text::setTextFormat(const char * format, ...) const
 {
   __builtin_va_list args;
 
@@ -86,7 +90,7 @@ void Text::setTextFormat(const char * format, ...) const
 
   __builtin_va_end(args);
 
-  setText(buffer);
+  return setText(buffer);
 }
 
 

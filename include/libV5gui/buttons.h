@@ -22,6 +22,9 @@ class RectButton : public ButtonElement
 
     
 
+    void setText(std::string newText) const;
+    void setTextFormat(const char * format, ...) const;
+
     void draw() override;
     bool isPressed() override;
 };
@@ -47,6 +50,9 @@ class CircButton : public ButtonElement
               vex::color penColor = vex::white, vex::color fillColor = vex::black);
     
 
+
+    void setText(std::string newText) const;
+    void setTextFormat(const char * format, ...) const;
 
     void draw() override;
     bool isPressed() override;
