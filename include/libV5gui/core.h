@@ -19,7 +19,7 @@ class ScreenElement
     mutable vex::color fillColor;
 
     /// @brief Whether the ScreenElement should be drawn
-    mutable bool enabled;
+    bool enabled;
 
     /// @brief Whether the ScreenElement should be redrawn
     mutable bool refreshable;
@@ -33,6 +33,9 @@ class ScreenElement
     ScreenElement(vex::color penColor, vex::color fillColor, bool isText = false);
 
 
+
+    void setPenColor(vex::color newColor);
+    void setFillColor(vex::color newColor);
 
     virtual void draw();
 };
@@ -59,10 +62,11 @@ class Text : public ScreenElement
     Text(int row, int column, vex::color penColor = vex::white, vex::color fillColor = vex::transparent);
 
 
-    void draw() override;
 
     void setText(std::string newText) const;
     void setTextFormat(const char * format, ...) const;
+
+    void draw() override;
 };
 
 

@@ -6,6 +6,20 @@ ScreenElement::ScreenElement(vex::color penColor, vex::color fillColor, bool isT
             : penColor(penColor), fillColor(fillColor), enabled(true), refreshable(false), isText(isText)
 {}
 
+void ScreenElement::setPenColor(vex::color newColor)
+{
+  refreshable = true;
+
+  penColor = newColor;
+}
+
+void ScreenElement::setFillColor(vex::color newColor)
+{
+  refreshable = true;
+
+  fillColor = newColor;
+}
+
 /// @brief Draws the ScreenElement, overridden by derived classes
 void ScreenElement::draw() {}
 
