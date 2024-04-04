@@ -8,6 +8,8 @@ ScreenElement::ScreenElement(vex::color penColor, vex::color fillColor, bool isT
 
 void ScreenElement::setPenColor(vex::color newColor)
 {
+  if (newColor == penColor) return;
+
   refreshable = true;
 
   penColor = newColor;
@@ -15,6 +17,8 @@ void ScreenElement::setPenColor(vex::color newColor)
 
 void ScreenElement::setFillColor(vex::color newColor)
 {
+  if (newColor == fillColor) return;
+
   refreshable = true;
 
   fillColor = newColor;
