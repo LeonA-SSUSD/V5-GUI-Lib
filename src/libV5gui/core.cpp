@@ -2,8 +2,17 @@
 
 
 
+int getCenterRow(int posY, int sizeY) { return ceil((posY + sizeY / 2) / 20) + 1; }
+
+int getCenterColumn(int posX, int sizeX, std::string text)
+{
+  return ceil((posX + sizeX / 2) / 10 - text.length() / 2) + 1;
+}
+
+
+
 ScreenElement::ScreenElement(vex::color penColor, vex::color fillColor, bool isText)
-            : penColor(penColor), fillColor(fillColor), enabled(true), refreshable(false), isText(isText)
+             : penColor(penColor), fillColor(fillColor), enabled(true), refreshable(false), isText(isText)
 {}
 
 void ScreenElement::setPenColor(vex::color newColor)
@@ -97,9 +106,65 @@ bool Text::setTextFormat(const char * format, ...) const
 
 
 
-ButtonElement::ButtonElement(int posX, int posY, vex::color penColor, vex::color fillColor)
-            : ScreenElement(penColor, fillColor), posX(posX), posY(posY)
+ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
+                              std::string text, vex::color penColor, vex::color fillColor)
+             : ScreenElement(penColor, fillColor), posX(posX), posY(posY), sizeX(sizeX),
+               text(text, getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX, text), penColor, fillColor)
 {}
+
+ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY, vex::color penColor, vex::color fillColor)
+             : ScreenElement(penColor, fillColor), posX(posX), posY(posY), sizeX(sizeX),
+               text(getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX), penColor, fillColor)
+{}
+
+/// @brief Sets the ButtonElement's text to a std::string
+/// @param newText The new text
+void ButtonElement::setText(std::string newText) const
+{
+  refreshable = text.setText(newText);
+
+  if (refreshable) text.column = getCenterColumn(posX, sizeX, newText);
+}
+
+/// @brief Uses printf() formatting and sets the ButtonElement's text to the result
+/// @param format Format string
+/// @param ... Arguments for the format string
+void ButtonElement::setTextFormat(const char * format, ...) const
+{
+  __builtin_va_list args;
+
+  __builtin_va_start(args, format);
+
+  char buffer[256];
+  
+  vsnprintf(buffer, sizeof(buffer), format, args);
+
+  __builtin_va_end(args);
+
+  setText(buffer);
+}
+
+void ButtonElement::setPenColor(vex:: color newColor)
+{
+  if (newColor == penColor) return;
+
+  refreshable = true;
+
+  penColor = newColor;
+
+  text.setPenColor(newColor);
+}
+
+void ButtonElement::setFillColor(vex::color newColor)
+{
+  if (newColor == fillColor) return;
+
+  refreshable = true;
+
+  fillColor = newColor;
+
+  text.setFillColor(newColor);
+}
 
 /// @brief NOT thread safe: you should use this function once
 ///        and store its data in a variable afterwards or it

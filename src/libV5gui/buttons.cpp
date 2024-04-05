@@ -2,47 +2,15 @@
 
 
 
-int getCenterRow(int posY, int sizeY)
-{
-  return ceil((posY + sizeY / 2) / 20) + 1;
-}
-
-int getCenterColumn(int posX, int sizeX, std::string text = "")
-{
-  return ceil((posX + sizeX / 2) / 10 - text.length() / 2) + 1;
-}
-
-
-
 RectButton::RectButton(int posX, int posY, int sizeX, int sizeY, std::string text, vex::color penColor, vex::color fillColor)
-          : ButtonElement(posX, posY, penColor, fillColor),
-            sizeX(sizeX), sizeY(sizeY),
-            text(text, getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX, text), penColor, fillColor)
+          : ButtonElement(posX, posY, sizeX, sizeY, text, penColor, fillColor),
+            sizeX(sizeX), sizeY(sizeY)
 {}
 
 RectButton::RectButton(int posX, int posY, int sizeX, int sizeY, vex::color penColor, vex::color fillColor)
-          : ButtonElement(posX, posY, penColor, fillColor),
-            sizeX(sizeX), sizeY(sizeY),
-            text(getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX), penColor, fillColor)
+          : ButtonElement(posX, posY, sizeX, sizeY, penColor, fillColor),
+            sizeX(sizeX), sizeY(sizeY)
 {}
-
-/// @brief Sets the RectButton's text to a std::string
-/// @param newText The new text
-void RectButton::setText(std::string newText) const { refreshable = text.setText(newText); }
-
-/// @brief Uses printf() formatting and sets the RectButton's text to the result
-/// @param format Format string
-/// @param ... Arguments for the format string
-void RectButton::setTextFormat(const char * format, ...) const
-{
-  __builtin_va_list args;
-
-  __builtin_va_start(args, format);
-
-  refreshable = text.setTextFormat(format, args);
-
-  __builtin_va_end(args);
-}
 
 /// @brief Draws the RectButton, overrides ScreenElement::draw()
 void RectButton::draw()
@@ -81,36 +49,18 @@ bool RectButton::isPressed()
 
 
 CircButton::CircButton(int posX, int posY, int diameter, std::string text, vex::color penColor, vex::color fillColor)
-          : ButtonElement(posX, posY, penColor, fillColor),
+          : ButtonElement(posX, posY, diameter, diameter, text, penColor, fillColor),
+            diameter(diameter),
             radius(floorf(diameter / 2)),
-            centerX(posX + radius), centerY(posY + radius),
-            text(text, getCenterRow(posY, diameter), getCenterColumn(posX, diameter, text), penColor, fillColor)
+            centerX(posX + radius), centerY(posY + radius)
 {}
 
 CircButton::CircButton(int posX, int posY, int diameter, vex::color penColor, vex::color fillColor)
-          : ButtonElement(posX, posY, penColor, fillColor),
+          : ButtonElement(posX, posY, diameter, diameter, penColor, fillColor),
+            diameter(diameter),
             radius(floorf(diameter / 2)),
-            centerX(posX + radius), centerY(posY + radius),
-            text(getCenterRow(posY, diameter), getCenterColumn(posX, diameter), penColor, fillColor)
+            centerX(posX + radius), centerY(posY + radius)
 {}
-
-/// @brief Sets the CircButton's text to a std::string
-/// @param newText The new text
-void CircButton::setText(std::string newText) const { refreshable = text.setText(newText); }
-
-/// @brief Uses printf() formatting and sets the CircButton's text to the result
-/// @param format Format string
-/// @param ... Arguments for the format string
-void CircButton::setTextFormat(const char * format, ...) const
-{
-  __builtin_va_list args;
-
-  __builtin_va_start(args, format);
-
-  refreshable = text.setTextFormat(format, args);
-
-  __builtin_va_end(args);
-}
 
 /// @brief Draws the CircButton, overrides ScreenElement::draw()
 void CircButton::draw()

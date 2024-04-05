@@ -10,8 +10,6 @@ class RectButton : public ButtonElement
   private:
     int sizeX;
     int sizeY;
-
-    Text text;
   
   public:
     RectButton(int posX, int posY, int sizeX, int sizeY, std::string text,
@@ -22,9 +20,6 @@ class RectButton : public ButtonElement
 
     
 
-    void setText(std::string newText) const;
-    void setTextFormat(const char * format, ...) const;
-
     void draw() override;
     bool isPressed() override;
 };
@@ -32,15 +27,11 @@ class RectButton : public ButtonElement
 class CircButton : public ButtonElement
 {
   private:
-    int sizeX;
-    int sizeY;
-
+    int diameter;
     int radius;
 
     int centerX;
     int centerY;
-
-    Text text;
   
   public:
     CircButton(int posX, int posY, int diameter, std::string text,
@@ -50,9 +41,6 @@ class CircButton : public ButtonElement
               vex::color penColor = vex::white, vex::color fillColor = vex::black);
     
 
-
-    void setText(std::string newText) const;
-    void setTextFormat(const char * format, ...) const;
 
     void draw() override;
     bool isPressed() override;

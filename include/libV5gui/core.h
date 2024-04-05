@@ -12,6 +12,11 @@ extern vex::brain Brain;
 
 
 
+int getCenterRow(int posY, int sizeY);
+
+int getCenterColumn(int posX, int sizeX, std::string text = "");
+
+
 class ScreenElement
 {
   public:
@@ -53,7 +58,7 @@ class Text : public ScreenElement
     mutable std::string text;
 
     int row;
-    int column;
+    mutable int column;
 
 
 
@@ -81,11 +86,22 @@ class ButtonElement : public ScreenElement
     int posX;
     int posY;
 
+    int sizeX;
+
+    Text text;
 
 
-    ButtonElement(int posX, int posY, vex::color penColor, vex::color fillColor);
+
+    ButtonElement(int posX, int posY, int sizeX, int sizeY, std::string text, vex::color penColor, vex::color fillColor);
+    ButtonElement(int posX, int posY, int sizeX, int sizeY, vex::color penColor, vex::color fillColor);
 
 
+
+    void setText(std::string newText) const;
+    void setTextFormat(const char * format, ...) const;
+
+    virtual void setPenColor(vex::color newColor);
+    virtual void setFillColor(vex::color newColor);
 
     bool getNewPress();
 
