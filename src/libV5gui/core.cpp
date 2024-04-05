@@ -17,7 +17,7 @@ ScreenElement::ScreenElement(vex::color penColor, vex::color fillColor, bool isT
 
 void ScreenElement::setPenColor(vex::color newColor)
 {
-  if (newColor == penColor) return;
+  if (penColor == newColor) return;
 
   refreshable = true;
 
@@ -26,7 +26,7 @@ void ScreenElement::setPenColor(vex::color newColor)
 
 void ScreenElement::setFillColor(vex::color newColor)
 {
-  if (newColor == fillColor) return;
+  if (fillColor == newColor) return;
 
   refreshable = true;
 
@@ -122,7 +122,7 @@ ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY, vex::colo
 void ButtonElement::setText(std::string newText) const
 {
   refreshable = text.setText(newText);
-
+  // TODO: Make the text print whitespaces accurately after having its column moved
   if (refreshable) text.column = getCenterColumn(posX, sizeX, newText);
 }
 
@@ -144,26 +144,26 @@ void ButtonElement::setTextFormat(const char * format, ...) const
   setText(buffer);
 }
 
-void ButtonElement::setPenColor(vex:: color newColor)
+void ButtonElement::setPenColor(vex::color newColor)
 {
-  if (newColor == penColor) return;
+  if (penColor == newColor && text.penColor == newColor) return;
 
   refreshable = true;
 
   penColor = newColor;
 
-  text.setPenColor(newColor);
+  text.setPenColor(penColor);
 }
 
 void ButtonElement::setFillColor(vex::color newColor)
 {
-  if (newColor == fillColor) return;
+  if (fillColor == newColor && text.fillColor == newColor) return;
 
   refreshable = true;
 
   fillColor = newColor;
 
-  text.setFillColor(newColor);
+  text.setFillColor(fillColor);
 }
 
 /// @brief NOT thread safe: you should use this function once
