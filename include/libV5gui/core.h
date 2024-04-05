@@ -42,7 +42,7 @@ class ScreenElement
     void setPenColor(vex::color newColor);
     void setFillColor(vex::color newColor);
 
-    virtual void draw();
+    virtual void draw() = 0;
 };
 
 
@@ -105,7 +105,7 @@ class ButtonElement : public ScreenElement
 
     bool getNewPress();
 
-    virtual bool isPressed();
+    virtual bool isPressed() = 0;
 };
 
 

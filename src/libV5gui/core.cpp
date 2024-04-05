@@ -33,9 +33,6 @@ void ScreenElement::setFillColor(vex::color newColor)
   fillColor = newColor;
 }
 
-/// @brief Draws the ScreenElement, overridden by derived classes
-void ScreenElement::draw() {}
-
 
 
 Text::Text(std::string text, int row, int column, vex::color penColor, vex::color fillColor)
@@ -185,10 +182,6 @@ bool ButtonElement::getNewPress()
 
   return false;
 }
-
-/// @brief Detects if the ButtonElement is pressed, overridden by derived classes
-/// @return false
-bool ButtonElement::isPressed() { return false; }
 
 
 
