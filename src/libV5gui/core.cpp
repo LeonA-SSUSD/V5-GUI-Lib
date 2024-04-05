@@ -65,11 +65,13 @@ bool Text::setText(std::string newText) const
 
   refreshable = true;
 
+  const bool hasWhitespaces = text.length() > newText.length();
+
   const int whitespaces = fmax(text.length() - newText.length(), 0);
 
-  printedText = text.length() > newText.length() ? newText.append(whitespaces, ' ') : newText;
-
   text = newText;
+
+  printedText = (hasWhitespaces) ? newText.append(whitespaces, ' ') : text;
 
   return true;
 }
