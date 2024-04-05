@@ -12,16 +12,17 @@ class RectButton : public ButtonElement
     int sizeY;
   
   public:
-    RectButton(int posX, int posY, int sizeX, int sizeY, std::string text,
-              vex::color penColor = vex::white, vex::color fillColor = vex::black);
+    RectButton(int posX, int posY, int sizeX, int sizeY,
+               const std::string & text,
+               const vex::color & penColor = vex::white, const vex::color & fillColor = vex::black);
 
     RectButton(int posX, int posY, int sizeX, int sizeY,
-              vex::color penColor = vex::white, vex::color fillColor = vex::black);
+               const vex::color & penColor = vex::white, const vex::color & fillColor = vex::black);
 
     
 
-    void draw() override;
-    bool isPressed() override;
+    void draw(void) override;
+    bool isPressed(void) override;
 };
 
 class CircButton : public ButtonElement
@@ -34,16 +35,17 @@ class CircButton : public ButtonElement
     int centerY;
   
   public:
-    CircButton(int posX, int posY, int diameter, std::string text,
-              vex::color penColor = vex::white, vex::color fillColor = vex::black);
+    CircButton(int posX, int posY, int diameter,
+               const std::string & text,
+               const vex::color & penColor = vex::white, const vex::color & fillColor = vex::black);
 
     CircButton(int posX, int posY, int diameter,
-              vex::color penColor = vex::white, vex::color fillColor = vex::black);
+               const vex::color & penColor = vex::white, const vex::color & fillColor = vex::black);
     
 
 
-    void draw() override;
-    bool isPressed() override;
+    void draw(void) override;
+    bool isPressed(void) override;
 };
 
 

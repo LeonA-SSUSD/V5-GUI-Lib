@@ -14,7 +14,8 @@ extern vex::brain Brain;
 
 int getCenterRow(int posY, int sizeY);
 
-int getCenterColumn(int posX, int sizeX, std::string text = "");
+int getCenterColumn(int posX, int sizeX,
+                    const std::string & text = "");
 
 
 class ScreenElement
@@ -35,14 +36,15 @@ class ScreenElement
 
     
 
-    ScreenElement(vex::color penColor, vex::color fillColor, bool isText = false);
+    ScreenElement(const vex::color & penColor, const vex::color & fillColor,
+                  bool isText = false);
 
 
 
-    void setPenColor(vex::color newColor);
-    void setFillColor(vex::color newColor);
+    void setPenColor(const vex::color & newColor);
+    void setFillColor(const vex::color & newColor);
 
-    virtual void draw() = 0;
+    virtual void draw(void) = 0;
 };
 
 
@@ -62,16 +64,19 @@ class Text : public ScreenElement
 
 
 
-    Text(std::string text, int row, int column, vex::color penColor = vex::white, vex::color fillColor = vex::transparent);
+    Text(const std::string & text,
+         int row, int column,
+         const vex::color & penColor = vex::white, const vex::color & fillColor = vex::transparent);
 
-    Text(int row, int column, vex::color penColor = vex::white, vex::color fillColor = vex::transparent);
+    Text(int row, int column,
+         const vex::color & penColor = vex::white, const vex::color & fillColor = vex::transparent);
 
 
 
     bool setText(std::string newText) const;
     bool setTextFormat(const char * format, ...) const;
 
-    void draw() override;
+    void draw(void) override;
 };
 
 
@@ -92,20 +97,24 @@ class ButtonElement : public ScreenElement
 
 
 
-    ButtonElement(int posX, int posY, int sizeX, int sizeY, std::string text, vex::color penColor, vex::color fillColor);
-    ButtonElement(int posX, int posY, int sizeX, int sizeY, vex::color penColor, vex::color fillColor);
+    ButtonElement(int posX, int posY, int sizeX, int sizeY,
+                  const std::string & text,
+                  const vex::color & penColor, const vex::color & fillColor);
+
+    ButtonElement(int posX, int posY, int sizeX, int sizeY,
+                  const vex::color & penColor, const vex::color & fillColor);
 
 
 
     void setText(std::string newText) const;
     void setTextFormat(const char * format, ...) const;
 
-    virtual void setPenColor(vex::color newColor);
-    virtual void setFillColor(vex::color newColor);
+    virtual void setPenColor(const vex::color & newColor);
+    virtual void setFillColor(const vex::color & newColor);
 
-    bool getNewPress();
+    bool getNewPress(void);
 
-    virtual bool isPressed() = 0;
+    virtual bool isPressed(void) = 0;
 };
 
 
@@ -120,23 +129,23 @@ class Screen
     vex::color bgColor;
 
   public:
-    Screen();
+    Screen(void);
 
-    Screen(vex::color screenColor);
+    Screen(const vex::color & screenColor);
 
 
 
     void add(ScreenElement & element, int zIndex = -1) const;
 
-    void draw() const;
+    void draw(void) const;
 
-    void refresh() const;
+    void refresh(void) const;
 
-    void clear() const;
+    void clear(void) const;
 
-    void enable() const;
+    void enable(void) const;
 
-    void disable() const;
+    void disable(void) const;
 };
 
 

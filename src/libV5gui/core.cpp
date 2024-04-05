@@ -4,18 +4,18 @@
 
 int getCenterRow(int posY, int sizeY) { return ceil((posY + sizeY / 2) / 20) + 1; }
 
-int getCenterColumn(int posX, int sizeX, std::string text)
+int getCenterColumn(int posX, int sizeX, const std::string & text)
 {
   return ceil((posX + sizeX / 2) / 10 - text.length() / 2) + 1;
 }
 
 
 
-ScreenElement::ScreenElement(vex::color penColor, vex::color fillColor, bool isText)
+ScreenElement::ScreenElement(const vex::color & penColor, const vex::color & fillColor, bool isText)
              : penColor(penColor), fillColor(fillColor), enabled(true), refreshable(false), isText(isText)
 {}
 
-void ScreenElement::setPenColor(vex::color newColor)
+void ScreenElement::setPenColor(const vex::color & newColor)
 {
   if (penColor == newColor) return;
 
@@ -24,7 +24,7 @@ void ScreenElement::setPenColor(vex::color newColor)
   penColor = newColor;
 }
 
-void ScreenElement::setFillColor(vex::color newColor)
+void ScreenElement::setFillColor(const vex::color & newColor)
 {
   if (fillColor == newColor) return;
 
@@ -35,11 +35,11 @@ void ScreenElement::setFillColor(vex::color newColor)
 
 
 
-Text::Text(std::string text, int row, int column, vex::color penColor, vex::color fillColor)
+Text::Text(const std::string & text, int row, int column, const vex::color & penColor, const vex::color & fillColor)
     : ScreenElement(penColor, fillColor, true), printedText(text), text(text), row(row), column(column)
 {}
 
-Text::Text(int row, int column, vex::color penColor, vex::color fillColor)
+Text::Text(int row, int column, const vex::color & penColor, const vex::color & fillColor)
     : ScreenElement(penColor, fillColor, true), printedText(""), text(""), row(row), column(column)
 {}
 
@@ -71,9 +71,9 @@ bool Text::setText(std::string newText) const
 
   refreshable = true;
 
-  const bool hasWhitespaces = text.length() > newText.length();
+  bool hasWhitespaces = text.length() > newText.length();
 
-  const int whitespaces = fmax(text.length() - newText.length(), 0);
+  int whitespaces = fmax(text.length() - newText.length(), 0);
 
   text = newText;
 
@@ -104,12 +104,14 @@ bool Text::setTextFormat(const char * format, ...) const
 
 
 ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
-                              std::string text, vex::color penColor, vex::color fillColor)
+                             const std::string & text,
+                             const vex::color & penColor, const vex::color & fillColor)
              : ScreenElement(penColor, fillColor), posX(posX), posY(posY), sizeX(sizeX),
                text(text, getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX, text), penColor, fillColor)
 {}
 
-ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY, vex::color penColor, vex::color fillColor)
+ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
+                             const vex::color & penColor, const vex::color & fillColor)
              : ScreenElement(penColor, fillColor), posX(posX), posY(posY), sizeX(sizeX),
                text(getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX), penColor, fillColor)
 {}
@@ -141,7 +143,7 @@ void ButtonElement::setTextFormat(const char * format, ...) const
   setText(buffer);
 }
 
-void ButtonElement::setPenColor(vex::color newColor)
+void ButtonElement::setPenColor(const vex::color & newColor)
 {
   if (penColor == newColor && text.penColor == newColor) return;
 
@@ -152,7 +154,7 @@ void ButtonElement::setPenColor(vex::color newColor)
   text.setPenColor(penColor);
 }
 
-void ButtonElement::setFillColor(vex::color newColor)
+void ButtonElement::setFillColor(const vex::color & newColor)
 {
   if (fillColor == newColor && text.fillColor == newColor) return;
 
@@ -190,7 +192,7 @@ Screen::Screen() : bgColor(vex::black) {}
 
 /// @brief Initializes a screen with a chosen color
 /// @param bgColor Screen background color
-Screen::Screen(vex::color bgColor) : bgColor(bgColor) {}
+Screen::Screen(const vex::color & bgColor) : bgColor(bgColor) {}
 
 /// @brief Adds an element to the screen
 /// @param element The screen element to add
