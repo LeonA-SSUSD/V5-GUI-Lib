@@ -120,9 +120,8 @@ ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
 /// @param newText The new text
 void ButtonElement::setText(std::string newText) const
 {
-  refreshable = text.setText(newText);
   // TODO: Make the text print whitespaces accurately after having its column moved
-  if (refreshable) text.column = getCenterColumn(posX, sizeX, newText);
+  if (text.setText(newText)) refreshable = true, text.column = getCenterColumn(posX, sizeX, newText);
 }
 
 /// @brief Uses printf() formatting and sets the ButtonElement's text to the result
