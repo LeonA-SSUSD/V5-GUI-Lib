@@ -41,8 +41,8 @@ class ScreenElement
 
 
 
-    void setPenColor(const vex::color & newColor);
-    void setFillColor(const vex::color & newColor);
+    virtual void setPenColor(const vex::color & newColor);
+    virtual void setFillColor(const vex::color & newColor);
 
     virtual void draw(void) = 0;
 };
@@ -109,8 +109,8 @@ class ButtonElement : public ScreenElement
     void setText(std::string newText) const;
     void setTextFormat(const char * format, ...) const;
 
-    virtual void setPenColor(const vex::color & newColor);
-    virtual void setFillColor(const vex::color & newColor);
+    void setPenColor(const vex::color & newColor) override;
+    void setFillColor(const vex::color & newColor) override;
 
     bool getNewPress(void);
 
