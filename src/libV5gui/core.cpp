@@ -220,7 +220,7 @@ void Screen::refresh() const
 {
   int refreshZ = -1;
 
-  for (const auto & element: elements) 
+  for (const auto & element : elements) 
   {
     if (element -> enabled && element -> refreshable) refreshZ = element -> zIndex, element -> draw();
 
