@@ -132,13 +132,13 @@ bool Text::setTextFormat(const char * format, ...) const
 ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
                              const std::string & text,
                              const vex::color & penColor, const vex::color & fillColor)
-             : ScreenElement(penColor, fillColor), posX(posX), posY(posY), sizeX(sizeX),
+             : ScreenElement(penColor, fillColor), sizeX(sizeX), posX(posX), posY(posY),
                text(text, getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX, text), penColor, fillColor)
 {}
 
 ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
                              const vex::color & penColor, const vex::color & fillColor)
-             : ScreenElement(penColor, fillColor), posX(posX), posY(posY), sizeX(sizeX),
+             : ScreenElement(penColor, fillColor), sizeX(sizeX), posX(posX), posY(posY),
                text(getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX), penColor, fillColor)
 {}
 
@@ -156,7 +156,7 @@ void ButtonElement::setText(std::string newText) const
     
     text.column = getCenterColumn(posX, sizeX, newText);
 
-    totalWhitespaces = fmax(lastLength + fabs(lastColumn - text.column), 0);
+    totalWhitespaces = fmax(lastLength + abs(lastColumn - text.column), 0);
   }
 }
 
