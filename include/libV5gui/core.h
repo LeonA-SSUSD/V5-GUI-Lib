@@ -34,7 +34,7 @@ class ScreenElement
     mutable bool refreshable;
     
     /// @brief The ScreenElement's "layer" when drawn on a Screen
-    bool zIndex;
+    int zIndex;
 
     
 
@@ -121,7 +121,7 @@ class ButtonElement : public ScreenElement
     void setText(std::string newText) const;
     void setTextFormat(const char * format, ...) const;
 
-    void cleanText(void);
+    void cleanText(void) const;
 
     void setPenColor(const vex::color & newColor) override;
     void setFillColor(const vex::color & newColor) override;

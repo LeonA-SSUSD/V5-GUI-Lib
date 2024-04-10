@@ -179,7 +179,7 @@ void ButtonElement::setTextFormat(const char * format, ...) const
 }
 
 /// @brief Removes leftover text from edges realigning when the text is changed
-void ButtonElement::cleanText()
+void ButtonElement::cleanText() const
 {
   if (!totalWhitespaces) return;
 
