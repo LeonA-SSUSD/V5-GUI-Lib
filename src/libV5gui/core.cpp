@@ -21,7 +21,7 @@ int getCenterColumn(int posX, int sizeX, const std::string & text)
 
 
 ScreenElement::ScreenElement(const vex::color & penColor, const vex::color & fillColor, bool isText)
-             : penColor(penColor), fillColor(fillColor), isText(isText), enabled(true), refreshable(false)
+             : penColor(penColor), fillColor(fillColor), isText(isText)
 {}
 
 /// @brief Sets the ScreenElement's pen color and automatically determines refreshability
@@ -53,7 +53,7 @@ Text::Text(const std::string & text, int row, int column, const vex::color & pen
 {}
 
 Text::Text(int row, int column, const vex::color & penColor, const vex::color & fillColor)
-    : ScreenElement(penColor, fillColor, true), printedText(""), text(""), row(row), column(column)
+    : ScreenElement(penColor, fillColor, true), row(row), column(column)
 {}
 
 /// @brief Draws the text, overrides ScreenElement::draw()
@@ -183,13 +183,12 @@ void ButtonElement::cleanText() const
 {
   if (!totalWhitespaces) return;
 
-  std::string whitespaces;
+  for (int i = 0; i < totalWhitespaces; i++)
+  {
+    Brain.Screen.setCursor(text.row, lastColumn + i);
 
-  whitespaces.append(totalWhitespaces, ' ');
-
-  Brain.Screen.setCursor(text.row, lastColumn);
-
-  Brain.Screen.print(whitespaces.c_str());
+    Brain.Screen.print(" ");
+  }
 }
 
 /// @brief Sets the ButtonElement and its text's pen color and
@@ -243,9 +242,6 @@ bool ButtonElement::getNewPress()
 }
 
 
-
-/// @brief Initializes a screen with a black background
-Screen::Screen() : bgColor(vex::black) {}
 
 /// @brief Initializes a screen with a chosen color
 /// @param bgColor Screen background color

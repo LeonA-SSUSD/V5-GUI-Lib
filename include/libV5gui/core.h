@@ -27,14 +27,14 @@ class ScreenElement
 
     bool isText;
 
-    /// @brief Whether the ScreenElement should be drawn
-    bool enabled;
-
-    /// @brief Whether the ScreenElement should be redrawn
-    mutable bool refreshable;
-    
     /// @brief The ScreenElement's "layer" when drawn on a Screen
     int zIndex;
+
+    /// @brief Whether the ScreenElement should be drawn
+    bool enabled = true;
+
+    /// @brief Whether the ScreenElement should be redrawn
+    mutable bool refreshable = false;
 
     
 
@@ -55,11 +55,11 @@ class Text : public ScreenElement
 {
   private:
     /// @brief The whitespaced, printed string
-    mutable std::string printedText;
+    mutable std::string printedText = "";
     
   public:
     /// @brief The stored string
-    mutable std::string text;
+    mutable std::string text = "";
 
     int row;
     mutable int column;
@@ -89,11 +89,11 @@ class ButtonElement : public ScreenElement
     /// @brief Internal variable for tracking new button presses
     mutable bool buttonDown = false;
 
+    /// @brief How many columns of text need to be cleared when the text changes
+    mutable int totalWhitespaces = 0;
+
     /// @brief Where the remaining text starts when the text changes
     mutable int lastColumn;
-
-    /// @brief How many columns of text need to be cleared when the text changes
-    mutable int totalWhitespaces;
 
     /// @brief Used to align the text whenever it is changed
     int sizeX;
@@ -140,10 +140,11 @@ class Screen
     mutable std::list<ScreenElement*> elements;
 
     /// @brief The screen's main color
-    vex::color bgColor;
+    vex::color bgColor = vex::black;
 
   public:
-    Screen(void);
+    /// @brief Initializes a screen with a black background
+    Screen(void) {}
 
     Screen(const vex::color & screenColor);
 
