@@ -2,8 +2,17 @@
 
 
 
+/// @brief Gets the central row from a pixel-coordinate position and length
+/// @param posY The uppermost pixel coordinate
+/// @param sizeY The distance from the uppermost to the lowermost pixel coordinate
+/// @return The central row
 int getCenterRow(int posY, int sizeY) { return ceil((posY + sizeY / 2) / 20) + 1; }
 
+/// @brief Gets the central column from a pixel-coordinate position and length as well a text string's character length
+/// @param posX The leftmost pixel coordinate
+/// @param sizeX The distance from the leftmost to the rightmost pixel coordinate
+/// @param text A text string in which the character length is accounted for in this function
+/// @return The central column number adjusted to center text
 int getCenterColumn(int posX, int sizeX, const std::string & text)
 {
   return ceil((posX + sizeX / 2) / 10 - text.length() / 2) + 1;
@@ -12,9 +21,11 @@ int getCenterColumn(int posX, int sizeX, const std::string & text)
 
 
 ScreenElement::ScreenElement(const vex::color & penColor, const vex::color & fillColor, bool isText)
-             : penColor(penColor), fillColor(fillColor), enabled(true), refreshable(false), isText(isText)
+             : penColor(penColor), fillColor(fillColor), isText(isText), enabled(true), refreshable(false)
 {}
 
+/// @brief Sets the ScreenElement's pen color and automatically determines refreshability
+/// @param newColor The new pen color
 void ScreenElement::setPenColor(const vex::color & newColor)
 {
   if (penColor == newColor) return;
@@ -24,6 +35,8 @@ void ScreenElement::setPenColor(const vex::color & newColor)
   penColor = newColor;
 }
 
+/// @brief Sets the ScreenElement's fill color and automatically determines refreshability
+/// @param newColor The new fill color
 void ScreenElement::setFillColor(const vex::color & newColor)
 {
   if (fillColor == newColor) return;
@@ -64,20 +77,33 @@ void Text::draw()
 
 /// @brief Sets the text to a std::string
 /// @param newText The new text
+/// @param addWhitespaces Whether the text deletes
+/// characters it won't directly overwrite
+/// (for internal purposes)
 /// @return Whether the text is refreshable
-bool Text::setText(std::string newText) const
+bool Text::setText(std::string newText, bool addWhitespaces) const
 {
   if (newText == text) return false;
 
   refreshable = true;
 
-  bool hasWhitespaces = text.length() > newText.length();
+  if (addWhitespaces)
+  {
+    bool hasWhitespaces = text.length() > newText.length();
 
-  int whitespaces = fmax(text.length() - newText.length(), 0);
+    int whitespaces = fmax(text.length() - newText.length(), 0);
 
-  text = newText;
+    text = newText;
 
-  printedText = (hasWhitespaces) ? newText.append(whitespaces, ' ') : text;
+    printedText = (hasWhitespaces) ? newText.append(whitespaces, ' ') : text;
+  }
+
+  else
+  {
+    text = newText;
+
+    printedText = text;
+  }
 
   return true;
 }
@@ -120,8 +146,18 @@ ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
 /// @param newText The new text
 void ButtonElement::setText(std::string newText) const
 {
-  // TODO: Make the text print whitespaces accurately after having its column moved
-  if (text.setText(newText)) refreshable = true, text.column = getCenterColumn(posX, sizeX, newText);
+  if (text.setText(newText, false)) 
+  {
+    refreshable = true;
+
+    lastColumn = text.column;
+    
+    int lastLength = text.text.length();
+    
+    text.column = getCenterColumn(posX, sizeX, newText);
+
+    totalWhitespaces = fmax(lastLength + fabs(lastColumn - text.column), 0);
+  }
 }
 
 /// @brief Uses printf() formatting and sets the ButtonElement's text to the result
@@ -142,6 +178,24 @@ void ButtonElement::setTextFormat(const char * format, ...) const
   setText(buffer);
 }
 
+/// @brief Removes leftover text from edges realigning when the text is changed
+void ButtonElement::cleanText()
+{
+  if (!totalWhitespaces) return;
+
+  std::string whitespaces;
+
+  whitespaces.append(totalWhitespaces, ' ');
+
+  Brain.Screen.setCursor(text.row, lastColumn);
+
+  Brain.Screen.print(whitespaces.c_str());
+}
+
+/// @brief Sets the ButtonElement and its text's pen color and
+/// automatically determines refreshability, overrides
+/// ScreenElement::setPenColor
+/// @param newColor The new pen color
 void ButtonElement::setPenColor(const vex::color & newColor)
 {
   if (penColor == newColor && text.penColor == newColor) return;
@@ -153,6 +207,10 @@ void ButtonElement::setPenColor(const vex::color & newColor)
   text.setPenColor(penColor);
 }
 
+/// @brief Sets the ButtonElement and its text's fill color and
+/// automatically determines refreshability, overrides
+/// ScreenElement::setFillColor
+/// @param newColor The new fill color
 void ButtonElement::setFillColor(const vex::color & newColor)
 {
   if (fillColor == newColor && text.fillColor == newColor) return;
@@ -164,9 +222,9 @@ void ButtonElement::setFillColor(const vex::color & newColor)
   text.setFillColor(fillColor);
 }
 
-/// @brief NOT thread safe: you should use this function once
-///        and store its data in a variable afterwards or it
-///        will not return the same value
+/// @brief NOT thread safe: you should use this function in
+///        the loop once and store its data in a variable
+///        afterwards or it will not return the same value
 /// @return If a press has just started
 bool ButtonElement::getNewPress()
 {

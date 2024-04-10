@@ -27,6 +27,7 @@ void RectButton::draw()
 
   Brain.Screen.drawRectangle(posX, posY, sizeX, sizeY);
 
+  cleanText();
   text.draw();
 
   Brain.Screen.setPenColor(vex::white);
@@ -80,6 +81,7 @@ void CircButton::draw()
 
   Brain.Screen.drawCircle(centerX, centerY, radius);
 
+  cleanText();
   text.draw();
 
   Brain.Screen.setPenColor(vex::white);

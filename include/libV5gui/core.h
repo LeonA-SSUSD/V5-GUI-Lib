@@ -7,7 +7,8 @@
 #include<string>
 
 
-
+/// @brief An external instance of the vex::brain
+/// that all print/draw functions will call from
 extern vex::brain Brain;
 
 
@@ -24,14 +25,15 @@ class ScreenElement
     mutable vex::color penColor;
     mutable vex::color fillColor;
 
+    bool isText;
+
     /// @brief Whether the ScreenElement should be drawn
     bool enabled;
 
     /// @brief Whether the ScreenElement should be redrawn
     mutable bool refreshable;
     
-    bool isText;
-
+    /// @brief The ScreenElement's "layer" when drawn on a Screen
     bool zIndex;
 
     
@@ -73,7 +75,7 @@ class Text : public ScreenElement
 
 
 
-    bool setText(std::string newText) const;
+    bool setText(std::string newText, bool addWhitespaces = true) const;
     bool setTextFormat(const char * format, ...) const;
 
     void draw(void) override;
@@ -87,11 +89,21 @@ class ButtonElement : public ScreenElement
     /// @brief Internal variable for tracking new button presses
     mutable bool buttonDown = false;
 
-  public:
-    int posX;
-    int posY;
+    /// @brief Where the remaining text starts when the text changes
+    mutable int lastColumn;
 
+    /// @brief How many columns of text need to be cleared when the text changes
+    mutable int totalWhitespaces;
+
+    /// @brief Used to align the text whenever it is changed
     int sizeX;
+
+  public:
+    /// @brief All buttons will have a leftmost X-coordinate
+    int posX;
+
+    /// @brief All buttons will have an uppermost y-coordinate
+    int posY;
 
     Text text;
 
@@ -108,6 +120,8 @@ class ButtonElement : public ScreenElement
 
     void setText(std::string newText) const;
     void setTextFormat(const char * format, ...) const;
+
+    void cleanText(void);
 
     void setPenColor(const vex::color & newColor) override;
     void setFillColor(const vex::color & newColor) override;
