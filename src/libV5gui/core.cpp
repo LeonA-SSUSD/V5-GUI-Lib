@@ -56,25 +56,6 @@ Text::Text(int row, int column, const vex::color & penColor, const vex::color & 
     : ScreenElement(penColor, fillColor, true), row(row), column(column)
 {}
 
-/// @brief Draws the text, overrides ScreenElement::draw()
-void Text::draw()
-{
-  if (!enabled || !printedText.length()) return;
-
-  refreshable = false;
-
-  Brain.Screen.setPenColor(penColor);
-  Brain.Screen.setFillColor(fillColor);
-
-  Brain.Screen.setCursor(row, column);
-  Brain.Screen.print(printedText.c_str());
-
-  Brain.Screen.setPenColor(vex::white);
-  Brain.Screen.setFillColor(vex::transparent);
-
-  printedText = text;
-}
-
 /// @brief Sets the text to a std::string
 /// @param newText The new text
 /// @param addWhitespaces Whether the text deletes
@@ -91,7 +72,7 @@ bool Text::setText(std::string newText, bool addWhitespaces) const
   {
     bool hasWhitespaces = text.length() > newText.length();
 
-    int whitespaces = fmax(text.length() - newText.length(), 0);
+    int whitespaces = text.length() - newText.length();
 
     text = newText;
 
@@ -127,6 +108,25 @@ bool Text::setTextFormat(const char * format, ...) const
   return setText(buffer);
 }
 
+/// @brief Draws the text, overrides ScreenElement::draw()
+void Text::draw()
+{
+  if (!enabled || !printedText.length()) return;
+
+  refreshable = false;
+
+  Brain.Screen.setPenColor(penColor);
+  Brain.Screen.setFillColor(fillColor);
+
+  Brain.Screen.setCursor(row, column);
+  Brain.Screen.print(printedText.c_str());
+
+  Brain.Screen.setPenColor(vex::white);
+  Brain.Screen.setFillColor(vex::transparent);
+
+  printedText = text;
+}
+
 
 
 ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
@@ -146,17 +146,17 @@ ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
 /// @param newText The new text
 void ButtonElement::setText(std::string newText) const
 {
+  int lastLength = text.text.length();  
+
   if (text.setText(newText, false)) 
   {
     refreshable = true;
 
     lastColumn = text.column;
     
-    int lastLength = text.text.length();
-    
     text.column = getCenterColumn(posX, sizeX, newText);
 
-    totalWhitespaces = fmax(lastLength + abs(lastColumn - text.column), 0);
+    totalWhitespaces = lastLength + abs(lastColumn - text.column);
   }
 }
 
@@ -189,6 +189,8 @@ void ButtonElement::cleanText() const
 
     Brain.Screen.print(" ");
   }
+
+  totalWhitespaces = 0;
 }
 
 /// @brief Sets the ButtonElement and its text's pen color and
@@ -252,7 +254,7 @@ Screen::Screen(const vex::color & bgColor) : bgColor(bgColor) {}
 /// @param zIndex The "layer" that the screen element will be drawn on
 void Screen::add(ScreenElement & element, int zIndex) const
 {
-  element.zIndex = (zIndex == -1) ? elements.size() : zIndex;
+  element.zIndex = (zIndex < 0) ? elements.size() : zIndex;
 
   if (element.isText) element.fillColor = vex::transparent;
 
