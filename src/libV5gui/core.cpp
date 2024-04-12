@@ -246,8 +246,20 @@ bool ButtonElement::getNewPress()
 
 
 /// @brief Initializes a screen with a chosen color
-/// @param bgColor Screen background color
-Screen::Screen(const vex::color & bgColor) : bgColor(bgColor) {}
+/// @param screenColor Screen background color
+Screen::Screen(const vex::color & screenColor) : screenColor(screenColor) {}
+
+/// @brief Sets the background color of the screen and
+/// automatically determines refreshability
+/// @param newScreenColor The screen color
+void Screen::setScreenColor(const vex::color & newScreenColor) const
+{
+  if (screenColor == newScreenColor) return;
+
+  screenChanged = true;
+
+  screenColor = newScreenColor;
+}
 
 /// @brief Adds an element to the screen
 /// @param element The screen element to add
@@ -266,6 +278,8 @@ void Screen::add(ScreenElement & element, int zIndex) const
 /// @brief Draws the screen's background and all elements
 void Screen::draw() const
 { 
+  screenChanged = false;
+
   clear();
 
   for (const auto & element : elements) if (element -> enabled) element -> draw();
@@ -274,6 +288,8 @@ void Screen::draw() const
 /// @brief Refreshes elements on the screen
 void Screen::refresh() const
 {
+  if (screenChanged) return draw();
+
   int refreshZ = -1;
 
   for (const auto & element : elements) 
@@ -285,7 +301,7 @@ void Screen::refresh() const
 }
 
 /// @brief Clears the screen to its background color
-void Screen::clear() const { Brain.Screen.clearScreen(bgColor); }
+void Screen::clear() const { Brain.Screen.clearScreen(screenColor); }
 
 /// @brief Enables all elements on the screen
 void Screen::enable() const { for (const auto & element : elements) element -> enabled = true; }

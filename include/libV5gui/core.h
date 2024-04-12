@@ -140,7 +140,11 @@ class Screen
     mutable std::list<ScreenElement*> elements;
 
     /// @brief The screen's main color
-    vex::color bgColor = vex::black;
+    mutable vex::color screenColor = vex::black;
+
+    /// @brief Whether the next refresh() should just draw()
+    /// due to the screen's color changing
+    mutable bool screenChanged = false;
 
   public:
     /// @brief Initializes a screen with a black background
@@ -149,6 +153,8 @@ class Screen
     Screen(const vex::color & screenColor);
 
 
+
+    void setScreenColor(const vex::color & screenColor) const;
 
     void add(ScreenElement & element, int zIndex = -1) const;
 
