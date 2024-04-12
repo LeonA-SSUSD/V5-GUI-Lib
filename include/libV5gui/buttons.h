@@ -8,8 +8,8 @@
 class RectButton : public ButtonElement
 {
   private:
-    int sizeX;
-    int sizeY;
+    const int sizeX;
+    const int sizeY;
   
   public:
     RectButton(int posX, int posY, int sizeX, int sizeY,
@@ -28,11 +28,11 @@ class RectButton : public ButtonElement
 class CircButton : public ButtonElement
 {
   private:
-    int diameter;
-    int radius;
+    const int diameter;
+    const int radius;
 
-    int centerX;
-    int centerY;
+    const int centerX;
+    const int centerY;
   
   public:
     CircButton(int posX, int posY, int diameter,

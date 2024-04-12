@@ -251,7 +251,7 @@ Screen::Screen(const vex::color & screenColor) : screenColor(screenColor) {}
 
 /// @brief Sets the background color of the screen and
 /// automatically determines refreshability
-/// @param newScreenColor The screen color
+/// @param newScreenColor The new screen color
 void Screen::setScreenColor(const vex::color & newScreenColor) const
 {
   if (screenColor == newScreenColor) return;

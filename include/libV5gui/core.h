@@ -25,7 +25,7 @@ class ScreenElement
     mutable vex::color penColor;
     mutable vex::color fillColor;
 
-    bool isText;
+    const bool isText;
 
     /// @brief The ScreenElement's "layer" when drawn on a Screen
     int zIndex;
@@ -96,14 +96,14 @@ class ButtonElement : public ScreenElement
     mutable int lastColumn;
 
     /// @brief Used to align the text whenever it is changed
-    int sizeX;
+    const int sizeX;
 
   public:
     /// @brief All buttons will have a leftmost X-coordinate
-    int posX;
+    const int posX;
 
     /// @brief All buttons will have an uppermost y-coordinate
-    int posY;
+    const int posY;
 
     Text text;
 
@@ -159,13 +159,10 @@ class Screen
     void add(ScreenElement & element, int zIndex = -1) const;
 
     void draw(void) const;
-
     void refresh(void) const;
-
     void clear(void) const;
 
     void enable(void) const;
-
     void disable(void) const;
 };
 
