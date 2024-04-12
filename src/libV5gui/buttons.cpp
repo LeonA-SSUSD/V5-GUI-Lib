@@ -97,7 +97,7 @@ bool CircButton::isPressed()
   int relativeX = Brain.Screen.xPosition() - centerX;
   int relativeY = Brain.Screen.yPosition() - centerY;
 
-  bool inRadius = (pow(relativeX, 2) + pow(relativeY, 2) <= pow(radius, 2));
+  bool inRadius = (relativeX*relativeX + relativeY*relativeY <= radius*radius);
 
   return inRadius;
 }
