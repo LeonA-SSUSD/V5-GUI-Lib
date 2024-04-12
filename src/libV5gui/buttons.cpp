@@ -3,14 +3,14 @@
 
 
 RectButton::RectButton(int posX, int posY, int sizeX, int sizeY,
-                       const std::string & text,
-                       const vex::color & penColor, const vex::color & fillColor)
+                       const std::string &text,
+                       const vex::color &penColor, const vex::color &fillColor)
           : ButtonElement(posX, posY, sizeX, sizeY, text, penColor, fillColor),
             sizeX(sizeX), sizeY(sizeY)
 {}
 
 RectButton::RectButton(int posX, int posY, int sizeX, int sizeY,
-                       const vex::color & penColor, const vex::color & fillColor)
+                       const vex::color &penColor, const vex::color &fillColor)
           : ButtonElement(posX, posY, sizeX, sizeY, penColor, fillColor),
             sizeX(sizeX), sizeY(sizeY)
 {}
@@ -53,8 +53,8 @@ bool RectButton::isPressed()
 
 
 CircButton::CircButton(int posX, int posY, int diameter,
-                       const std::string & text,
-                       const vex::color & penColor, const vex::color & fillColor)
+                       const std::string &text,
+                       const vex::color &penColor, const vex::color &fillColor)
           : ButtonElement(posX, posY, diameter, diameter, text, penColor, fillColor),
             diameter(diameter),
             radius(floorf(diameter / 2)),
@@ -62,7 +62,7 @@ CircButton::CircButton(int posX, int posY, int diameter,
 {}
 
 CircButton::CircButton(int posX, int posY, int diameter,
-                       const vex::color & penColor, const vex::color & fillColor)
+                       const vex::color &penColor, const vex::color &fillColor)
           : ButtonElement(posX, posY, diameter, diameter, penColor, fillColor),
             diameter(diameter),
             radius(floorf(diameter / 2)),

@@ -13,20 +13,20 @@ int getCenterRow(int posY, int sizeY) { return ceil((posY + sizeY / 2) / 20) + 1
 /// @param sizeX The distance from the leftmost to the rightmost pixel coordinate
 /// @param text A text string in which the character length is accounted for in this function
 /// @return The central column number adjusted to center text
-int getCenterColumn(int posX, int sizeX, const std::string & text)
+int getCenterColumn(int posX, int sizeX, const std::string &text)
 {
   return ceil((posX + sizeX / 2) / 10 - text.length() / 2) + 1;
 }
 
 
 
-ScreenElement::ScreenElement(const vex::color & penColor, const vex::color & fillColor, bool isText)
+ScreenElement::ScreenElement(const vex::color &penColor, const vex::color &fillColor, bool isText)
              : penColor(penColor), fillColor(fillColor), isText(isText)
 {}
 
 /// @brief Sets the ScreenElement's pen color and automatically determines refreshability
 /// @param newColor The new pen color
-void ScreenElement::setPenColor(const vex::color & newColor)
+void ScreenElement::setPenColor(const vex::color &newColor)
 {
   if (penColor == newColor) return;
 
@@ -37,7 +37,7 @@ void ScreenElement::setPenColor(const vex::color & newColor)
 
 /// @brief Sets the ScreenElement's fill color and automatically determines refreshability
 /// @param newColor The new fill color
-void ScreenElement::setFillColor(const vex::color & newColor)
+void ScreenElement::setFillColor(const vex::color &newColor)
 {
   if (fillColor == newColor) return;
 
@@ -48,11 +48,11 @@ void ScreenElement::setFillColor(const vex::color & newColor)
 
 
 
-Text::Text(const std::string & text, int row, int column, const vex::color & penColor, const vex::color & fillColor)
+Text::Text(const std::string &text, int row, int column, const vex::color &penColor, const vex::color &fillColor)
     : ScreenElement(penColor, fillColor, true), printedText(text), text(text), row(row), column(column)
 {}
 
-Text::Text(int row, int column, const vex::color & penColor, const vex::color & fillColor)
+Text::Text(int row, int column, const vex::color &penColor, const vex::color &fillColor)
     : ScreenElement(penColor, fillColor, true), row(row), column(column)
 {}
 
@@ -130,14 +130,14 @@ void Text::draw()
 
 
 ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
-                             const std::string & text,
-                             const vex::color & penColor, const vex::color & fillColor)
+                             const std::string &text,
+                             const vex::color &penColor, const vex::color &fillColor)
              : ScreenElement(penColor, fillColor), sizeX(sizeX), posX(posX), posY(posY),
                text(text, getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX, text), penColor, fillColor)
 {}
 
 ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
-                             const vex::color & penColor, const vex::color & fillColor)
+                             const vex::color &penColor, const vex::color &fillColor)
              : ScreenElement(penColor, fillColor), sizeX(sizeX), posX(posX), posY(posY),
                text(getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX), penColor, fillColor)
 {}
@@ -197,7 +197,7 @@ void ButtonElement::cleanText() const
 /// automatically determines refreshability, overrides
 /// ScreenElement::setPenColor
 /// @param newColor The new pen color
-void ButtonElement::setPenColor(const vex::color & newColor)
+void ButtonElement::setPenColor(const vex::color &newColor)
 {
   if (penColor == newColor && text.penColor == newColor) return;
 
@@ -212,7 +212,7 @@ void ButtonElement::setPenColor(const vex::color & newColor)
 /// automatically determines refreshability, overrides
 /// ScreenElement::setFillColor
 /// @param newColor The new fill color
-void ButtonElement::setFillColor(const vex::color & newColor)
+void ButtonElement::setFillColor(const vex::color &newColor)
 {
   if (fillColor == newColor && text.fillColor == newColor) return;
 
@@ -247,12 +247,12 @@ bool ButtonElement::getNewPress()
 
 /// @brief Initializes a screen with a chosen color
 /// @param screenColor Screen background color
-Screen::Screen(const vex::color & screenColor) : screenColor(screenColor) {}
+Screen::Screen(const vex::color &screenColor) : screenColor(screenColor) {}
 
 /// @brief Sets the background color of the screen and
 /// automatically determines refreshability
 /// @param newScreenColor The new screen color
-void Screen::setScreenColor(const vex::color & newScreenColor) const
+void Screen::setScreenColor(const vex::color &newScreenColor) const
 {
   if (screenColor == newScreenColor) return;
 
@@ -264,7 +264,7 @@ void Screen::setScreenColor(const vex::color & newScreenColor) const
 /// @brief Adds an element to the screen
 /// @param element The screen element to add
 /// @param zIndex The "layer" that the screen element will be drawn on
-void Screen::add(ScreenElement & element, int zIndex) const
+void Screen::add(ScreenElement &element, int zIndex) const
 {
   element.zIndex = (zIndex < 0) ? elements.size() : zIndex;
 
@@ -282,7 +282,7 @@ void Screen::draw() const
 
   clear();
 
-  for (const auto & element : elements) if (element -> enabled) element -> draw();
+  for (const auto &element : elements) if (element -> enabled) element -> draw();
 }
 
 /// @brief Refreshes elements on the screen
@@ -292,7 +292,7 @@ void Screen::refresh() const
 
   int refreshZ = -1;
 
-  for (const auto & element : elements) 
+  for (const auto &element : elements) 
   {
     if (element -> enabled && element -> refreshable) refreshZ = element -> zIndex, element -> draw();
 
@@ -304,7 +304,7 @@ void Screen::refresh() const
 void Screen::clear() const { Brain.Screen.clearScreen(screenColor); }
 
 /// @brief Enables all elements on the screen
-void Screen::enable() const { for (const auto & element : elements) element -> enabled = true; }
+void Screen::enable() const { for (const auto &element : elements) element -> enabled = true; }
 
 /// @brief Disables all elements on the screen
-void Screen::disable() const { for (const auto & element : elements) element -> enabled = false; }
+void Screen::disable() const { for (const auto &element : elements) element -> enabled = false; }
