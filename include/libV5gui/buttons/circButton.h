@@ -1,7 +1,7 @@
 #ifndef CIRC_BUTTON_H
 #define CIRC_BUTTON_H
 
-#include "libV5gui/core/buttonElement.h"
+#include "libV5gui/core/ButtonElement.h"
 
 
 

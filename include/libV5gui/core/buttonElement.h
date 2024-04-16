@@ -1,7 +1,7 @@
 #ifndef BUTTON_ELEMENT_H
 #define BUTTON_ELEMENT_H
 
-#include "libV5gui/core/text.h"
+#include "libV5gui/core/Text.h"
 
 
 

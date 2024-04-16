@@ -1,7 +1,7 @@
 #ifndef TEXT_H
 #define TEXT_H
 
-#include "libV5gui/core/screenElement.h"
+#include "libV5gui/core/ScreenElement.h"
 
 #include<string>
 

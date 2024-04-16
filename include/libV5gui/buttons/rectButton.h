@@ -1,7 +1,7 @@
 #ifndef RECT_BUTTON_H
 #define RECT_BUTTON_H
 
-#include "libV5gui/core/buttonElement.h"
+#include "libV5gui/core/ButtonElement.h"
 
 
 

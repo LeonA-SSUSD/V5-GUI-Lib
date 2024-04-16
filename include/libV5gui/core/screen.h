@@ -1,7 +1,7 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
-#include "libv5gui/core/screenElement.h"
+#include "libv5gui/core/ScreenElement.h"
 
 #include<list>
 
