@@ -49,8 +49,6 @@ namespace libv5gui
     int relativeX = Brain.Screen.xPosition() - centerX;
     int relativeY = Brain.Screen.yPosition() - centerY;
 
-    bool inRadius = (relativeX*relativeX + relativeY*relativeY <= radius*radius);
-
-    return inRadius;
+    return (relativeX*relativeX + relativeY*relativeY <= radius*radius);
   }
 }

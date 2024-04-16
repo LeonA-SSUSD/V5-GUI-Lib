@@ -32,21 +32,21 @@ namespace libv5gui
 
   ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
                                const vex::color &penColor, const vex::color &fillColor)
-                : ScreenElement(penColor, fillColor), sizeX(sizeX), posX(posX), posY(posY),
-                  text(getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX), penColor, fillColor)
+               : ScreenElement(penColor, fillColor), sizeX(sizeX), posX(posX), posY(posY),
+                 text(getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX), penColor, fillColor)
   {}
 
   /// @brief Sets the ButtonElement's text to a std::string
   /// @param newText The new text
   void ButtonElement::setText(std::string newText) const
   {
-    int lastLength = text.text.length();  
+    int lastLength = text.text.length(); 
+
+    lastColumn = text.column;
 
     if (text.setText(newText, false)) 
     {
       refreshable = true;
-
-      lastColumn = text.column;
       
       text.column = getCenterColumn(posX, sizeX, newText);
 

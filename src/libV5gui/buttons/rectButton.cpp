@@ -45,9 +45,6 @@ namespace libv5gui
     int relativeX = Brain.Screen.xPosition() - posX;
     int relativeY = Brain.Screen.yPosition() - posY;
 
-    bool inX = relativeX > 0 && relativeX <= sizeX;
-    bool inY = relativeY > 0 && relativeY <= sizeY;
-
-    return (inX && inY);
+    return (relativeX > 0 && relativeX <= sizeX) && (relativeY > 0 && relativeY <= sizeY);
   }
 }
