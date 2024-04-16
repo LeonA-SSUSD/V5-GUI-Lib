@@ -8,7 +8,8 @@
 /// @return The central row
 int getCenterRow(int posY, int sizeY) { return ceil((posY + sizeY / 2) / 20) + 1; }
 
-/// @brief Gets the central column from a pixel-coordinate position and length as well a text string's character length
+/// @brief Gets the central column from a pixel-coordinate position and length
+///        as well a text string's character length
 /// @param posX The leftmost pixel coordinate
 /// @param sizeX The distance from the leftmost to the rightmost pixel coordinate
 /// @param text A text string in which the character length is accounted for in this function
@@ -68,15 +69,13 @@ bool Text::setText(std::string newText, bool addWhitespaces) const
 
   refreshable = true;
 
-  if (addWhitespaces)
+  if (addWhitespaces && text.length() > newText.length())
   {
-    bool hasWhitespaces = text.length() > newText.length();
-
     int whitespaces = text.length() - newText.length();
 
     text = newText;
 
-    printedText = (hasWhitespaces) ? newText.append(whitespaces, ' ') : text;
+    printedText = newText.append(whitespaces, ' ');
   }
 
   else
