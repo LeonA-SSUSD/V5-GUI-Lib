@@ -1,32 +1,12 @@
-#ifndef GUI_LIB_H
-#define GUI_LIB_H
+#ifndef CIRC_BUTTON_H
+#define CIRC_BUTTON_H
 
-#include "libV5gui/core.h"
+#include "libV5gui/core/buttonElement.h"
 
 
 
 namespace libv5gui
 {
-  class RectButton : public ButtonElement
-  {
-    private:
-      const int sizeX;
-      const int sizeY;
-    
-    public:
-      RectButton(int posX, int posY, int sizeX, int sizeY,
-                const std::string &text,
-                const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
-
-      RectButton(int posX, int posY, int sizeX, int sizeY,
-                const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
-
-      
-
-      void draw(void) override;
-      bool isPressed(void) override;
-  };
-
   class CircButton : public ButtonElement
   {
     private:
