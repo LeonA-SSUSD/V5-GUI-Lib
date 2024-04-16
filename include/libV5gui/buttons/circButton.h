@@ -18,11 +18,11 @@ namespace libv5gui
     
     public:
       CircButton(int posX, int posY, int diameter,
-                const std::string &text,
-                const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
+                 const std::string &text,
+                 const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
 
       CircButton(int posX, int posY, int diameter,
-                const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
+                 const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
       
 
 
