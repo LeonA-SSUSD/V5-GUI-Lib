@@ -13,11 +13,11 @@ class RectButton : public ButtonElement
   
   public:
     RectButton(int posX, int posY, int sizeX, int sizeY,
-               const std::string & text,
-               const vex::color & penColor = vex::white, const vex::color & fillColor = vex::black);
+               const std::string &text,
+               const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
 
     RectButton(int posX, int posY, int sizeX, int sizeY,
-               const vex::color & penColor = vex::white, const vex::color & fillColor = vex::black);
+               const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
 
     
 
@@ -36,11 +36,11 @@ class CircButton : public ButtonElement
   
   public:
     CircButton(int posX, int posY, int diameter,
-               const std::string & text,
-               const vex::color & penColor = vex::white, const vex::color & fillColor = vex::black);
+               const std::string &text,
+               const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
 
     CircButton(int posX, int posY, int diameter,
-               const vex::color & penColor = vex::white, const vex::color & fillColor = vex::black);
+               const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
     
 
 

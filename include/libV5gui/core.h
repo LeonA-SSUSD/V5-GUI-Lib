@@ -8,7 +8,7 @@
 
 
 /// @brief An external instance of the vex::brain
-/// that all print/draw functions will call from
+///        that all print/draw functions will call from
 extern vex::brain Brain;
 
 
@@ -16,7 +16,7 @@ extern vex::brain Brain;
 int getCenterRow(int posY, int sizeY);
 
 int getCenterColumn(int posX, int sizeX,
-                    const std::string & text = "");
+                    const std::string &text = "");
 
 
 class ScreenElement
@@ -38,13 +38,13 @@ class ScreenElement
 
     
 
-    ScreenElement(const vex::color & penColor, const vex::color & fillColor,
+    ScreenElement(const vex::color &penColor, const vex::color &fillColor,
                   bool isText = false);
 
 
 
-    virtual void setPenColor(const vex::color & newColor);
-    virtual void setFillColor(const vex::color & newColor);
+    virtual void setPenColor(const vex::color &newColor);
+    virtual void setFillColor(const vex::color &newColor);
 
     virtual void draw(void) = 0;
 };
@@ -66,12 +66,12 @@ class Text : public ScreenElement
 
 
 
-    Text(const std::string & text,
+    Text(const std::string &text,
          int row, int column,
-         const vex::color & penColor = vex::white, const vex::color & fillColor = vex::transparent);
+         const vex::color &penColor = vex::white, const vex::color &fillColor = vex::transparent);
 
     Text(int row, int column,
-         const vex::color & penColor = vex::white, const vex::color & fillColor = vex::transparent);
+         const vex::color &penColor = vex::white, const vex::color &fillColor = vex::transparent);
 
 
 
@@ -110,11 +110,11 @@ class ButtonElement : public ScreenElement
 
 
     ButtonElement(int posX, int posY, int sizeX, int sizeY,
-                  const std::string & text,
-                  const vex::color & penColor, const vex::color & fillColor);
+                  const std::string &text,
+                  const vex::color &penColor, const vex::color &fillColor);
 
     ButtonElement(int posX, int posY, int sizeX, int sizeY,
-                  const vex::color & penColor, const vex::color & fillColor);
+                  const vex::color &penColor, const vex::color &fillColor);
 
 
 
@@ -123,8 +123,8 @@ class ButtonElement : public ScreenElement
 
     void cleanText(void) const;
 
-    void setPenColor(const vex::color & newColor) override;
-    void setFillColor(const vex::color & newColor) override;
+    void setPenColor(const vex::color &newColor) override;
+    void setFillColor(const vex::color &newColor) override;
 
     bool getNewPress(void);
 
@@ -143,20 +143,20 @@ class Screen
     mutable vex::color screenColor = vex::black;
 
     /// @brief Whether the next refresh() should just draw()
-    /// due to the screen's color changing
+    ///        due to the screen's color changing
     mutable bool screenChanged = false;
 
   public:
     /// @brief Initializes a screen with a black background
     Screen(void) {}
 
-    Screen(const vex::color & screenColor);
+    Screen(const vex::color &screenColor);
 
 
 
-    void setScreenColor(const vex::color & screenColor) const;
+    void setScreenColor(const vex::color &screenColor) const;
 
-    void add(ScreenElement & element, int zIndex = -1) const;
+    void add(ScreenElement &element, int zIndex = -1) const;
 
     void draw(void) const;
     void refresh(void) const;

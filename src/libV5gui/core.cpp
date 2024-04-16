@@ -60,8 +60,8 @@ Text::Text(int row, int column, const vex::color &penColor, const vex::color &fi
 /// @brief Sets the text to a std::string
 /// @param newText The new text
 /// @param addWhitespaces Whether the text deletes
-/// characters it won't directly overwrite
-/// (for internal purposes)
+///        characters it won't directly overwrite
+///        (for internal purposes)
 /// @return Whether the text is refreshable
 bool Text::setText(std::string newText, bool addWhitespaces) const
 {
@@ -193,8 +193,8 @@ void ButtonElement::cleanText() const
 }
 
 /// @brief Sets the ButtonElement and its text's pen color and
-/// automatically determines refreshability, overrides
-/// ScreenElement::setPenColor
+///        automatically determines refreshability, overrides
+///        ScreenElement::setPenColor
 /// @param newColor The new pen color
 void ButtonElement::setPenColor(const vex::color &newColor)
 {
@@ -208,8 +208,8 @@ void ButtonElement::setPenColor(const vex::color &newColor)
 }
 
 /// @brief Sets the ButtonElement and its text's fill color and
-/// automatically determines refreshability, overrides
-/// ScreenElement::setFillColor
+///        automatically determines refreshability, overrides
+///        ScreenElement::setFillColor
 /// @param newColor The new fill color
 void ButtonElement::setFillColor(const vex::color &newColor)
 {
@@ -249,7 +249,7 @@ bool ButtonElement::getNewPress()
 Screen::Screen(const vex::color &screenColor) : screenColor(screenColor) {}
 
 /// @brief Sets the background color of the screen and
-/// automatically determines refreshability
+///        automatically determines refreshability
 /// @param newScreenColor The new screen color
 void Screen::setScreenColor(const vex::color &newScreenColor) const
 {
