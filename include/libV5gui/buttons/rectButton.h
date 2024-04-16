@@ -15,11 +15,11 @@ namespace libv5gui
     
     public:
       RectButton(int posX, int posY, int sizeX, int sizeY,
-                const std::string &text,
-                const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
+                 const std::string &text,
+                 const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
 
       RectButton(int posX, int posY, int sizeX, int sizeY,
-                const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
+                 const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
 
       
 

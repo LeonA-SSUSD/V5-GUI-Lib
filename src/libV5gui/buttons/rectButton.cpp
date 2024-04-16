@@ -5,14 +5,14 @@
 namespace libv5gui
 {
   RectButton::RectButton(int posX, int posY, int sizeX, int sizeY,
-                        const std::string &text,
-                        const vex::color &penColor, const vex::color &fillColor)
+                         const std::string &text,
+                         const vex::color &penColor, const vex::color &fillColor)
             : ButtonElement(posX, posY, sizeX, sizeY, text, penColor, fillColor),
               sizeX(sizeX), sizeY(sizeY)
   {}
 
   RectButton::RectButton(int posX, int posY, int sizeX, int sizeY,
-                        const vex::color &penColor, const vex::color &fillColor)
+                         const vex::color &penColor, const vex::color &fillColor)
             : ButtonElement(posX, posY, sizeX, sizeY, penColor, fillColor),
               sizeX(sizeX), sizeY(sizeY)
   {}
@@ -42,12 +42,11 @@ namespace libv5gui
   {
     if (!enabled || !Brain.Screen.pressing()) return false;
 
-    int x = Brain.Screen.xPosition();
-    int y = Brain.Screen.yPosition();
+    int relativeX = Brain.Screen.xPosition() - posX;
+    int relativeY = Brain.Screen.yPosition() - posY;
 
-    // Absolute value version of a double-sided inequality: posX < x < (posX + sizeX)
-    bool inX = abs((posX + sizeX / 2) - x) <= sizeX / 2;
-    bool inY = abs((posY + sizeY / 2) - y) <= sizeY / 2;
+    bool inX = relativeX > 0 && relativeX <= sizeX;
+    bool inY = relativeY > 0 && relativeY <= sizeY;
 
     return (inX && inY);
   }
