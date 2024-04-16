@@ -5,48 +5,51 @@
 
 
 
-class RectButton : public ButtonElement
+namespace libv5gui
 {
-  private:
-    const int sizeX;
-    const int sizeY;
-  
-  public:
-    RectButton(int posX, int posY, int sizeX, int sizeY,
-               const std::string &text,
-               const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
-
-    RectButton(int posX, int posY, int sizeX, int sizeY,
-               const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
-
+  class RectButton : public ButtonElement
+  {
+    private:
+      const int sizeX;
+      const int sizeY;
     
+    public:
+      RectButton(int posX, int posY, int sizeX, int sizeY,
+                const std::string &text,
+                const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
 
-    void draw(void) override;
-    bool isPressed(void) override;
-};
+      RectButton(int posX, int posY, int sizeX, int sizeY,
+                const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
 
-class CircButton : public ButtonElement
-{
-  private:
-    const int diameter;
-    const int radius;
+      
 
-    const int centerX;
-    const int centerY;
-  
-  public:
-    CircButton(int posX, int posY, int diameter,
-               const std::string &text,
-               const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
+      void draw(void) override;
+      bool isPressed(void) override;
+  };
 
-    CircButton(int posX, int posY, int diameter,
-               const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
+  class CircButton : public ButtonElement
+  {
+    private:
+      const int diameter;
+      const int radius;
+
+      const int centerX;
+      const int centerY;
     
+    public:
+      CircButton(int posX, int posY, int diameter,
+                const std::string &text,
+                const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
+
+      CircButton(int posX, int posY, int diameter,
+                const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
+      
 
 
-    void draw(void) override;
-    bool isPressed(void) override;
-};
+      void draw(void) override;
+      bool isPressed(void) override;
+  };
+}
 
 
 
