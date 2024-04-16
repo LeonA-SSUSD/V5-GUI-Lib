@@ -53,7 +53,7 @@ namespace libv5gui
 
     for (const auto &element : elements) 
     {
-    if (element -> enabled && element -> refreshable) refreshZ = element -> zIndex, element -> draw();
+      if (element -> enabled && element -> refreshable) refreshZ = element -> zIndex, element -> draw();
 
       else if (refreshZ > -1 && element -> zIndex > refreshZ) element -> draw();
     }
