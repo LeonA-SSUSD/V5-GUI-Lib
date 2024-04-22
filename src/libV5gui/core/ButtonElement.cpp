@@ -40,7 +40,7 @@ namespace libv5gui
   /// @param newText The new text
   void ButtonElement::setText(std::string newText) const
   {
-    int lastLength = text.text.length(); 
+    totalWhitespaces = text.text.length(); 
 
     lastColumn = text.column;
 
@@ -49,8 +49,6 @@ namespace libv5gui
       refreshable = true;
       
       text.column = getCenterColumn(posX, sizeX, newText);
-
-      totalWhitespaces = lastLength + abs(lastColumn - text.column);
     }
   }
 
