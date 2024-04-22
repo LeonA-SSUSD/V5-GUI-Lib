@@ -3,36 +3,17 @@
 
 
 namespace libv5gui
-{
-  /// @brief Gets the central row from a pixel-coordinate position and length
-  /// @param posY The uppermost pixel coordinate
-  /// @param sizeY The distance from the uppermost to the lowermost pixel coordinate
-  /// @return The central row
-  int getCenterRow(int posY, int sizeY) { return ceil((posY + sizeY / 2) / 20) + 1; }
-
-  /// @brief Gets the central column from a pixel-coordinate position and length
-  ///        as well a text string's character length
-  /// @param posX The leftmost pixel coordinate
-  /// @param sizeX The distance from the leftmost to the rightmost pixel coordinate
-  /// @param text A text string in which the character length is accounted for in this function
-  /// @return The central column number adjusted to center text
-  int getCenterColumn(int posX, int sizeX, const std::string &text)
-  {
-    return ceil((posX + sizeX / 2) / 10 - text.length() / 2) + 1;
-  }
-
-
-  
+{ 
   ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
                                const std::string &text,
                                const vex::color &penColor, const vex::color &fillColor)
-               : ScreenElement(penColor, fillColor), sizeX(sizeX), posX(posX), posY(posY),
+               : ScreenElement(penColor, fillColor), _sizeX(sizeX), posX(posX), posY(posY),
                  text(text, getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX, text), penColor, fillColor)
   {}
 
   ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
                                const vex::color &penColor, const vex::color &fillColor)
-               : ScreenElement(penColor, fillColor), sizeX(sizeX), posX(posX), posY(posY),
+               : ScreenElement(penColor, fillColor), _sizeX(sizeX), posX(posX), posY(posY),
                  text(getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX), penColor, fillColor)
   {}
 
@@ -48,7 +29,7 @@ namespace libv5gui
     {
       refreshable = true;
       
-      text.column = getCenterColumn(posX, sizeX, newText);
+      text.column = getCenterColumn(posX, _sizeX, newText);
     }
   }
 
@@ -85,35 +66,41 @@ namespace libv5gui
     totalWhitespaces = 0;
   }
 
+  /// @brief Sets one of the ButtonElement and its text's colors and
+  //         automatically determines refreshability
+  /// @param color The color to change
+  /// @param textColor The text color to change
+  /// @param newColor The new color
+  /// @return Whether the ScreenElement is refreshable
+  bool ButtonElement::setColor(vex::color &color, vex::color &textColor, const vex::color &newColor) const
+  {
+    if (color == newColor && textColor == newColor) return false;
+
+    refreshable = true;
+
+    color = newColor;
+
+    textColor = newColor;
+
+    return true;
+  }
+
   /// @brief Sets the ButtonElement and its text's pen color and
   ///        automatically determines refreshability, overrides
   ///        ScreenElement::setPenColor
   /// @param newColor The new pen color
-  void ButtonElement::setPenColor(const vex::color &newColor)
-  {
-    if (penColor == newColor && text.penColor == newColor) return;
-
-    refreshable = true;
-
-    penColor = newColor;
-
-    text.setPenColor(penColor);
-  }
+  bool ButtonElement::setPenColor(const vex::color &newColor) { return setColor(penColor, text.penColor, newColor); }
 
   /// @brief Sets the ButtonElement and its text's fill color and
   ///        automatically determines refreshability, overrides
   ///        ScreenElement::setFillColor
   /// @param newColor The new fill color
-  void ButtonElement::setFillColor(const vex::color &newColor)
-  {
-    if (fillColor == newColor && text.fillColor == newColor) return;
+  bool ButtonElement::setFillColor(const vex::color &newColor) { return setColor(fillColor, text.fillColor, newColor); }
 
-    refreshable = true;
 
-    fillColor = newColor;
-
-    text.setFillColor(fillColor);
-  }
+  /// @brief Detects if the ButtonElement is pressed
+  /// @return Whether the ButtonElement is currently pressed
+  bool ButtonElement::isPressed() { return enabled && Brain.Screen.pressing() && pressCondition(); }
 
   /// @brief NOT thread safe: you should use this function in
   ///        the loop once and store its data in a variable
@@ -133,5 +120,23 @@ namespace libv5gui
     buttonDown = pressed;
 
     return false;
+  }
+
+  void ButtonElement::draw()
+  {
+    if (!enabled) return;
+
+    refreshable = false;
+
+    Brain.Screen.setPenColor(penColor);
+    Brain.Screen.setFillColor(fillColor);
+
+    drawShape();
+
+    cleanText();
+    text.draw();
+
+    Brain.Screen.setPenColor(vex::white);
+    Brain.Screen.setFillColor(vex::transparent);
   }
 }

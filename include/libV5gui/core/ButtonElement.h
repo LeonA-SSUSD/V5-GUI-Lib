@@ -7,13 +7,6 @@
 
 namespace libv5gui
 {
-  int getCenterRow(int posY, int sizeY);
-
-  int getCenterColumn(int posX, int sizeX,
-                      const std::string &text = "");
-
-
-
   class ButtonElement : public ScreenElement
   {
     private:
@@ -27,7 +20,14 @@ namespace libv5gui
       mutable int lastColumn;
 
       /// @brief Used to align the text whenever it is changed
-      const int sizeX;
+      const int _sizeX;
+
+
+
+      bool setColor(vex::color &color, vex::color &textColor, const vex::color &newColor) const;
+
+      virtual void drawShape(void) = 0;
+      virtual bool pressCondition(void) = 0;
 
     public:
       /// @brief All buttons will have a leftmost X-coordinate
@@ -54,12 +54,13 @@ namespace libv5gui
 
       void cleanText(void) const;
 
-      void setPenColor(const vex::color &newColor) override;
-      void setFillColor(const vex::color &newColor) override;
+      bool setPenColor(const vex::color &newColor) override;
+      bool setFillColor(const vex::color &newColor) override;
 
+      bool isPressed(void);
       bool getNewPress(void);
 
-      virtual bool isPressed(void) = 0;
+      void draw(void) override;
   };
 }
 
