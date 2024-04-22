@@ -9,14 +9,15 @@ namespace libv5gui
 {
   class CircButton : public ButtonElement
   {
-    private:
+    public:
       const int diameter;
       const int radius;
 
       const int centerX;
       const int centerY;
-    
-    public:
+
+
+
       CircButton(int posX, int posY, int diameter,
                  const std::string &text,
                  const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
@@ -26,8 +27,9 @@ namespace libv5gui
       
 
 
-      void draw(void) override;
-      bool isPressed(void) override;
+      void drawShape(void) override;
+      
+      bool pressCondition(void) override;
   };
 }
 

@@ -21,31 +21,13 @@ namespace libv5gui
               centerX(posX + radius), centerY(posY + radius)
   {}
 
-  /// @brief Draws the CircButton, overrides ScreenElement::draw()
-  void CircButton::draw()
+  /// @brief Draws the CircButton's circle, overrides ButtonElement::drawShape()
+  void CircButton::drawShape() { Brain.Screen.drawCircle(centerX, centerY, radius); }
+
+  /// @brief The screen condition for CircButton, overrides ButtonElement::pressCondition()
+  /// @return Whether the last screen coordinates are within the CircButton
+  bool CircButton::pressCondition()
   {
-    if (!enabled) return;
-
-    refreshable = false;
-
-    Brain.Screen.setPenColor(penColor);
-    Brain.Screen.setFillColor(fillColor);
-
-    Brain.Screen.drawCircle(centerX, centerY, radius);
-
-    cleanText();
-    text.draw();
-
-    Brain.Screen.setPenColor(vex::white);
-    Brain.Screen.setFillColor(vex::transparent);
-  }
-
-  /// @brief Detects if the CircButton is pressed, overrides ButtonElement::isPressed()
-  /// @return Whether the CircButton is currently pressed
-  bool CircButton::isPressed()
-  {
-    if (!enabled || !Brain.Screen.pressing()) return false;
-
     int relativeX = Brain.Screen.xPosition() - centerX;
     int relativeY = Brain.Screen.yPosition() - centerY;
 

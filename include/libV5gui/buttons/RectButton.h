@@ -9,11 +9,12 @@ namespace libv5gui
 {
   class RectButton : public ButtonElement
   {
-    private:
+    public:
       const int sizeX;
       const int sizeY;
-    
-    public:
+
+
+
       RectButton(int posX, int posY, int sizeX, int sizeY,
                  const std::string &text,
                  const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
@@ -23,8 +24,9 @@ namespace libv5gui
 
       
 
-      void draw(void) override;
-      bool isPressed(void) override;
+      void drawShape(void) override;
+      
+      bool pressCondition(void) override;
   };
 }
 
