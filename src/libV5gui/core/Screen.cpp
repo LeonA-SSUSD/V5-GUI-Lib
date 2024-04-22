@@ -27,11 +27,11 @@ namespace libv5gui
   {
     element.zIndex = (zIndex < 0) ? elements.size() : zIndex;
 
-    if (element.isText) element.fillColor = vex::transparent;
+    if (element.isText) element.setFillColor(vex::transparent);
 
     elements.push_back(&element);
 
-    elements.sort([](const ScreenElement * A, const ScreenElement * B) { return A -> zIndex > B -> zIndex; });
+    elements.sort([](const ScreenElement * A, const ScreenElement * B) { return A -> zIndex < B -> zIndex; });
   }
 
   /// @brief Draws the screen's background and all elements
