@@ -3,8 +3,6 @@
 
 #include "libV5gui/core/ScreenElement.h"
 
-#include<string>
-
 
 
 namespace libv5gui

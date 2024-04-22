@@ -20,7 +20,7 @@ namespace libv5gui
   /// @return Whether the text is refreshable
   bool Text::setText(std::string newText, bool addWhitespaces) const
   {
-    if (newText == text) return false;
+    if (text == newText) return false;
 
     refreshable = true;
 
