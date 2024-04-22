@@ -3,6 +3,8 @@
 
 #include "vex.h"
 
+#include<string>
+
 
 
 /// @brief An external instance of the vex::brain
@@ -13,8 +15,18 @@ extern vex::brain Brain;
 
 namespace libv5gui
 {
+  int getCenterRow(int posY, int sizeY);
+
+  int getCenterColumn(int posX, int sizeX,
+                      const std::string &text = "");
+
+
+
   class ScreenElement
   {
+    private:
+      bool setColor(vex::color &color, const vex::color& newColor) const;
+
     public:
       mutable vex::color penColor;
       mutable vex::color fillColor;
@@ -37,8 +49,8 @@ namespace libv5gui
 
 
 
-      virtual void setPenColor(const vex::color &newColor);
-      virtual void setFillColor(const vex::color &newColor);
+      virtual bool setPenColor(const vex::color &newColor);
+      virtual bool setFillColor(const vex::color &newColor);
 
       virtual void draw(void) = 0;
   };
