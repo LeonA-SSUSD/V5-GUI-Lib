@@ -25,7 +25,7 @@ namespace libv5gui
   void CircButton::drawShape() { Brain.Screen.drawCircle(centerX, centerY, radius); }
 
   /// @brief The screen condition for CircButton, overrides ButtonElement::pressCondition()
-  /// @return Whether the last screen coordinates are within the CircButton
+  /// @return Whether the most recent screen coordinates are within the CircButton
   bool CircButton::pressCondition()
   {
     int relativeX = Brain.Screen.xPosition() - centerX;

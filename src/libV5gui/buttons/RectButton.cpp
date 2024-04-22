@@ -21,7 +21,7 @@ namespace libv5gui
   void RectButton::drawShape() { Brain.Screen.drawRectangle(posX, posY, sizeX, sizeY); }
 
   /// @brief The screen condition for RectButton, overrides ButtonElement::pressCondition()
-  /// @return Whether the last screen coordinates are within the RectButton
+  /// @return Whether the most recent screen coordinates are within the RectButton
   bool RectButton::pressCondition()
   {
     int relativeX = Brain.Screen.xPosition() - posX;
