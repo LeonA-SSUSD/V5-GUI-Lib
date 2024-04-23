@@ -8,7 +8,8 @@ namespace libv5gui
                                const std::string &text,
                                const vex::color &penColor, const vex::color &fillColor)
                : ScreenElement(penColor, fillColor), _sizeX(sizeX),
-                 text(text, getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX, text), penColor, fillColor)
+                 text(text.substr(0, sizeX / 10 - 2), getCenterRow(posY, sizeY),
+                      getCenterColumn(posX, sizeX, text.substr(0, sizeX / 10 - 2)), penColor, fillColor)
   {}
 
   ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
@@ -25,11 +26,13 @@ namespace libv5gui
 
     lastColumn = text.column;
 
-    if (text.setText(newText, false)) 
+    std::string newTextSub = newText.substr(0, _sizeX / 10 - 2);
+
+    if (text.setText(newTextSub, false)) 
     {
       refreshable = true;
       
-      text.column = getCenterColumn(shape -> posX, _sizeX, newText);
+      text.column = getCenterColumn(shape -> posX, _sizeX, newTextSub);
     }
   }
 
@@ -42,28 +45,13 @@ namespace libv5gui
 
     __builtin_va_start(args, format);
 
-    char buffer[256];
+    char buffer[_sizeX / 10 - 1];
     
     vsnprintf(buffer, sizeof(buffer), format, args);
 
     __builtin_va_end(args);
 
     setText(buffer);
-  }
-
-  /// @brief Removes leftover text from edges realigning when the text is changed
-  void ButtonElement::cleanText() const
-  {
-    if (!totalWhitespaces || totalWhitespaces == text.text.length()) return;
-
-    for (int i = 0; i < totalWhitespaces; i++)
-    {
-      Brain.Screen.setCursor(text.row, lastColumn + i);
-
-      Brain.Screen.print(" ");
-    }
-
-    totalWhitespaces = 0;
   }
 
   /// @brief Sets one of the ButtonElement, its shape, and its text's colors and
@@ -135,15 +123,8 @@ namespace libv5gui
 
     refreshable = false;
 
-    Brain.Screen.setPenColor(penColor);
-    Brain.Screen.setFillColor(fillColor);
-
     shape -> draw();
 
-    cleanText();
     text.draw();
-
-    Brain.Screen.setPenColor(vex::white);
-    Brain.Screen.setFillColor(vex::transparent);
   }
 }

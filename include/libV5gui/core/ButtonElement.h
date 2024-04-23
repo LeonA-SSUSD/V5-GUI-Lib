@@ -49,8 +49,6 @@ namespace libv5gui
       void setText(std::string newText) const;
       void setTextFormat(const char * format, ...) const;
 
-      void cleanText(void) const;
-
       bool setPenColor(const vex::color &newColor) override;
       bool setFillColor(const vex::color &newColor) override;
 
