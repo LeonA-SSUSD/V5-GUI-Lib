@@ -8,25 +8,22 @@ namespace libv5gui
                          const std::string &text,
                          const vex::color &penColor, const vex::color &fillColor)
             : ButtonElement(posX, posY, sizeX, sizeY, text, penColor, fillColor),
-              sizeX(sizeX), sizeY(sizeY)
-  {}
+              rectangle(posX, posX, sizeX, sizeY, penColor, fillColor)
+  { shape = &rectangle; }
 
   RectButton::RectButton(int posX, int posY, int sizeX, int sizeY,
                          const vex::color &penColor, const vex::color &fillColor)
             : ButtonElement(posX, posY, sizeX, sizeY, penColor, fillColor),
-              sizeX(sizeX), sizeY(sizeY)
-  {}
-
-  /// @brief Draws the RectButton's rectangle, overrides ButtonElement::drawShape()
-  void RectButton::drawShape() { Brain.Screen.drawRectangle(posX, posY, sizeX, sizeY); }
+              rectangle(posX, posX, sizeX, sizeY, penColor, fillColor)
+  { shape = &rectangle; }
 
   /// @brief The screen condition for RectButton, overrides ButtonElement::pressCondition()
   /// @return Whether the most recent screen coordinates are within the RectButton
   bool RectButton::pressCondition()
   {
-    int relativeX = Brain.Screen.xPosition() - posX;
-    int relativeY = Brain.Screen.yPosition() - posY;
+    int relativeX = Brain.Screen.xPosition() - rectangle.posX;
+    int relativeY = Brain.Screen.yPosition() - rectangle.posY;
 
-    return (relativeX >= 0 && relativeX < sizeX) && (relativeY >= 0 && relativeY < sizeY);
+    return (relativeX >= 0 && relativeX < rectangle.sizeX) && (relativeY >= 0 && relativeY < rectangle.sizeY);
   }
 }

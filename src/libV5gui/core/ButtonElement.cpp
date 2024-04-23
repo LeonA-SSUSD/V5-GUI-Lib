@@ -7,13 +7,13 @@ namespace libv5gui
   ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
                                const std::string &text,
                                const vex::color &penColor, const vex::color &fillColor)
-               : ScreenElement(penColor, fillColor), _sizeX(sizeX), posX(posX), posY(posY),
+               : ScreenElement(penColor, fillColor), _sizeX(sizeX),
                  text(text, getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX, text), penColor, fillColor)
   {}
 
   ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
                                const vex::color &penColor, const vex::color &fillColor)
-               : ScreenElement(penColor, fillColor), _sizeX(sizeX), posX(posX), posY(posY),
+               : ScreenElement(penColor, fillColor), _sizeX(sizeX),
                  text(getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX), penColor, fillColor)
   {}
 
@@ -29,7 +29,7 @@ namespace libv5gui
     {
       refreshable = true;
       
-      text.column = getCenterColumn(posX, _sizeX, newText);
+      text.column = getCenterColumn(shape -> posX, _sizeX, newText);
     }
   }
 
@@ -66,19 +66,23 @@ namespace libv5gui
     totalWhitespaces = 0;
   }
 
-  /// @brief Sets one of the ButtonElement and its text's colors and
+  /// @brief Sets one of the ButtonElement, its shape, and its text's colors and
   //         automatically determines refreshability
   /// @param color The color to change
+  /// @param shapeColor The shape color to change
   /// @param textColor The text color to change
   /// @param newColor The new color
   /// @return Whether the ScreenElement is refreshable
-  bool ButtonElement::setColor(vex::color &color, vex::color &textColor, const vex::color &newColor) const
+  bool ButtonElement::setColor(vex::color &color, vex::color &shapeColor, vex::color &textColor,
+                               const vex::color &newColor) const
   {
-    if (color == newColor && textColor == newColor) return false;
+    if (color == newColor && shapeColor == newColor && textColor == newColor) return false;
 
     refreshable = true;
 
     color = newColor;
+
+    shapeColor = newColor;
 
     textColor = newColor;
 
@@ -89,14 +93,17 @@ namespace libv5gui
   ///        automatically determines refreshability, overrides
   ///        ScreenElement::setPenColor
   /// @param newColor The new pen color
-  bool ButtonElement::setPenColor(const vex::color &newColor) { return setColor(penColor, text.penColor, newColor); }
+  /// @return Whether the ScreenElement is refreshable
+  bool ButtonElement::setPenColor(const vex::color &newColor)
+  { return setColor(penColor, shape -> penColor, text.penColor, newColor); }
 
   /// @brief Sets the ButtonElement and its text's fill color and
   ///        automatically determines refreshability, overrides
   ///        ScreenElement::setFillColor
   /// @param newColor The new fill color
-  bool ButtonElement::setFillColor(const vex::color &newColor) { return setColor(fillColor, text.fillColor, newColor); }
-
+  /// @return Whether the ScreenElement is refreshable
+  bool ButtonElement::setFillColor(const vex::color &newColor)
+  { return setColor(fillColor, shape -> fillColor, text.fillColor, newColor); }
 
   /// @brief Detects if the ButtonElement is pressed
   /// @return Whether the ButtonElement is currently pressed
@@ -131,7 +138,7 @@ namespace libv5gui
     Brain.Screen.setPenColor(penColor);
     Brain.Screen.setFillColor(fillColor);
 
-    drawShape();
+    shape -> draw();
 
     cleanText();
     text.draw();

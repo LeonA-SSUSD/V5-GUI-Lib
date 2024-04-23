@@ -2,6 +2,7 @@
 #define BUTTON_ELEMENT_H
 
 #include "libV5gui/core/Text.h"
+#include "libV5gui/core/Shape.h"
 
 
 
@@ -24,17 +25,13 @@ namespace libv5gui
 
 
 
-      bool setColor(vex::color &color, vex::color &textColor, const vex::color &newColor) const;
+      bool setColor(vex::color &color, vex::color &shapeColor, vex::color &textColor,
+                    const vex::color &newColor) const;
 
-      virtual void drawShape(void) = 0;
       virtual bool pressCondition(void) = 0;
 
     public:
-      /// @brief All buttons will have a leftmost X-coordinate
-      const int posX;
-
-      /// @brief All buttons will have an uppermost y-coordinate
-      const int posY;
+      Shape *shape = 0;
 
       Text text;
 

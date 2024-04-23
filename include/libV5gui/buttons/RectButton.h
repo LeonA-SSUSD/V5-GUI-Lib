@@ -2,6 +2,7 @@
 #define RECT_BUTTON_H
 
 #include "libV5gui/core/ButtonElement.h"
+#include "libV5gui/shapes/Rectangle.h"
 
 
 
@@ -9,12 +10,10 @@ namespace libv5gui
 {
   class RectButton : public ButtonElement
   {
+    private:
+      Rectangle rectangle;
+
     public:
-      const int sizeX;
-      const int sizeY;
-
-
-
       RectButton(int posX, int posY, int sizeX, int sizeY,
                  const std::string &text,
                  const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
@@ -23,8 +22,6 @@ namespace libv5gui
                  const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
 
       
-
-      void drawShape(void) override;
       
       bool pressCondition(void) override;
   };
