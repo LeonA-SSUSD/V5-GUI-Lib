@@ -16,10 +16,6 @@ namespace libv5gui
 
 
       Shape(int posX, int posY, const vex::color &penColor, const vex::color &fillColor);
-
-
-
-      virtual void draw(void) = 0;
   };
 }
 
