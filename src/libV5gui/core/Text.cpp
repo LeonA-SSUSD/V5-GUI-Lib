@@ -20,22 +20,24 @@ namespace libv5gui
   /// @return Whether the text is refreshable
   bool Text::setText(std::string newText, bool addWhitespaces) const
   {
-    if (text == newText) return false;
+    std::string newTextSub = newText.substr(0, 48 - column);
+
+    if (text == newTextSub) return false;
 
     refreshable = true;
 
-    if (addWhitespaces && text.length() > newText.length())
+    if (addWhitespaces && text.length() > newTextSub.length())
     {
-      int whitespaces = text.length() - newText.length();
+      int whitespaces = text.length() - newTextSub.length();
 
-      text = newText;
+      text = newTextSub;
 
-      printedText = newText.append(whitespaces, ' ');
+      printedText = newTextSub.append(whitespaces, ' ');
     }
 
     else
     {
-      text = newText;
+      text = newTextSub;
 
       printedText = text;
     }
@@ -53,7 +55,7 @@ namespace libv5gui
 
     __builtin_va_start(args, format);
 
-    char buffer[256];
+    char buffer[49 - column];
     
     vsnprintf(buffer, sizeof(buffer), format, args);
 
