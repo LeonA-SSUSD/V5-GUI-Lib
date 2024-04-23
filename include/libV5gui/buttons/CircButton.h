@@ -10,7 +10,6 @@ namespace libv5gui
   class CircButton : public ButtonElement
   {
     public:
-      const int diameter;
       const int radius;
 
       const int centerX;
