@@ -10,9 +10,6 @@ namespace libv5gui
 {
   class CircButton : public ButtonElement
   {
-    private:
-      Circle circle;
-
     public:
       CircButton(int posX, int posY, int diameter,
                  const std::string &text,
