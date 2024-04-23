@@ -23,11 +23,6 @@ namespace libv5gui
       /// @brief Used to align the text whenever it is changed
       const int _sizeX;
 
-
-
-      bool setColor(vex::color &color, vex::color &shapeColor, vex::color &textColor,
-                    const vex::color &newColor) const;
-
     public:
       Shape *shape = 0;
 
@@ -47,11 +42,8 @@ namespace libv5gui
       void setText(std::string newText) const;
       void setTextFormat(const char * format, ...) const;
 
-      bool setPenColor(const vex::color &newColor) override;
-      bool setFillColor(const vex::color &newColor) override;
-
-      bool isPressed(void);
-      bool getNewPress(void);
+      bool isPressed(void) const;
+      bool getNewPress(void) const;
 
       void draw(void) override;
   };

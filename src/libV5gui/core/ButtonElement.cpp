@@ -56,55 +56,16 @@ namespace libv5gui
     delete[] buffer;
   }
 
-  /// @brief Sets one of the ButtonElement, its shape, and its text's colors and
-  //         automatically determines refreshability
-  /// @param color The color to change
-  /// @param shapeColor The shape color to change
-  /// @param textColor The text color to change
-  /// @param newColor The new color
-  /// @return Whether the ScreenElement is refreshable
-  bool ButtonElement::setColor(vex::color &color, vex::color &shapeColor, vex::color &textColor,
-                               const vex::color &newColor) const
-  {
-    if (color == newColor && shapeColor == newColor && textColor == newColor) return false;
-
-    refreshable = true;
-
-    color = newColor;
-
-    shapeColor = newColor;
-
-    textColor = newColor;
-
-    return true;
-  }
-
-  /// @brief Sets the ButtonElement and its text's pen color and
-  ///        automatically determines refreshability, overrides
-  ///        ScreenElement::setPenColor
-  /// @param newColor The new pen color
-  /// @return Whether the ScreenElement is refreshable
-  bool ButtonElement::setPenColor(const vex::color &newColor)
-  { return setColor(penColor, shape -> penColor, text.penColor, newColor); }
-
-  /// @brief Sets the ButtonElement and its text's fill color and
-  ///        automatically determines refreshability, overrides
-  ///        ScreenElement::setFillColor
-  /// @param newColor The new fill color
-  /// @return Whether the ScreenElement is refreshable
-  bool ButtonElement::setFillColor(const vex::color &newColor)
-  { return setColor(fillColor, shape -> fillColor, text.fillColor, newColor); }
-
   /// @brief Detects if the ButtonElement is pressed
   /// @return Whether the ButtonElement is currently pressed
-  bool ButtonElement::isPressed()
+  bool ButtonElement::isPressed() const
   { return enabled && Brain.Screen.pressing() && shape -> contains(Brain.Screen.xPosition(), Brain.Screen.yPosition()); }
 
   /// @brief NOT thread safe: you should use this function in
   ///        the loop once and store its data in a variable
   ///        afterwards or it will not return the same value
   /// @return If a press has just started
-  bool ButtonElement::getNewPress()
+  bool ButtonElement::getNewPress() const
   {
     bool pressed = isPressed();
 
@@ -126,7 +87,13 @@ namespace libv5gui
 
     refreshable = false;
 
+    shape -> penColor = penColor;
+    shape -> fillColor = fillColor;
+
     shape -> draw();
+
+    text.penColor = penColor;
+    text.fillColor = fillColor;
 
     text.draw();
   }
