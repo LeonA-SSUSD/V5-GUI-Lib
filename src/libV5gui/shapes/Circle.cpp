@@ -20,7 +20,7 @@ namespace libv5gui
     Brain.Screen.setPenColor(penColor);
     Brain.Screen.setFillColor(fillColor);
 
-    Brain.Screen.drawCircle(posX, posY, radius);
+    Brain.Screen.drawCircle(centerX, centerY, radius);
 
     Brain.Screen.setPenColor(vex::white);
     Brain.Screen.setFillColor(vex::transparent);
