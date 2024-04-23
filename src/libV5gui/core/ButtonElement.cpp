@@ -54,7 +54,7 @@ namespace libv5gui
   /// @brief Removes leftover text from edges realigning when the text is changed
   void ButtonElement::cleanText() const
   {
-    if (!totalWhitespaces) return;
+    if (!totalWhitespaces || totalWhitespaces == text.text.length()) return;
 
     for (int i = 0; i < totalWhitespaces; i++)
     {
