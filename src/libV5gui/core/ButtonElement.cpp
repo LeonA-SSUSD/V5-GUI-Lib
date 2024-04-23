@@ -45,13 +45,15 @@ namespace libv5gui
 
     __builtin_va_start(args, format);
 
-    char buffer[_sizeX / 10 - 1];
+    char *buffer = new char[_sizeX / 10 - 1];
     
     vsnprintf(buffer, sizeof(buffer), format, args);
 
     __builtin_va_end(args);
 
     setText(buffer);
+
+    delete[] buffer;
   }
 
   /// @brief Sets one of the ButtonElement, its shape, and its text's colors and

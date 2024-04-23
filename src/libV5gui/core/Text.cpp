@@ -55,13 +55,17 @@ namespace libv5gui
 
     __builtin_va_start(args, format);
 
-    char buffer[49 - column];
+    char *buffer = new char[49 - column];
     
     vsnprintf(buffer, sizeof(buffer), format, args);
 
     __builtin_va_end(args);
 
-    return setText(buffer);
+    bool refreshable = setText(buffer);
+
+    delete[] buffer;
+
+    return refreshable;
   }
 
   /// @brief Draws the text, overrides ScreenElement::draw()
