@@ -17,7 +17,7 @@ namespace libv5gui
       /// @brief The stored string
       mutable std::string text = "";
 
-      int row;
+      const int row;
       mutable int column;
 
 
