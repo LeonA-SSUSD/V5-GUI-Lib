@@ -97,7 +97,8 @@ namespace libv5gui
 
   /// @brief Detects if the ButtonElement is pressed
   /// @return Whether the ButtonElement is currently pressed
-  bool ButtonElement::isPressed() { return enabled && Brain.Screen.pressing() && pressCondition(); }
+  bool ButtonElement::isPressed()
+  { return enabled && Brain.Screen.pressing() && shape -> contains(Brain.Screen.xPosition(), Brain.Screen.yPosition()); }
 
   /// @brief NOT thread safe: you should use this function in
   ///        the loop once and store its data in a variable

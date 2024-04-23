@@ -28,8 +28,6 @@ namespace libv5gui
       bool setColor(vex::color &color, vex::color &shapeColor, vex::color &textColor,
                     const vex::color &newColor) const;
 
-      virtual bool pressCondition(void) = 0;
-
     public:
       Shape *shape = 0;
 

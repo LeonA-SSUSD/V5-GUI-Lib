@@ -16,14 +16,4 @@ namespace libv5gui
             : ButtonElement(posX, posY, sizeX, sizeY, penColor, fillColor),
               rectangle(posX, posY, sizeX, sizeY, penColor, fillColor)
   { shape = &rectangle; }
-
-  /// @brief The screen condition for RectButton, overrides ButtonElement::pressCondition()
-  /// @return Whether the most recent screen coordinates are within the RectButton
-  bool RectButton::pressCondition()
-  {
-    int relativeX = Brain.Screen.xPosition() - rectangle.posX;
-    int relativeY = Brain.Screen.yPosition() - rectangle.posY;
-
-    return (relativeX >= 0 && relativeX < rectangle.sizeX) && (relativeY >= 0 && relativeY < rectangle.sizeY);
-  }
 }

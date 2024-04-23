@@ -20,10 +20,6 @@ namespace libv5gui
 
       CircButton(int posX, int posY, int diameter,
                  const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
-      
-
-      
-      bool pressCondition(void) override;
   };
 }
 

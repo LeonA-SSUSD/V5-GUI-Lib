@@ -20,10 +20,6 @@ namespace libv5gui
 
       RectButton(int posX, int posY, int sizeX, int sizeY,
                  const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
-
-      
-      
-      bool pressCondition(void) override;
   };
 }
 
