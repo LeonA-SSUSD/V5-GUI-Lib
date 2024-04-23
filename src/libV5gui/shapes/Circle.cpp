@@ -7,8 +7,7 @@ namespace libv5gui
   Circle::Circle(int posX, int posY, int diameter,
                  const vex::color &penColor, const vex::color &fillColor)
         : Shape(posX, posY, penColor, fillColor),
-          radius(floorf(diameter / 2)),
-          centerX(posX + radius), centerY(posY + radius)
+          radius(floorf(diameter / 2)), centerX(posX + radius), centerY(posY + radius)
   {}
 
   bool Circle::contains(int x, int y)
