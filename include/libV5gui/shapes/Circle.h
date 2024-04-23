@@ -23,6 +23,8 @@ namespace libv5gui
 
 
 
+      bool contains(int x, int y) override;
+
       void draw(void) override;
   };
 }

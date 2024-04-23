@@ -10,6 +10,14 @@ namespace libv5gui
              sizeX(sizeX), sizeY(sizeY)
   {}
 
+  bool Rectangle::contains(int x, int y)
+  {
+    int relativeX = x - posX;
+    int relativeY = y - posY;
+
+    return (relativeX >= 0 && relativeX < sizeX) && (relativeY >= 0 && relativeY < sizeY);
+  }
+
   void Rectangle::draw()
   {
     if (!enabled) return;

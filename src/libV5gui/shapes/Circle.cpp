@@ -11,6 +11,14 @@ namespace libv5gui
           centerX(posX + radius), centerY(posY + radius)
   {}
 
+  bool Circle::contains(int x, int y)
+  {
+    int relativeX = x - centerX;
+    int relativeY = y - centerY;
+
+    return (relativeX*relativeX + relativeY*relativeY <= radius*radius);
+  }
+
   void Circle::draw()
   {
     if (!enabled) return;
