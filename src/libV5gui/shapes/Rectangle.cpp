@@ -25,11 +25,9 @@ namespace libv5gui
     refreshable = false;
 
     Brain.Screen.setPenColor(penColor);
-    Brain.Screen.setFillColor(fillColor);
 
-    Brain.Screen.drawRectangle(posX, posY, sizeX, sizeY);
+    Brain.Screen.drawRectangle(posX, posY, sizeX, sizeY, fillColor);
 
     Brain.Screen.setPenColor(vex::white);
-    Brain.Screen.setFillColor(vex::transparent);
   }
 }

@@ -25,11 +25,9 @@ namespace libv5gui
     refreshable = false;
 
     Brain.Screen.setPenColor(penColor);
-    Brain.Screen.setFillColor(fillColor);
 
-    Brain.Screen.drawCircle(centerX, centerY, radius);
+    Brain.Screen.drawCircle(centerX, centerY, radius, fillColor);
 
     Brain.Screen.setPenColor(vex::white);
-    Brain.Screen.setFillColor(vex::transparent);
   }
 }
