@@ -14,11 +14,8 @@ namespace libv5gui
 
   /// @brief Sets the text to a std::string
   /// @param newText The new text
-  /// @param addWhitespaces Whether the text deletes
-  ///        characters it won't directly overwrite
-  ///        (for internal purposes)
   /// @return Whether the text is refreshable
-  bool Text::setText(std::string newText, bool addWhitespaces) const
+  bool Text::setText(std::string newText) const
   {
     std::string newTextSub = newText.substr(0, 48 - column);
 
@@ -26,7 +23,7 @@ namespace libv5gui
 
     refreshable = true;
 
-    if (addWhitespaces && text.length() > newTextSub.length())
+    if (text.length() > newTextSub.length())
     {
       int whitespaces = text.length() - newTextSub.length();
 
@@ -41,6 +38,23 @@ namespace libv5gui
 
       printedText = text;
     }
+
+    return true;
+  }
+
+  /// @brief Sets the text to a std::string with no alterations,
+  ///        only use this if you know how
+  /// @param newText The new text
+  /// @return Whether the text is refreshable
+  bool Text::setTextRaw(std::string newText) const
+  {
+    if (text == newText) return false;
+
+    refreshable = true;
+
+    text = newText;
+
+    printedText = text;
 
     return true;
   }

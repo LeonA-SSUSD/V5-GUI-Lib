@@ -31,7 +31,8 @@ namespace libv5gui
 
 
 
-      bool setText(std::string newText, bool addWhitespaces = true) const;
+      bool setText(std::string newText) const;
+      bool setTextRaw(std::string newText) const;
       bool setTextFormat(const char * format, ...) const;
 
       void draw(void) override;
