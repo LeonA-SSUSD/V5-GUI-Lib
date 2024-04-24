@@ -15,21 +15,14 @@ extern vex::brain Brain;
 
 namespace libv5gui
 {
-  int getCenterRow(int posY, int sizeY);
-
-  int getCenterColumn(int posX, int sizeX,
-                      const std::string &text = "");
-
-
-
   class ScreenElement
   {
     private:
-      bool setColor(vex::color &color, const vex::color& newColor) const;
+      bool setColor(vex::color &color, const vex::color& newColor);
 
     public:
-      mutable vex::color penColor;
-      mutable vex::color fillColor;
+      vex::color penColor;
+      vex::color fillColor;
 
       const bool isText;
 
@@ -44,16 +37,21 @@ namespace libv5gui
 
       
 
-      ScreenElement(const vex::color &penColor, const vex::color &fillColor,
-                    bool isText = false);
+      ScreenElement(const vex::color &penColor, const vex::color &fillColor, bool isText = false);
 
 
 
-      virtual bool setPenColor(const vex::color &newColor);
-      virtual bool setFillColor(const vex::color &newColor);
+      bool setPenColor(const vex::color &newColor);
+      bool setFillColor(const vex::color &newColor);
 
       virtual void draw(void) = 0;
   };
+
+
+
+  int getCenterRow(int posY, int sizeY);
+
+  int getCenterColumn(int posX, int sizeX, const std::string &text = "");
 }
 
 
