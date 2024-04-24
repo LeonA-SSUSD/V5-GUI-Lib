@@ -28,7 +28,7 @@ namespace libv5gui
 
     std::string newTextSub = newText.substr(0, _sizeX / 10 - 2);
 
-    if (text.setText(newTextSub, false)) 
+    if (text.setTextRaw(newTextSub))
     {
       refreshable = true;
       
