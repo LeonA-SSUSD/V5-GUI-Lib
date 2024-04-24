@@ -14,14 +14,12 @@ namespace libv5gui
       /// @brief Internal variable for tracking new button presses
       mutable bool buttonDown = false;
 
-      /// @brief How many columns of text need to be cleared when the text changes
-      mutable int totalWhitespaces = 0;
-
-      /// @brief Where the remaining text starts when the text changes
-      mutable int lastColumn;
-
       /// @brief Used to align the text whenever it is changed
       const int _sizeX;
+
+
+
+      int maxTextLength(void) const { return floor(_sizeX / 10) - 2; }
 
     public:
       Shape *shape = 0;
@@ -39,8 +37,7 @@ namespace libv5gui
 
 
 
-      void setText(std::string newText) const;
-      void setTextFormat(const char * format, ...) const;
+      bool setText(const char * format, ...) const;
 
       bool isPressed(void) const;
       bool getNewPress(void) const;

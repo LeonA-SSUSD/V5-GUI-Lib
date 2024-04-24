@@ -8,8 +8,8 @@ namespace libv5gui
                                const std::string &text,
                                const vex::color &penColor, const vex::color &fillColor)
                : ScreenElement(penColor, fillColor), _sizeX(sizeX),
-                 text(text.substr(0, sizeX / 10 - 2), getCenterRow(posY, sizeY),
-                      getCenterColumn(posX, sizeX, text.substr(0, sizeX / 10 - 2)), penColor, fillColor)
+                 text(text.substr(0, maxTextLength()), getCenterRow(posY, sizeY),
+                      getCenterColumn(posX, sizeX, text.substr(0, maxTextLength())), penColor, fillColor)
   {}
 
   ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
@@ -18,42 +18,36 @@ namespace libv5gui
                  text(getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX), penColor, fillColor)
   {}
 
-  /// @brief Sets the ButtonElement's text to a std::string
-  /// @param newText The new text
-  void ButtonElement::setText(std::string newText) const
-  {
-    totalWhitespaces = text.text.length(); 
-
-    lastColumn = text.column;
-
-    std::string newTextSub = newText.substr(0, _sizeX / 10 - 2);
-
-    if (text.setTextRaw(newTextSub))
-    {
-      refreshable = true;
-      
-      text.column = getCenterColumn(shape -> posX, _sizeX, newTextSub);
-    }
-  }
-
   /// @brief Uses printf() formatting and sets the ButtonElement's text to the result
   /// @param format Format string
   /// @param ... Arguments for the format string
-  void ButtonElement::setTextFormat(const char * format, ...) const
+  /// @return Whether the ButtonElement is refreshable
+  bool ButtonElement::setText(const char * format, ...) const
   {
     __builtin_va_list args;
 
     __builtin_va_start(args, format);
 
-    char *buffer = new char[_sizeX / 10 - 1];
+    char *buffer = new char[maxTextLength() + 1];
     
     vsnprintf(buffer, sizeof(buffer), format, args);
 
     __builtin_va_end(args);
 
-    setText(buffer);
+    bool refresh = false;
+
+    if (text.setTextRaw(buffer))
+    {
+      refresh = true;
+
+      refreshable = true;
+
+      text.column = getCenterColumn(shape -> posX, _sizeX, buffer);
+    }
 
     delete[] buffer;
+
+    return refresh;
   }
 
   /// @brief Detects if the ButtonElement is pressed
