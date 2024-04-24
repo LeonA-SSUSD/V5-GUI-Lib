@@ -12,36 +12,6 @@ namespace libv5gui
       : ScreenElement(penColor, fillColor, true), row(row), column(column)
   {}
 
-  /// @brief Sets the text to a std::string
-  /// @param newText The new text
-  /// @return Whether the text is refreshable
-  bool Text::setText(std::string newText) const
-  {
-    std::string newTextSub = newText.substr(0, 48 - column);
-
-    if (text == newTextSub) return false;
-
-    refreshable = true;
-
-    if (text.length() > newTextSub.length())
-    {
-      int whitespaces = text.length() - newTextSub.length();
-
-      text = newTextSub;
-
-      printedText = newTextSub.append(whitespaces, ' ');
-    }
-
-    else
-    {
-      text = newTextSub;
-
-      printedText = text;
-    }
-
-    return true;
-  }
-
   /// @brief Sets the text to a std::string with no alterations,
   ///        only use this if you know how
   /// @param newText The new text
@@ -63,7 +33,7 @@ namespace libv5gui
   /// @param format Format string
   /// @param ... Arguments for the format string
   /// @return Whether the text is refreshable
-  bool Text::setTextFormat(const char * format, ...) const
+  bool Text::setText(const char * format, ...) const
   {
     __builtin_va_list args;
 
@@ -75,11 +45,36 @@ namespace libv5gui
 
     __builtin_va_end(args);
 
-    bool refreshable = setText(buffer);
+    bool refresh = false;
+
+    if (text != buffer)
+    {
+      refresh = true;
+
+      refreshable = true;
+
+      std::string newText = buffer;
+
+      if (text.length() > newText.length())
+      {
+        int whitespaces = text.length() - newText.length();
+
+        text = newText;
+
+        printedText = newText.append(whitespaces, ' ');
+      }
+
+      else
+      {
+        text = newText;
+
+        printedText = text;
+      }
+    }
 
     delete[] buffer;
 
-    return refreshable;
+    return refresh;
   }
 
   /// @brief Draws the text, overrides ScreenElement::draw()
