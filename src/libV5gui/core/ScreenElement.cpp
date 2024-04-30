@@ -8,7 +8,7 @@ namespace libv5gui
                : penColor(penColor), fillColor(fillColor), isText(isText)
   {}
 
-  /// @brief Sets one of the ScreenElement's colors and automatically determines refreshability
+  /// @brief Logic for ScreenElement color changing and refreshability
   /// @param color The color to change
   /// @param newColor The new color
   /// @return Whether the ScreenElement is refreshable
