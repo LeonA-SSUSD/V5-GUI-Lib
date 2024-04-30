@@ -13,10 +13,10 @@ namespace libv5gui
   {
     private:
       /// @brief The screen's element list
-      mutable std::list<ScreenElement*> elements;
+      std::list<ScreenElement*> elements;
 
       /// @brief The screen's main color
-      mutable vex::color screenColor = vex::black;
+      vex::color screenColor = vex::black;
 
       /// @brief Whether the next refresh() should just draw()
       ///        due to the screen's color changing
@@ -30,16 +30,16 @@ namespace libv5gui
 
 
 
-      void setScreenColor(const vex::color &screenColor) const;
+      void setColor(const vex::color &screenColor);
 
-      void add(ScreenElement &element, int zIndex = -1) const;
+      void add(ScreenElement &element, int zIndex = -1);
 
       void draw(void) const;
       void refresh(void) const;
       void clear(void) const;
 
-      void enable(void) const;
-      void disable(void) const;
+      void enable(void);
+      void disable(void);
   };
 }
 

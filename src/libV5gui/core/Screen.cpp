@@ -11,7 +11,7 @@ namespace libv5gui
   /// @brief Sets the background color of the screen and
   ///        automatically determines refreshability
   /// @param newScreenColor The new screen color
-  void Screen::setScreenColor(const vex::color &newScreenColor) const
+  void Screen::setColor(const vex::color &newScreenColor)
   {
     if (screenColor == newScreenColor) return;
 
@@ -23,7 +23,7 @@ namespace libv5gui
   /// @brief Adds an element to the screen
   /// @param element The screen element to add
   /// @param zIndex The "layer" that the screen element will be drawn on
-  void Screen::add(ScreenElement &element, int zIndex) const
+  void Screen::add(ScreenElement &element, int zIndex)
   {
     element.zIndex = (zIndex < 0) ? elements.size() : zIndex;
 
@@ -63,8 +63,8 @@ namespace libv5gui
   void Screen::clear() const { Brain.Screen.clearScreen(screenColor); }
 
   /// @brief Enables all elements on the screen
-  void Screen::enable() const { for (const auto &element : elements) element -> enabled = true; }
+  void Screen::enable() { for (const auto &element : elements) element -> enabled = true; }
 
   /// @brief Disables all elements on the screen
-  void Screen::disable() const { for (const auto &element : elements) element -> enabled = false; }
+  void Screen::disable() { for (const auto &element : elements) element -> enabled = false; }
 }
