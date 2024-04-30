@@ -1,15 +1,7 @@
 #ifndef SCREEN_ELEMENT_H
 #define SCREEN_ELEMENT_H
 
-#include "vex.h"
-
-#include<string>
-
-
-
-/// @brief An external instance of the vex::brain
-///        that all print/draw functions will call from
-extern vex::brain Brain;
+#include "libV5gui/core/CoreFeatures.h"
 
 
 
@@ -51,24 +43,6 @@ namespace libv5gui
 
       friend class Screen;
   };
-
-
-
-  enum CoordType { px, grid };
-
-
-
-  int xScale(void);
-
-  int yScale(void);
-
-  int getCenterRow(int posY, int sizeY);
-
-  int getCenterColumn(int posX, int sizeX, const std::string &text = "");
-
-  int getCenterX(int posX, int sizeX, const std::string &text = "");
-
-  int getCenterY(int posY, int sizeY);
 }
 
 
