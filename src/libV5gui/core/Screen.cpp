@@ -31,7 +31,7 @@ namespace libv5gui
 
     elements.push_back(&element);
 
-    elements.sort([](const ScreenElement * A, const ScreenElement * B) { return A -> zIndex < B -> zIndex; });
+    elements.sort([](const ScreenElement *A, const ScreenElement *B) { return A -> zIndex < B -> zIndex; });
   }
 
   /// @brief Draws the screen's background and all elements

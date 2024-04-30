@@ -22,7 +22,7 @@ namespace libv5gui
   /// @param format Format string
   /// @param ... Arguments for the format string
   /// @return Whether the ButtonElement is refreshable
-  bool ButtonElement::setText(const char * format, ...) const
+  bool ButtonElement::setText(const char *format, ...) const
   {
     __builtin_va_list args;
 

@@ -38,7 +38,7 @@ namespace libv5gui
 
 
       bool setTextRaw(std::string newText) const;
-      bool setText(const char * format, ...) const;
+      bool setText(const char *format, ...) const;
 
       void draw(void) override;
   };

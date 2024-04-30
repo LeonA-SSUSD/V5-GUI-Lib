@@ -38,7 +38,7 @@ namespace libv5gui
   /// @param format Format string
   /// @param ... Arguments for the format string
   /// @return Whether the text is refreshable
-  bool Text::setText(const char * format, ...) const
+  bool Text::setText(const char *format, ...) const
   {
     __builtin_va_list args;
 
