@@ -12,21 +12,27 @@ namespace libv5gui
     private:
       /// @brief The whitespaced, printed string
       mutable std::string printedText = "";
+
+
+
+      /// @return The maximum length of a null-terminated character
+      ///         array that would fit on the screen
+      unsigned int maxChars(void) const { return floor(49 - x / xScale()); }
       
     public:
       /// @brief The stored string
       mutable std::string text = "";
 
-      const int row;
-      mutable int column;
+      mutable int x;
+      const int y;
 
 
 
       Text(const std::string &text,
-          int row, int column,
+          int rowOrX, int columnOrY, CoordType gridOrPx,
           const vex::color &penColor = vex::white, const vex::color &fillColor = vex::transparent);
 
-      Text(int row, int column,
+      Text(int rowOrX, int columnOrY, CoordType gridOrPx,
           const vex::color &penColor = vex::white, const vex::color &fillColor = vex::transparent);
 
 

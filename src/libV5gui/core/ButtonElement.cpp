@@ -8,14 +8,14 @@ namespace libv5gui
                                const std::string &text,
                                const vex::color &penColor, const vex::color &fillColor)
                : ScreenElement(penColor, fillColor), _sizeX(sizeX),
-                 text(text.substr(0, maxTextLength()), getCenterRow(posY, sizeY),
-                      getCenterColumn(posX, sizeX, text.substr(0, maxTextLength())), penColor, fillColor)
+                 text(text.substr(0, maxText()), getCenterX(posX, sizeX, text.substr(0, maxText())),
+                      getCenterY(posY, sizeY), px, penColor, fillColor)
   {}
 
   ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
                                const vex::color &penColor, const vex::color &fillColor)
                : ScreenElement(penColor, fillColor), _sizeX(sizeX),
-                 text(getCenterRow(posY, sizeY), getCenterColumn(posX, sizeX), penColor, fillColor)
+                 text(getCenterX(posX, sizeX), getCenterY(posY, sizeY), px, penColor, fillColor)
   {}
 
   /// @brief Uses printf() formatting and sets the ButtonElement's text to the result
@@ -28,9 +28,11 @@ namespace libv5gui
 
     __builtin_va_start(args, format);
 
-    char *buffer = new char[maxTextLength() + 1];
+    int chars = maxChars();
+
+    char *buffer = new char[chars];
     
-    vsnprintf(buffer, sizeof(buffer), format, args);
+    vsnprintf(buffer, chars, format, args);
 
     __builtin_va_end(args);
 
@@ -42,7 +44,7 @@ namespace libv5gui
 
       refreshable = true;
 
-      text.column = getCenterColumn(shape -> posX, _sizeX, buffer);
+      text.x = getCenterX(shape -> posX, _sizeX, buffer);
     }
 
     delete[] buffer;

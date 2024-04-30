@@ -4,16 +4,21 @@
 
 namespace libv5gui
 {
-  Text::Text(const std::string &text, int row, int column, const vex::color &penColor, const vex::color &fillColor)
-      : ScreenElement(penColor, fillColor, true), printedText(text), text(text), row(row), column(column)
+  Text::Text(const std::string &text,
+             int rowOrX, int columnOrY, CoordType gridOrPx,
+             const vex::color &penColor, const vex::color &fillColor)
+      : ScreenElement(penColor, fillColor, true), printedText(text), text(text),
+        x(gridOrPx == px ? rowOrX : yScale() * (columnOrY - 1)), y(gridOrPx == px ? columnOrY : xScale() * rowOrX)
   {}
 
-  Text::Text(int row, int column, const vex::color &penColor, const vex::color &fillColor)
-      : ScreenElement(penColor, fillColor, true), row(row), column(column)
+  Text::Text(int rowOrX, int columnOrY, CoordType gridOrPx,
+             const vex::color &penColor, const vex::color &fillColor)
+      : ScreenElement(penColor, fillColor, true),
+        x(gridOrPx == px ? rowOrX : yScale() * (columnOrY - 1)), y(gridOrPx == px ? columnOrY : xScale() * rowOrX)
   {}
 
   /// @brief Sets the text to a std::string with no alterations,
-  ///        only use this if you know how
+  ///        only use this if you have to
   /// @param newText The new text
   /// @return Whether the text is refreshable
   bool Text::setTextRaw(std::string newText) const
@@ -39,9 +44,11 @@ namespace libv5gui
 
     __builtin_va_start(args, format);
 
-    char *buffer = new char[49 - column];
+    int chars = maxChars();
+
+    char *buffer = new char[chars];
     
-    vsnprintf(buffer, sizeof(buffer), format, args);
+    vsnprintf(buffer, chars, format, args);
 
     __builtin_va_end(args);
 
@@ -87,8 +94,7 @@ namespace libv5gui
     Brain.Screen.setPenColor(penColor);
     Brain.Screen.setFillColor(fillColor);
 
-    Brain.Screen.setCursor(row, column);
-    Brain.Screen.print(printedText.c_str());
+    Brain.Screen.printAt(x, y, printedText.c_str());
 
     Brain.Screen.setPenColor(vex::white);
     Brain.Screen.setFillColor(vex::transparent);

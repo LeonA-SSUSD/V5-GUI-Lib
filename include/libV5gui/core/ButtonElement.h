@@ -19,7 +19,13 @@ namespace libv5gui
 
 
 
-      int maxTextLength(void) const { return floor(_sizeX / 10) - 2; }
+      /// @return The maximum length of a null-terminated character
+      ///         array that would fit on the button
+      unsigned int maxChars(void) const { return floor(_sizeX / xScale()); }
+
+      /// @return The maximum amount of text, minus null-termination,
+      ///         that would fit on a button
+      unsigned int maxText(void) const { return maxChars() - 1; }
 
     public:
       Shape *shape = 0;
