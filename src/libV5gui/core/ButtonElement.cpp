@@ -83,13 +83,13 @@ namespace libv5gui
 
     refreshable = false;
 
-    shape -> penColor = penColor;
-    shape -> fillColor = fillColor;
+    shape -> setPenColor(penColor);
+    shape -> setFillColor(fillColor);
 
     shape -> draw();
 
-    text.penColor = penColor;
-    text.fillColor = fillColor;
+    text.setPenColor(penColor);
+    text.setFillColor(fillColor);
 
     text.draw();
   }
