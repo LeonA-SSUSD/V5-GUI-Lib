@@ -20,7 +20,7 @@ namespace libv5gui
     private:
       bool setColor(vex::color &color, const vex::color& newColor);
 
-    public:
+    protected:
       vex::color penColor;
       vex::color fillColor;
 
@@ -29,11 +29,12 @@ namespace libv5gui
       /// @brief The ScreenElement's "layer" when drawn on a Screen
       int zIndex;
 
-      /// @brief Whether the ScreenElement should be drawn
-      bool enabled = true;
-
       /// @brief Whether the ScreenElement should be redrawn
       mutable bool refreshable = false;
+
+    public:
+      /// @brief Whether the ScreenElement should be drawn
+      bool enabled = true;
 
       
 
@@ -45,6 +46,10 @@ namespace libv5gui
       bool setFillColor(const vex::color &newColor);
 
       virtual void draw(void) = 0;
+
+
+
+      friend class Screen;
   };
 
 
