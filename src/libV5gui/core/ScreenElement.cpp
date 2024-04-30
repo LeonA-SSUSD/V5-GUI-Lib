@@ -26,16 +26,10 @@ namespace libv5gui
   /// @brief Sets the ScreenElement's pen color and automatically determines refreshability
   /// @param newColor The new pen color
   /// @return Whether the ScreenElement is refreshable
-  bool ScreenElement::setPenColor(const vex::color &newColor)
-  {
-    return setColor(penColor, newColor);
-  }
+  bool ScreenElement::setPenColor(const vex::color &newColor) { return setColor(penColor, newColor); }
 
   /// @brief Sets the ScreenElement's fill color and automatically determines refreshability
   /// @param newColor The new fill color
   /// @return Whether the ScreenElement is refreshable
-  bool ScreenElement::setFillColor(const vex::color &newColor)
-  {
-    return setColor(fillColor, newColor);
-  }
+  bool ScreenElement::setFillColor(const vex::color &newColor) { return setColor(fillColor, newColor); }
 }
