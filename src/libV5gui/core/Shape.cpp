@@ -8,4 +8,17 @@ namespace libv5gui
        : ScreenElement(penColor, fillColor),
          posX(posX), posY(posY)
   {}
+
+  void Shape::draw()
+  {
+    if (!enabled) return;
+
+    refreshable = false;
+
+    Brain.Screen.setPenColor(penColor);
+
+    drawShape();
+
+    Brain.Screen.setPenColor(vex::white);
+  }
 }

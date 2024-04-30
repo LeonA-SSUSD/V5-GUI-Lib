@@ -9,23 +9,23 @@ namespace libv5gui
 {
   class Circle : public Shape
   {
+    private:
+      void drawShape(void) override { Brain.Screen.drawCircle(centerX, centerY, radius, fillColor); }
+
     public:
-      const int radius;
+      const unsigned int radius;
 
       const int centerX;
       const int centerY;
 
 
 
-      Circle(int posX, int posY, int diameter,
+      Circle(int posX, int posY, unsigned int diameter,
              const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
 
 
 
-
       bool contains(int x, int y) override;
-
-      void draw(void) override;
   };
 }
 

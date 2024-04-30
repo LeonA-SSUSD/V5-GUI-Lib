@@ -9,6 +9,9 @@ namespace libv5gui
 {
   class Shape : public ScreenElement
   {
+    private:
+      virtual void drawShape(void) = 0;
+
     public:
       const int posX;
       const int posY;
@@ -20,6 +23,8 @@ namespace libv5gui
 
 
       virtual bool contains(int x, int y) = 0;
+
+      void draw(void) override;
   };
 }
 

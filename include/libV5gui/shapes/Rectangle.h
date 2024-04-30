@@ -9,21 +9,21 @@ namespace libv5gui
 {
   class Rectangle : public Shape
   {
+    private:
+      void drawShape(void) override { Brain.Screen.drawRectangle(posX, posY, sizeX, sizeY, fillColor); }
+
     public:
       const int sizeX;
       const int sizeY;
 
 
 
-      Rectangle(int posX, int posY, int sizeX, int sizeY,
+      Rectangle(int posX, int posY, unsigned int sizeX, unsigned int sizeY,
                 const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
 
 
 
-
       bool contains(int x, int y) override;
-
-      void draw(void) override;
   };
 }
 
