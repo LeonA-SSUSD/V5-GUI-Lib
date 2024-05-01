@@ -7,14 +7,14 @@ namespace libv5gui
   Text::Text(const std::string &text,
              int rowOrX, int columnOrY, CoordType gridOrPx,
              const vex::color &penColor, const vex::color &fillColor)
-      : ScreenElement(penColor, fillColor), printedText(text), text(text),
-        x(gridOrPx == px ? rowOrX : yScale() * (columnOrY - 1)), y(gridOrPx == px ? columnOrY : xScale() * rowOrX)
+      : ScreenElement(penColor, fillColor), text(text), printedText(text),
+        y(gridOrPx == px ? columnOrY : xScale() * rowOrX), x(gridOrPx == px ? rowOrX : yScale() * (columnOrY - 1))
   {}
 
   Text::Text(int rowOrX, int columnOrY, CoordType gridOrPx,
              const vex::color &penColor, const vex::color &fillColor)
       : ScreenElement(penColor, fillColor),
-        x(gridOrPx == px ? rowOrX : yScale() * (columnOrY - 1)), y(gridOrPx == px ? columnOrY : xScale() * rowOrX)
+        y(gridOrPx == px ? columnOrY : xScale() * rowOrX), x(gridOrPx == px ? rowOrX : yScale() * (columnOrY - 1))
   {}
 
   /// @brief Sets the text to a std::string with no alterations,
