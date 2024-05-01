@@ -4,18 +4,31 @@
 
 namespace libv5gui
 {
+  void Text::init(int rowOrX, int columnOrY, CoordType gridOrPx)
+  {
+    if (gridOrPx == px)
+    {
+      x = rowOrX;
+      y = columnOrY;
+    }
+
+    else
+    {
+      x = xScale() * (columnOrY - 1);
+      y = yScale() * rowOrX;
+    }
+  }
+
   Text::Text(const std::string &text,
              int rowOrX, int columnOrY, CoordType gridOrPx,
              const vex::color &penColor, const vex::color &fillColor)
-      : ScreenElement(penColor, fillColor), text(text), printedText(text),
-        y(gridOrPx == px ? columnOrY : xScale() * rowOrX), x(gridOrPx == px ? rowOrX : yScale() * (columnOrY - 1))
-  {}
+      : ScreenElement(penColor, fillColor), text(text), printedText(text)
+  { init(rowOrX, columnOrY, gridOrPx); }
 
   Text::Text(int rowOrX, int columnOrY, CoordType gridOrPx,
              const vex::color &penColor, const vex::color &fillColor)
-      : ScreenElement(penColor, fillColor),
-        y(gridOrPx == px ? columnOrY : xScale() * rowOrX), x(gridOrPx == px ? rowOrX : yScale() * (columnOrY - 1))
-  {}
+      : ScreenElement(penColor, fillColor)
+  { init(rowOrX, columnOrY, gridOrPx); }
 
   /// @brief Sets the text to a std::string with no alterations,
   ///        only use this if you have to
