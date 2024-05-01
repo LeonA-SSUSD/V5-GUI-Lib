@@ -4,15 +4,15 @@
 
 namespace libv5gui
 {
-  int xScale()
-  {
-    return Brain.Screen.getStringWidth(" ");
-  }
+  /// @brief Acts as the base unit for all pixel x-coordinate
+  ///        to grid conversions
+  /// @return The width of one column in pixels
+  int xScale() { return Brain.Screen.getStringWidth(" "); }
 
-  int yScale()
-  {
-    return Brain.Screen.getStringHeight(" ");
-  }
+  /// @brief Acts as the base unit for all pixel y-coordinate
+  ///        to grid conversions
+  /// @return The height of one row in pixels
+  int yScale() { return Brain.Screen.getStringHeight(" "); }
 
   /// @brief Gets the central row from a pixel-coordinate position and length
   /// @param posY The uppermost pixel coordinate
@@ -32,7 +32,7 @@ namespace libv5gui
   /// @return The central column number adjusted to center text
   int getCenterColumn(int posX, int sizeX, const std::string &text)
   {
-    // (posX + sizeX/2)/10 - text.length()/2
+    // (posX + sizeX/2) / xScale - text.length()/2
     return ceil((posX + 0.5 * sizeX) / xScale() - 0.5 * text.length()) + 1;
   }
 
@@ -55,6 +55,6 @@ namespace libv5gui
   int getCenterY(int posY, int sizeY)
   {
     // posY + sizeY/2
-    return ceil(posY + 0.5 * sizeY + 5);
+    return ceil(posY + 0.5 * sizeY + 0.25 * yScale());
   }
 }
