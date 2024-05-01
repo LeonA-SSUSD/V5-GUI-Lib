@@ -27,13 +27,13 @@ namespace libv5gui
 
 
 
+      bool setTextRaw(std::string newText);
+
       /// @return The maximum length of a null-terminated character
       ///         array that would fit on the screen
       unsigned int maxChars(void) const { return floor(49 - x / xScale()); }
-      
-    protected:
-      bool setTextRaw(std::string newText);
 
+    protected:
       void uniqueDraw(void) override;
 
     public:
