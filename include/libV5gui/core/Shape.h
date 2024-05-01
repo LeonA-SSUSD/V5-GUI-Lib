@@ -9,6 +9,8 @@ namespace libv5gui
 {
   class Shape : public ScreenElement
   {
+    friend class ButtonElement;
+    
     private:
       virtual void drawShape(void) = 0;
 
@@ -28,10 +30,6 @@ namespace libv5gui
 
 
       virtual bool contains(int x, int y) = 0;
-
-
-
-      friend class ButtonElement;
   };
 }
 

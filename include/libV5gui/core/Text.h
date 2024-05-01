@@ -9,6 +9,8 @@ namespace libv5gui
 {
   class Text : public ScreenElement
   {
+    friend class ButtonElement;
+    
     private:
       /// @brief The stored string
       std::string text = "";
@@ -45,10 +47,6 @@ namespace libv5gui
 
 
       bool setText(const char *format, ...);
-
-
-
-      friend class ButtonElement;
   };
 }
 

@@ -9,6 +9,8 @@ namespace libv5gui
 {
   class ScreenElement
   {
+    friend class Screen;
+    
     private:
       bool setColor(vex::color &color, const vex::color& newColor);
 
@@ -40,10 +42,6 @@ namespace libv5gui
       bool setFillColor(const vex::color &newColor);
 
       void draw(void);
-
-
-
-      friend class Screen;
   };
 }
 
