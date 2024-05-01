@@ -10,5 +10,5 @@ namespace libv5gui
              sizeX(sizeX), sizeY(sizeY)
   {}
 
-  bool Rectangle::contains(int x, int y) { return (x >= posX && x < sizeX) && (y >= posY && y < sizeY); }
+  bool Rectangle::contains(int x, int y) { return (x > posX && x < sizeX) && (y > posY && y < sizeY); }
 }
