@@ -26,10 +26,12 @@ namespace libv5gui
   void Screen::add(ScreenElement &element, int zIndex)
   {
     element.zIndex = (zIndex < 0) ? elements.size() : zIndex;
+    
+    ScreenElement *pElement = &element;
 
-    if (element.isText()) element.fillColor = vex::transparent;
+    if (dynamic_cast<Text*>(pElement)) element.fillColor = vex::transparent;
 
-    elements.push_back(&element);
+    elements.push_back(pElement);
 
     elements.sort([](const ScreenElement *A, const ScreenElement *B) { return A -> zIndex < B -> zIndex; });
   }

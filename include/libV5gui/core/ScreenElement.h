@@ -21,10 +21,6 @@ namespace libv5gui
 
       /// @brief Whether the ScreenElement should be redrawn
       bool refreshable = false;
-
-
-
-      virtual bool isText(void) { return false; }
       
     public:
       /// @brief Whether the ScreenElement should be drawn

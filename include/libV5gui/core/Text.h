@@ -27,7 +27,7 @@ namespace libv5gui
     protected:
       int x;
 
-      
+
 
       bool setTextRaw(std::string newText);
 
@@ -42,8 +42,6 @@ namespace libv5gui
 
 
       bool setText(const char *format, ...);
-
-      bool isText(void) override { return true; }
 
       void draw(void) override;
 
