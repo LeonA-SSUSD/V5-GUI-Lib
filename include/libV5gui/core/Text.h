@@ -16,7 +16,12 @@ namespace libv5gui
       /// @brief The whitespaced, printed string
       std::string printedText = "";
 
-      const int y;
+      int x;
+      int y;
+
+
+
+      void init(int rowOrX, int columnOrY, CoordType gridOrPx);
 
 
 
@@ -25,10 +30,6 @@ namespace libv5gui
       unsigned int maxChars(void) const { return floor(49 - x / xScale()); }
       
     protected:
-      int x;
-
-
-
       bool setTextRaw(std::string newText);
 
       void uniqueDraw(void) override;
