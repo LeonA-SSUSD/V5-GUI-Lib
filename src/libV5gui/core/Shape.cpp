@@ -9,12 +9,8 @@ namespace libv5gui
          posX(posX), posY(posY)
   {}
 
-  void Shape::draw()
+  inline void Shape::uniqueDraw()
   {
-    if (!enabled) return;
-
-    refreshable = false;
-
     Brain.Screen.setPenColor(penColor);
 
     drawShape();
