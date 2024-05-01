@@ -11,6 +11,9 @@ namespace libv5gui
   {
     private:
       void drawShape(void) override { Brain.Screen.drawRectangle(posX, posY, sizeX, sizeY, fillColor); }
+    
+    protected:
+      int _sizeX(void) override { return sizeX; }
 
     public:
       const int sizeX;
