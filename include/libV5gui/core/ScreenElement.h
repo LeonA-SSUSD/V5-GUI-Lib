@@ -21,6 +21,10 @@ namespace libv5gui
 
       /// @brief Whether the ScreenElement should be redrawn
       bool refreshable = false;
+
+
+
+      inline virtual void uniqueDraw(void) = 0;
       
     public:
       /// @brief Whether the ScreenElement should be drawn
@@ -35,7 +39,7 @@ namespace libv5gui
       bool setPenColor(const vex::color &newColor);
       bool setFillColor(const vex::color &newColor);
 
-      virtual void draw(void) = 0;
+      void draw(void);
 
 
 
