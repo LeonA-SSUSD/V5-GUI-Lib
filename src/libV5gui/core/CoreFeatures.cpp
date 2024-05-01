@@ -55,6 +55,6 @@ namespace libv5gui
   int getCenterY(int posY, int sizeY)
   {
     // posY + sizeY/2
-    return ceil(posY + 0.5 * sizeY + 0.25 * yScale());
+    return ceil(posY + 0.5 * sizeY);
   }
 }
