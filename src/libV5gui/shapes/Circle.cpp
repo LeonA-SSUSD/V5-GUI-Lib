@@ -15,6 +15,6 @@ namespace libv5gui
     x -= centerX;
     y -= centerY;
 
-    return (x*x + y*y <= radius*radius);
+    return (x*x + y*y < radius*radius);
   }
 }
