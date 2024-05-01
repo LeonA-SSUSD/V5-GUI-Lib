@@ -10,8 +10,13 @@ namespace libv5gui
   class Text : public ScreenElement
   {
     private:
+      /// @brief The stored string
+      std::string text = "";
+
       /// @brief The whitespaced, printed string
-      mutable std::string printedText = "";
+      std::string printedText = "";
+
+      const int y;
 
 
 
@@ -19,15 +24,14 @@ namespace libv5gui
       ///         array that would fit on the screen
       unsigned int maxChars(void) const { return floor(49 - x / xScale()); }
       
+    protected:
+      int x;
+
+      
+
+      bool setTextRaw(std::string newText);
+
     public:
-      /// @brief The stored string
-      mutable std::string text = "";
-
-      mutable int x;
-      const int y;
-
-
-
       Text(const std::string &text,
           int rowOrX, int columnOrY, CoordType gridOrPx,
           const vex::color &penColor = vex::white, const vex::color &fillColor = vex::transparent);
@@ -37,10 +41,15 @@ namespace libv5gui
 
 
 
-      bool setTextRaw(std::string newText) const;
-      bool setText(const char *format, ...) const;
+      bool setText(const char *format, ...);
+
+      bool isText(void) override { return true; }
 
       void draw(void) override;
+
+
+
+      friend class ButtonElement;
   };
 }
 

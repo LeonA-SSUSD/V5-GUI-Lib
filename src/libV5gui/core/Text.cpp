@@ -7,13 +7,13 @@ namespace libv5gui
   Text::Text(const std::string &text,
              int rowOrX, int columnOrY, CoordType gridOrPx,
              const vex::color &penColor, const vex::color &fillColor)
-      : ScreenElement(penColor, fillColor, true), printedText(text), text(text),
+      : ScreenElement(penColor, fillColor), printedText(text), text(text),
         x(gridOrPx == px ? rowOrX : yScale() * (columnOrY - 1)), y(gridOrPx == px ? columnOrY : xScale() * rowOrX)
   {}
 
   Text::Text(int rowOrX, int columnOrY, CoordType gridOrPx,
              const vex::color &penColor, const vex::color &fillColor)
-      : ScreenElement(penColor, fillColor, true),
+      : ScreenElement(penColor, fillColor),
         x(gridOrPx == px ? rowOrX : yScale() * (columnOrY - 1)), y(gridOrPx == px ? columnOrY : xScale() * rowOrX)
   {}
 
@@ -21,7 +21,7 @@ namespace libv5gui
   ///        only use this if you have to
   /// @param newText The new text
   /// @return Whether the text is refreshable
-  bool Text::setTextRaw(std::string newText) const
+  bool Text::setTextRaw(std::string newText)
   {
     if (text == newText) return false;
 
@@ -38,7 +38,7 @@ namespace libv5gui
   /// @param format Format string
   /// @param ... Arguments for the format string
   /// @return Whether the text is refreshable
-  bool Text::setText(const char *format, ...) const
+  bool Text::setText(const char *format, ...)
   {
     __builtin_va_list args;
 
