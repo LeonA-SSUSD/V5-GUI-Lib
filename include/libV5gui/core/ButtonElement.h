@@ -43,7 +43,7 @@ namespace libv5gui
 
 
 
-      bool setText(const char *format, ...) const;
+      bool setText(const char *format, ...);
 
       bool isPressed(void) const;
       bool getNewPress(void) const;
