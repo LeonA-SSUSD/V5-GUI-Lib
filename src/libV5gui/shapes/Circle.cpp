@@ -10,5 +10,9 @@ namespace libv5gui
           radius(floor(diameter / 2)), centerX(posX + radius), centerY(posY + radius)
   {}
 
+  /// @brief Takes an (x, y) coordinate pair and calculates if it is inside the Circle
+  /// @param x Potentially contained x-coordinate
+  /// @param y Potentially contained y-coordinate
+  /// @return Whether the point is in the Circle
   bool Circle::contains(int x, int y) { return (pow(x - centerX, 2) + pow(y - centerY, 2) < radius*radius); }
 }

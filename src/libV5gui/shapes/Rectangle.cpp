@@ -10,5 +10,9 @@ namespace libv5gui
              sizeX(sizeX), sizeY(sizeY)
   {}
 
+  /// @brief Takes an (x, y) coordinate pair and calculates if it is inside the Rectangle
+  /// @param x Potentially contained x-coordinate
+  /// @param y Potentially contained y-coordinate
+  /// @return Whether the point is in the Rectangle
   bool Rectangle::contains(int x, int y) { return (x > posX && x < sizeX) && (y > posY && y < sizeY); }
 }
