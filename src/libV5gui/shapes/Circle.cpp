@@ -12,9 +12,9 @@ namespace libv5gui
 
   bool Circle::contains(int x, int y)
   {
-    int relativeX = x - centerX;
-    int relativeY = y - centerY;
+    x -= centerX;
+    y -= centerY;
 
-    return (relativeX*relativeX + relativeY*relativeY <= radius*radius);
+    return (x*x + y*y <= radius*radius);
   }
 }
