@@ -85,11 +85,9 @@ namespace libv5gui
   }
 
   /// @brief Draws the text, overrides ScreenElement::draw()
-  void Text::draw()
+  inline void Text::uniqueDraw()
   {
-    if (!enabled || !printedText.length()) return;
-
-    refreshable = false;
+    if (!printedText.length()) return;
 
     Brain.Screen.setPenColor(penColor);
     Brain.Screen.setFillColor(fillColor);

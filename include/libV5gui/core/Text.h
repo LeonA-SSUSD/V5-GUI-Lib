@@ -31,6 +31,8 @@ namespace libv5gui
 
       bool setTextRaw(std::string newText);
 
+      inline void uniqueDraw(void) override;
+
     public:
       Text(const std::string &text,
           int rowOrX, int columnOrY, CoordType gridOrPx,
@@ -42,8 +44,6 @@ namespace libv5gui
 
 
       bool setText(const char *format, ...);
-
-      void draw(void) override;
 
 
 
