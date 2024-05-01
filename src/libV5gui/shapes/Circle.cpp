@@ -10,11 +10,5 @@ namespace libv5gui
           radius(floor(diameter / 2)), centerX(posX + radius), centerY(posY + radius)
   {}
 
-  bool Circle::contains(int x, int y)
-  {
-    x -= centerX;
-    y -= centerY;
-
-    return (x*x + y*y < radius*radius);
-  }
+  bool Circle::contains(int x, int y) { return (pow(x - centerX, 2) + pow(y - centerY, 2) < radius*radius); }
 }
