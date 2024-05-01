@@ -7,14 +7,14 @@ namespace libv5gui
   ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
                                const std::string &text,
                                const vex::color &penColor, const vex::color &fillColor)
-               : ScreenElement(penColor, fillColor), _sizeX(sizeX),
+               : ScreenElement(penColor, fillColor),
                  text(text.substr(0, maxText()), getCenterX(posX, sizeX, text.substr(0, maxText())),
                       getCenterY(posY, sizeY), px, penColor, fillColor)
   {}
 
   ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
                                const vex::color &penColor, const vex::color &fillColor)
-               : ScreenElement(penColor, fillColor), _sizeX(sizeX),
+               : ScreenElement(penColor, fillColor),
                  text(getCenterX(posX, sizeX), getCenterY(posY, sizeY), px, penColor, fillColor)
   {}
 
@@ -44,7 +44,7 @@ namespace libv5gui
 
       refreshable = true;
 
-      text.x = getCenterX(shape -> posX, _sizeX, buffer);
+      text.x = getCenterX(shape -> posX, shape -> _sizeX(), buffer);
     }
 
     delete[] buffer;
@@ -77,20 +77,16 @@ namespace libv5gui
     return false;
   }
 
-  void ButtonElement::draw()
+  inline void ButtonElement::uniqueDraw()
   {
-    if (!enabled) return;
+    shape -> penColor = penColor;
+    shape -> fillColor = fillColor;
 
-    refreshable = false;
+    shape -> uniqueDraw();
 
-    shape -> setPenColor(penColor);
-    shape -> setFillColor(fillColor);
+    text.penColor = penColor;
+    text.fillColor = fillColor;
 
-    shape -> draw();
-
-    text.setPenColor(penColor);
-    text.setFillColor(fillColor);
-
-    text.draw();
+    text.uniqueDraw();
   }
 }

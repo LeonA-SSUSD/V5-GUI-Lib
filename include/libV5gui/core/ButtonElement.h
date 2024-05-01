@@ -14,18 +14,18 @@ namespace libv5gui
       /// @brief Internal variable for tracking new button presses
       mutable bool buttonDown = false;
 
-      /// @brief Used to align the text whenever it is changed
-      const int _sizeX;
-
 
 
       /// @return The maximum length of a null-terminated character
       ///         array that would fit on the button
-      unsigned int maxChars(void) const { return floor(_sizeX / xScale()); }
+      unsigned int maxChars(void) const { return floor(shape -> _sizeX() / xScale()); }
 
       /// @return The maximum amount of text, minus null-termination,
       ///         that would fit on a button
       unsigned int maxText(void) const { return maxChars() - 1; }
+    
+    protected:
+      inline void uniqueDraw(void) override;
 
     public:
       Shape *shape = 0;
@@ -47,8 +47,6 @@ namespace libv5gui
 
       bool isPressed(void) const;
       bool getNewPress(void) const;
-
-      void draw(void) override;
   };
 }
 
