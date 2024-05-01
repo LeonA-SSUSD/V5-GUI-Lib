@@ -4,8 +4,8 @@
 
 namespace libv5gui
 {
-  ScreenElement::ScreenElement(const vex::color &penColor, const vex::color &fillColor, bool isText)
-               : penColor(penColor), fillColor(fillColor), isText(isText)
+  ScreenElement::ScreenElement(const vex::color &penColor, const vex::color &fillColor)
+               : penColor(penColor), fillColor(fillColor)
   {}
 
   /// @brief Logic for ScreenElement color changing and refreshability
