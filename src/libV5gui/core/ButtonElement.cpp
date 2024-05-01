@@ -77,7 +77,7 @@ namespace libv5gui
     return false;
   }
 
-  inline void ButtonElement::uniqueDraw()
+  void ButtonElement::uniqueDraw()
   {
     shape -> penColor = penColor;
     shape -> fillColor = fillColor;

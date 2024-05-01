@@ -85,7 +85,7 @@ namespace libv5gui
   }
 
   /// @brief Draws the text, overrides ScreenElement::draw()
-  inline void Text::uniqueDraw()
+  void Text::uniqueDraw()
   {
     if (!printedText.length()) return;
 

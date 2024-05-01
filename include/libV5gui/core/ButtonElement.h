@@ -25,7 +25,7 @@ namespace libv5gui
       unsigned int maxText(void) const { return maxChars() - 1; }
     
     protected:
-      inline void uniqueDraw(void) override;
+      void uniqueDraw(void) override;
 
     public:
       Shape *shape = 0;

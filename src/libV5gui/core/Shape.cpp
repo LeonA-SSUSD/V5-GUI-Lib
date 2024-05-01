@@ -9,7 +9,7 @@ namespace libv5gui
          posX(posX), posY(posY)
   {}
 
-  inline void Shape::uniqueDraw()
+  void Shape::uniqueDraw()
   {
     Brain.Screen.setPenColor(penColor);
 

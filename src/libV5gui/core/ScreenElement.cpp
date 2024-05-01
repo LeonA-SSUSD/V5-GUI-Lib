@@ -12,7 +12,7 @@ namespace libv5gui
   /// @param color The color to change
   /// @param newColor The new color
   /// @return Whether the ScreenElement is refreshable
-  inline bool ScreenElement::setColor(vex::color &color, const vex::color &newColor)
+  bool ScreenElement::setColor(vex::color &color, const vex::color &newColor)
   {
     if (color == newColor) return false;
 

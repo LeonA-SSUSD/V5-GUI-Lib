@@ -15,7 +15,7 @@ namespace libv5gui
     protected:
       virtual int _sizeX(void) = 0;
 
-      inline void uniqueDraw(void) override;
+      void uniqueDraw(void) override;
 
     public:
       const int posX;
