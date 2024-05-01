@@ -10,16 +10,18 @@ namespace libv5gui
   class ScreenElement
   {
     friend class Screen;
-    
+
     private:
+      /// @brief The ScreenElement's "layer" when drawn on a Screen
+      int zIndex;
+
+
+
       bool setColor(vex::color &color, const vex::color& newColor);
 
     protected:
       vex::color penColor;
       vex::color fillColor;
-
-      /// @brief The ScreenElement's "layer" when drawn on a Screen
-      int zIndex;
 
       /// @brief Whether the ScreenElement should be redrawn
       bool refreshable = false;
