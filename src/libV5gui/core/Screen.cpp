@@ -27,7 +27,7 @@ namespace libv5gui
   {
     element.zIndex = (zIndex < 0) ? elements.size() : zIndex;
 
-    if (element.isText) element.fillColor = vex::transparent;
+    if (element.isText()) element.fillColor = vex::transparent;
 
     elements.push_back(&element);
 
