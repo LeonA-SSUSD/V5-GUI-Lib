@@ -29,7 +29,9 @@ namespace libv5gui
     
     ScreenElement *pElement = &element;
 
-    if (dynamic_cast<Text*>(pElement)) element.fillColor = vex::transparent;
+    Text *text = dynamic_cast<Text*>(pElement);
+
+    if (text) text -> setFillColor(vex::transparent);
 
     elements.push_back(pElement);
 
