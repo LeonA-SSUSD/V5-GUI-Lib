@@ -10,6 +10,13 @@ namespace libv5gui
 {
   class RectButton : public ButtonElement
   {
+    private:
+      Rectangle rectangle;
+
+
+
+      Shape *shape(void) override { return &rectangle; }
+      
     public:
       RectButton(int posX, int posY, int sizeX, int sizeY,
                  const std::string &text,
