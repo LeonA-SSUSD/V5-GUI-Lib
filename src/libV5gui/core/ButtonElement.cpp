@@ -7,15 +7,13 @@ namespace libv5gui
   ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
                                const std::string &text,
                                const vex::color &penColor, const vex::color &fillColor)
-               : ScreenElement(penColor, fillColor),
-                 text(text.substr(0, maxLength()), getCenterX(posX, sizeX, text.substr(0, maxLength())),
+               : text(text.substr(0, maxLength()), getCenterX(posX, sizeX, text.substr(0, maxLength())),
                       getCenterY(posY, sizeY), px, penColor, fillColor)
   {}
 
   ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
                                const vex::color &penColor, const vex::color &fillColor)
-               : ScreenElement(penColor, fillColor),
-                 text(getCenterX(posX, sizeX), getCenterY(posY, sizeY), px, penColor, fillColor)
+               : text(getCenterX(posX, sizeX), getCenterY(posY, sizeY), px, penColor, fillColor)
   {}
 
   /// @brief Uses printf() formatting and sets the ButtonElement's text to the result
@@ -36,6 +34,24 @@ namespace libv5gui
     refreshable = true;
 
     text.x = getCenterX(shape() -> posX, shape() -> _sizeX(), newText);
+
+    return true;
+  }
+
+  bool ButtonElement::setPenColor(const vex::color &newColor)
+  {
+    if (!(shape() -> setPenColor(newColor) && text.setPenColor(newColor))) return false;
+    
+    refreshable = true;
+
+    return true;
+  }
+
+  bool ButtonElement::setFillColor(const vex::color &newColor)
+  {
+    if (!(shape() -> setFillColor(newColor) && text.setFillColor(newColor))) return false;
+
+    refreshable = true;
 
     return true;
   }
@@ -69,13 +85,7 @@ namespace libv5gui
 
   void ButtonElement::uniqueDraw()
   {
-    shape() -> penColor = penColor;
-    shape() -> fillColor = fillColor;
-
     shape() -> uniqueDraw();
-
-    text.penColor = penColor;
-    text.fillColor = fillColor;
 
     text.uniqueDraw();
   }

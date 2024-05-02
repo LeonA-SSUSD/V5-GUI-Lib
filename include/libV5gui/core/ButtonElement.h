@@ -39,6 +39,9 @@ namespace libv5gui
 
       bool setText(std::string format, ...);
 
+      bool setPenColor(const vex::color &newColor);
+      bool setFillColor(const vex::color &newColor);
+
       bool isPressed(void);
       bool getNewPress(void);
   };
