@@ -10,8 +10,8 @@ namespace libv5gui
   class Rectangle : public Shape
   {
     private:
-      int sizeX;
-      int sizeY;
+      unsigned int sizeX;
+      unsigned int sizeY;
 
 
 
