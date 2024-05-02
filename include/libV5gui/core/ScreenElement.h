@@ -15,14 +15,7 @@ namespace libv5gui
       /// @brief The ScreenElement's "layer" when drawn on a Screen
       int zIndex;
 
-
-
-      bool setColor(vex::color &color, const vex::color& newColor);
-
     protected:
-      vex::color penColor;
-      vex::color fillColor;
-
       /// @brief Whether the ScreenElement should be redrawn
       bool refreshable = false;
 
@@ -36,12 +29,9 @@ namespace libv5gui
 
       
 
-      ScreenElement(const vex::color &penColor, const vex::color &fillColor);
+      ScreenElement() {}
 
 
-
-      bool setPenColor(const vex::color &newColor);
-      bool setFillColor(const vex::color &newColor);
 
       void draw(void);
   };

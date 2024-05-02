@@ -3,8 +3,9 @@
 
 #include "libV5gui/core/CoreFeatures.h"
 #include "libv5gui/core/ScreenElement.h"
-#include "libv5gui/core/Screen.h"
+#include "libV5gui/core/ColorElement.h"
 #include "libv5gui/core/Text.h"
+#include "libv5gui/core/Screen.h"
 #include "libV5gui/core/Shape.h"
 #include "libv5gui/core/ButtonElement.h"
 
