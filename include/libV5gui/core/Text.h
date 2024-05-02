@@ -31,7 +31,7 @@ namespace libv5gui
 
       /// @return The maximum length of a null-terminated character
       ///         array that would fit on the screen
-      unsigned int maxChars(void) const { return floor(49 - x / xScale()); }
+      size_t maxLength(void) const { return floor(48 - x / xScale()); }
 
     protected:
       void uniqueDraw(void) override;

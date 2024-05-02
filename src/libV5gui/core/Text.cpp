@@ -54,10 +54,9 @@ namespace libv5gui
   bool Text::setText(std::string format, ...)
   {
     __builtin_va_list args;
-
     __builtin_va_start(args, format);
 
-    std::string newText = safeFormatVA(maxChars(), format, args);
+    std::string newText = nFormatVA(maxLength(), format, args);
 
     __builtin_va_end(args);
 
