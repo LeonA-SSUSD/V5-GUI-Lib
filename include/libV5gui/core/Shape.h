@@ -14,9 +14,9 @@ namespace libv5gui
     private:
       virtual void drawShape(void) = 0;
 
-    protected:
       virtual int _sizeX(void) = 0;
 
+    protected:
       void uniqueDraw(void) override;
 
     public:

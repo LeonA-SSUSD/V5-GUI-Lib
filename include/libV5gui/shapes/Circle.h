@@ -19,7 +19,6 @@ namespace libv5gui
       
       void drawShape(void) override { Brain.Screen.drawCircle(centerX, centerY, radius, fillColor); }
 
-    protected:
       int _sizeX(void) override { return 2 * radius; }
 
     public:
