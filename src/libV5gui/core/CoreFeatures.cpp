@@ -60,16 +60,58 @@ namespace libv5gui
 
 
 
-  std::string safeFormatVA(size_t maxChars, std::string format, __builtin_va_list args)
+  std::string nFormatVA(size_t length, std::string format, __builtin_va_list args)
   {
-    char *buffer = new char[maxChars];
+    __builtin_va_list argsCopy;
+    __builtin_va_copy(argsCopy, args);
+
+    std::string result;
+
+    result.reserve(length);
+
+    // Since C++11, &result[0] is guaranteed to point to an
+    // internal buffer that can be manipulated like a char*
+    // Don't forget: length + 1 for null-termination
+    vsnprintf(&result[0], length + 1, format.c_str(), argsCopy);
+
+    __builtin_va_end(argsCopy);
+
+    return result;
+  }
+
+  std::string nFormatVA(size_t length, std::string format, ...)
+  {
+    __builtin_va_list args;
+    __builtin_va_start(args, format);
+
+    std::string result = nFormatVA(length, format, args);
+
+    __builtin_va_end(args);
+
+    return result;
+  }
+
+  std::string formatVA(std::string format, __builtin_va_list args)
+  {
+    __builtin_va_list argsCopy;
+    __builtin_va_copy(argsCopy, args);
     
-    vsnprintf(buffer, maxChars, format.c_str(), args);
+    size_t length = vsnprintf(nullptr, 0, format.c_str(), argsCopy);
 
-    std::string formatted = buffer;
+    __builtin_va_end(argsCopy);
 
-    delete[] buffer;
+    return nFormatVA(length, format, args);
+  }
 
-    return formatted;
+  std::string formatVA(std::string format, ...)
+  {
+    __builtin_va_list args;
+    __builtin_va_start(args, format);
+
+    std::string result = formatVA(format, args);
+
+    __builtin_va_end(args);
+
+    return result;
   }
 }
