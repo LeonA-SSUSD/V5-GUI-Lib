@@ -27,6 +27,10 @@ namespace libv5gui
 
   int getCenterX(int posX, int sizeX, const std::string &text = "");
   int getCenterY(int posY, int sizeY);
+
+
+
+  std::string safeFormatVA(size_t maxChars, std::string format, __builtin_va_list args);
 }
 
 

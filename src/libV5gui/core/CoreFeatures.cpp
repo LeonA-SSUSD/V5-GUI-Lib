@@ -57,4 +57,19 @@ namespace libv5gui
     // posY + sizeY/2
     return ceil(posY + 0.5 * sizeY);
   }
+
+
+
+  std::string safeFormatVA(size_t maxChars, std::string format, __builtin_va_list args)
+  {
+    char *buffer = new char[maxChars];
+    
+    vsnprintf(buffer, maxChars, format.c_str(), args);
+
+    std::string formatted = buffer;
+
+    delete[] buffer;
+
+    return formatted;
+  }
 }
