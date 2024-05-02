@@ -17,11 +17,13 @@ namespace libv5gui
       virtual int _sizeX(void) = 0;
 
     protected:
-      void uniqueDraw(void) override;
-
       int posX;
       int posY;
-      
+
+
+
+      void uniqueDraw(void) override;
+
     public:
       Shape(int posX, int posY, const vex::color &penColor, const vex::color &fillColor);
 
