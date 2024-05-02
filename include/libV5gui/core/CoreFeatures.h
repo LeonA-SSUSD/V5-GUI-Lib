@@ -20,15 +20,12 @@ namespace libv5gui
 
 
   int xScale(void);
-
   int yScale(void);
 
   int getCenterRow(int posY, int sizeY);
-
   int getCenterColumn(int posX, int sizeX, const std::string &text = "");
 
   int getCenterX(int posX, int sizeX, const std::string &text = "");
-
   int getCenterY(int posY, int sizeY);
 }
 
