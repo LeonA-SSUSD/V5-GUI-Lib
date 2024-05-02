@@ -40,7 +40,7 @@ namespace libv5gui
 
   bool ButtonElement::setPenColor(const vex::color &newColor)
   {
-    if (!(shape() -> setPenColor(newColor) && text.setPenColor(newColor))) return false;
+    if (!(shape() -> setPenColor(newColor) || text.setPenColor(newColor))) return false;
     
     refreshable = true;
 
@@ -49,7 +49,7 @@ namespace libv5gui
 
   bool ButtonElement::setFillColor(const vex::color &newColor)
   {
-    if (!(shape() -> setFillColor(newColor) && text.setFillColor(newColor))) return false;
+    if (!(shape() -> setFillColor(newColor) || text.setFillColor(newColor))) return false;
 
     refreshable = true;
 
