@@ -8,7 +8,7 @@ namespace libv5gui
                                const std::string &text,
                                const vex::color &penColor, const vex::color &fillColor)
                : ScreenElement(penColor, fillColor),
-                 text(text.substr(0, maxText()), getCenterX(posX, sizeX, text.substr(0, maxText())),
+                 text(text.substr(0, maxLength()), getCenterX(posX, sizeX, text.substr(0, maxLength())),
                       getCenterY(posY, sizeY), px, penColor, fillColor)
   {}
 
@@ -25,10 +25,9 @@ namespace libv5gui
   bool ButtonElement::setText(std::string format, ...)
   {
     __builtin_va_list args;
-
     __builtin_va_start(args, format);
 
-    std::string newText = safeFormatVA(maxChars(), format, args);
+    std::string newText = nFormatVA(maxLength(), format, args);
 
     __builtin_va_end(args);
 
@@ -36,21 +35,23 @@ namespace libv5gui
 
     refreshable = true;
 
-    text.x = getCenterX(shape -> posX, shape -> _sizeX(), newText);
+    text.x = getCenterX(shape() -> posX, shape() -> _sizeX(), newText);
 
     return true;
   }
 
   /// @brief Detects if the ButtonElement is pressed
   /// @return Whether the ButtonElement is currently pressed
-  bool ButtonElement::isPressed() const
-  { return enabled && Brain.Screen.pressing() && shape -> contains(Brain.Screen.xPosition(), Brain.Screen.yPosition()); }
+  bool ButtonElement::isPressed()
+  {
+    return enabled && Brain.Screen.pressing() && shape() -> contains(Brain.Screen.xPosition(), Brain.Screen.yPosition());
+  }
 
   /// @brief NOT thread safe: you should use this function in
   ///        the loop once and store its data in a variable
   ///        afterwards or it will not return the same value
   /// @return If a press has just started
-  bool ButtonElement::getNewPress() const
+  bool ButtonElement::getNewPress()
   {
     bool pressed = isPressed();
 
@@ -68,10 +69,10 @@ namespace libv5gui
 
   void ButtonElement::uniqueDraw()
   {
-    shape -> penColor = penColor;
-    shape -> fillColor = fillColor;
+    shape() -> penColor = penColor;
+    shape() -> fillColor = fillColor;
 
-    shape -> uniqueDraw();
+    shape() -> uniqueDraw();
 
     text.penColor = penColor;
     text.fillColor = fillColor;

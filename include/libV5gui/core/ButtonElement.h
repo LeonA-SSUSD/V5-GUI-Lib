@@ -11,29 +11,23 @@ namespace libv5gui
   class ButtonElement : public ScreenElement
   {
     private:
+      Text text;
+
       /// @brief Internal variable for tracking new button presses
       mutable bool buttonDown = false;
 
 
 
-      /// @return The maximum length of a null-terminated character
-      ///         array that would fit on the button
-      unsigned int maxChars(void) const { return floor(shape -> _sizeX() / xScale()); }
+      virtual Shape *shape(void) = 0;
 
-      /// @return The maximum amount of text, minus null-termination,
-      ///         that would fit on a button
-      unsigned int maxText(void) const { return maxChars() - 1; }
+      /// @return The maximum amount of text that
+      ///         cleanly fits on the ButtonElement
+      size_t maxLength(void) { return floor(shape() -> _sizeX() / xScale()) - 1; }
     
     protected:
       void uniqueDraw(void) override;
 
     public:
-      Shape *shape = 0;
-
-      Text text;
-
-
-
       ButtonElement(int posX, int posY, int sizeX, int sizeY,
                     const std::string &text,
                     const vex::color &penColor, const vex::color &fillColor);
@@ -45,8 +39,8 @@ namespace libv5gui
 
       bool setText(std::string format, ...);
 
-      bool isPressed(void) const;
-      bool getNewPress(void) const;
+      bool isPressed(void);
+      bool getNewPress(void);
   };
 }
 
