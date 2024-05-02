@@ -1,13 +1,13 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
-#include "libv5gui/core/ScreenElement.h"
+#include "libv5gui/core/ColorElement.h"
 
 
 
 namespace libv5gui
 {
-  class Shape : public ScreenElement
+  class Shape : public ColorElement
   {
     friend class ButtonElement;
     

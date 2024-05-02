@@ -22,12 +22,12 @@ namespace libv5gui
   Text::Text(const std::string &text,
              int rowOrX, int columnOrY, CoordType gridOrPx,
              const vex::color &penColor, const vex::color &fillColor)
-      : ScreenElement(penColor, fillColor), text(text), printedText(text)
+      : ColorElement(penColor, fillColor), text(text), printedText(text)
   { init(rowOrX, columnOrY, gridOrPx); }
 
   Text::Text(int rowOrX, int columnOrY, CoordType gridOrPx,
              const vex::color &penColor, const vex::color &fillColor)
-      : ScreenElement(penColor, fillColor)
+      : ColorElement(penColor, fillColor)
   { init(rowOrX, columnOrY, gridOrPx); }
 
   /// @brief Sets the text to a std::string with no alterations,
