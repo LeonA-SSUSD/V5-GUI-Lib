@@ -46,7 +46,7 @@ namespace libv5gui
 
 
 
-      bool setText(const char *format, ...);
+      bool setText(std::string format, ...);
   };
 }
 

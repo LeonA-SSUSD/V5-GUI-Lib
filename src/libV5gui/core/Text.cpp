@@ -51,50 +51,37 @@ namespace libv5gui
   /// @param format Format string
   /// @param ... Arguments for the format string
   /// @return Whether the text is refreshable
-  bool Text::setText(const char *format, ...)
+  bool Text::setText(std::string format, ...)
   {
     __builtin_va_list args;
 
     __builtin_va_start(args, format);
 
-    int chars = maxChars();
-
-    char *buffer = new char[chars];
-    
-    vsnprintf(buffer, chars, format, args);
+    std::string newText = safeFormatVA(maxChars(), format, args);
 
     __builtin_va_end(args);
 
-    bool refresh = false;
+    if (text == newText) return false;
 
-    if (text != buffer)
+    refreshable = true;
+
+    if (text.length() > newText.length())
     {
-      refresh = true;
+      int whitespaces = text.length() - newText.length();
 
-      refreshable = true;
+      text = newText;
 
-      std::string newText = buffer;
-
-      if (text.length() > newText.length())
-      {
-        int whitespaces = text.length() - newText.length();
-
-        text = newText;
-
-        printedText = newText.append(whitespaces, ' ');
-      }
-
-      else
-      {
-        text = newText;
-
-        printedText = text;
-      }
+      printedText = newText.append(whitespaces, ' ');
     }
 
-    delete[] buffer;
+    else
+    {
+      text = newText;
 
-    return refresh;
+      printedText = text;
+    }
+
+    return true;
   }
 
   /// @brief Draws the text, overrides ScreenElement::draw()

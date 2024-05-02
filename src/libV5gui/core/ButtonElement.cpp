@@ -22,34 +22,23 @@ namespace libv5gui
   /// @param format Format string
   /// @param ... Arguments for the format string
   /// @return Whether the ButtonElement is refreshable
-  bool ButtonElement::setText(const char *format, ...)
+  bool ButtonElement::setText(std::string format, ...)
   {
     __builtin_va_list args;
 
     __builtin_va_start(args, format);
 
-    int chars = maxChars();
-
-    char *buffer = new char[chars];
-    
-    vsnprintf(buffer, chars, format, args);
+    std::string newText = safeFormatVA(maxChars(), format, args);
 
     __builtin_va_end(args);
 
-    bool refresh = false;
+    if (!text.setTextRaw(newText)) return false;
 
-    if (text.setTextRaw(buffer))
-    {
-      refresh = true;
+    refreshable = true;
 
-      refreshable = true;
+    text.x = getCenterX(shape -> posX, shape -> _sizeX(), newText);
 
-      text.x = getCenterX(shape -> posX, shape -> _sizeX(), buffer);
-    }
-
-    delete[] buffer;
-
-    return refresh;
+    return true;
   }
 
   /// @brief Detects if the ButtonElement is pressed
