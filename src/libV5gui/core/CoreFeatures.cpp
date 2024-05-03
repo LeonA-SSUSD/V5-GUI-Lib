@@ -14,6 +14,8 @@ namespace libv5gui
   /// @return The height of one row in pixels
   int yScale() { return Brain.Screen.getStringHeight(" "); }
 
+  
+
   /// @brief Gets the central row from a pixel-coordinate position and length
   /// @param posY The uppermost pixel coordinate
   /// @param sizeY The distance from the uppermost to the lowermost pixel coordinate
@@ -35,6 +37,8 @@ namespace libv5gui
     // (posX + sizeX/2) / xScale - text.length()/2
     return ceil((posX + 0.5 * sizeX) / xScale() - 0.5 * text.length()) + 1;
   }
+
+
 
   /// @brief Gets the central pixel x-coordinate from a position and length
   ///        as well a text string's character length
