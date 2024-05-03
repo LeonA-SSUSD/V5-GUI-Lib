@@ -14,7 +14,7 @@ namespace libv5gui
   /// @return The height of one row in pixels
   int yScale() { return Brain.Screen.getStringHeight(" "); }
 
-  
+
 
   /// @brief Gets the central row from a pixel-coordinate position and length
   /// @param posY The uppermost pixel coordinate
@@ -64,7 +64,7 @@ namespace libv5gui
 
 
 
-  std::string nFormatVA(size_t length, std::string format, __builtin_va_list args)
+  std::string vnFormat(size_t length, std::string format, __builtin_va_list args)
   {
     __builtin_va_list argsCopy;
     __builtin_va_copy(argsCopy, args);
@@ -83,19 +83,19 @@ namespace libv5gui
     return result;
   }
 
-  std::string nFormatVA(size_t length, std::string format, ...)
+  std::string nFormat(size_t length, std::string format, ...)
   {
     __builtin_va_list args;
     __builtin_va_start(args, format);
 
-    std::string result = nFormatVA(length, format, args);
+    std::string result = vnFormat(length, format, args);
 
     __builtin_va_end(args);
 
     return result;
   }
 
-  std::string formatVA(std::string format, __builtin_va_list args)
+  std::string vFormat(std::string format, __builtin_va_list args)
   {
     __builtin_va_list argsCopy;
     __builtin_va_copy(argsCopy, args);
@@ -104,15 +104,15 @@ namespace libv5gui
 
     __builtin_va_end(argsCopy);
 
-    return nFormatVA(length, format, args);
+    return vnFormat(length, format, args);
   }
 
-  std::string formatVA(std::string format, ...)
+  std::string format(std::string format, ...)
   {
     __builtin_va_list args;
     __builtin_va_start(args, format);
 
-    std::string result = formatVA(format, args);
+    std::string result = vFormat(format, args);
 
     __builtin_va_end(args);
 

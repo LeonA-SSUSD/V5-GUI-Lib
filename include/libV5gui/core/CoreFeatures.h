@@ -30,11 +30,11 @@ namespace libv5gui
 
 
 
-  std::string nFormatVA(size_t length, std::string format, __builtin_va_list args);
-  std::string nFormatVA(size_t length, std::string format, ...);
+  std::string vnFormat(size_t length, std::string format, __builtin_va_list args);
+  std::string nFormat(size_t length, std::string format, ...);
 
-  std::string formatVA(std::string format, __builtin_va_list args);
-  std::string formatVA(std::string format, ...);
+  std::string vFormat(std::string format, __builtin_va_list args);
+  std::string format(std::string format, ...);
 }
 
 

@@ -56,7 +56,7 @@ namespace libv5gui
     __builtin_va_list args;
     __builtin_va_start(args, format);
 
-    std::string newText = nFormatVA(maxLength(), format, args);
+    std::string newText = vnFormat(maxLength(), format, args);
 
     __builtin_va_end(args);
 
