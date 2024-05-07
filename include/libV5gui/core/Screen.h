@@ -1,13 +1,11 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
-#include "libv5gui/core/Text.h"
-
-#include <list>
+#include "libV5gui/core/Text.h"
 
 
 
-namespace libv5gui
+namespace libV5gui
 {
   class Screen
   {

@@ -4,6 +4,8 @@
 #include "vex.h"
 
 #include <string>
+#include <list>
+#include <functional>
 
 
 
@@ -13,7 +15,7 @@ extern vex::brain Brain;
 
 
 
-namespace libv5gui
+namespace libV5gui
 {
   enum CoordType { px, grid };
 
