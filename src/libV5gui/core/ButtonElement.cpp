@@ -2,7 +2,7 @@
 
 
 
-namespace libv5gui
+namespace libV5gui
 { 
   ButtonElement::ButtonElement(int posX, int posY, int sizeX, int sizeY,
                                const std::string &text,
@@ -81,6 +81,13 @@ namespace libv5gui
     buttonDown = pressed;
 
     return false;
+  }
+
+  void ButtonElement::addCallback(std::function<void (void)> callback)
+  {
+    EventThreader::bindEvent({
+                              (std::function<bool (void)>) std::bind(_getNewPress, *this), callback
+                            });
   }
 
   void ButtonElement::uniqueDraw()

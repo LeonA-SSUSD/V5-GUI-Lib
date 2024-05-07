@@ -1,11 +1,11 @@
 #ifndef CIRCLE_H
 #define CIRCLE_H
 
-#include "libv5gui/core/Shape.h"
+#include "libV5gui/core/Shape.h"
 
 
 
-namespace libv5gui
+namespace libV5gui
 {
   class Circle : public Shape
   {

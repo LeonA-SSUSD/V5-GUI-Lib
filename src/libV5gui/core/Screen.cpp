@@ -1,8 +1,8 @@
-#include "libv5gui/core/Screen.h"
+#include "libV5gui/core/Screen.h"
 
 
 
-namespace libv5gui
+namespace libV5gui
 {
   /// @brief Initializes a screen with a chosen color
   /// @param screenColor Screen background color

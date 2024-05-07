@@ -1,11 +1,11 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
-#include "libv5gui/core/Shape.h"
+#include "libV5gui/core/Shape.h"
 
 
 
-namespace libv5gui
+namespace libV5gui
 {
   class Rectangle : public Shape
   {

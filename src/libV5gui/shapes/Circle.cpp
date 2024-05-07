@@ -2,7 +2,7 @@
 
 
 
-namespace libv5gui
+namespace libV5gui
 {
   Circle::Circle(int posX, int posY, unsigned int diameter,
                  const vex::color &penColor, const vex::color &fillColor)

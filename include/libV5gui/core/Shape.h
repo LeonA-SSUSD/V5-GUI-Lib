@@ -1,11 +1,11 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
-#include "libv5gui/core/ColorElement.h"
+#include "libV5gui/core/ColorElement.h"
 
 
 
-namespace libv5gui
+namespace libV5gui
 {
   class Shape : public ColorElement
   {

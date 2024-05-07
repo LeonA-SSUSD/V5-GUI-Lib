@@ -2,7 +2,7 @@
 
 
 
-namespace libv5gui
+namespace libV5gui
 {
   /// @brief Acts as the base unit for all pixel x-coordinate
   ///        to grid conversions

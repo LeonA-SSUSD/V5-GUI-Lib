@@ -2,7 +2,7 @@
 
 
 
-namespace libv5gui
+namespace libV5gui
 {
   RectButton::RectButton(int posX, int posY, int sizeX, int sizeY,
                          const std::string &text,

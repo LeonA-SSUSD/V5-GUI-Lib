@@ -6,7 +6,7 @@
 
 
 
-namespace libv5gui
+namespace libV5gui
 {
   class RectButton : public ButtonElement
   {

@@ -2,7 +2,7 @@
 
 
 
-namespace libv5gui
+namespace libV5gui
 {
   ColorElement::ColorElement(const vex::color &penColor, const vex::color &fillColor)
                : penColor(penColor), fillColor(fillColor)

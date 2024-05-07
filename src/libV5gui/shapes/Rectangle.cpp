@@ -2,7 +2,7 @@
 
 
 
-namespace libv5gui
+namespace libV5gui
 {
   Rectangle::Rectangle(int posX, int posY, unsigned int sizeX, unsigned int sizeY,
                        const vex::color &penColor, const vex::color &fillColor)

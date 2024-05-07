@@ -2,7 +2,7 @@
 
 
 
-namespace libv5gui
+namespace libV5gui
 {
   /// @brief Draws the ScreenElement
   void ScreenElement::draw()

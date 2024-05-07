@@ -2,7 +2,7 @@
 
 
 
-namespace libv5gui
+namespace libV5gui
 {
   CircButton::CircButton(int posX, int posY, int diameter,
                          const std::string &text,

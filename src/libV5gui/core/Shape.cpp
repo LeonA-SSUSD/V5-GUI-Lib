@@ -2,7 +2,7 @@
 
 
 
-namespace libv5gui
+namespace libV5gui
 {
   Shape::Shape(int posX, int posY, const vex::color &penColor, const vex::color &fillColor)
        : ColorElement(penColor, fillColor),

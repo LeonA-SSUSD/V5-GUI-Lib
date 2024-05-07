@@ -5,7 +5,7 @@
 
 
 
-namespace libv5gui
+namespace libV5gui
 {
   class Text : public ColorElement
   {

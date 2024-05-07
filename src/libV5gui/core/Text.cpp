@@ -2,7 +2,7 @@
 
 
 
-namespace libv5gui
+namespace libV5gui
 {
   void Text::init(int rowOrX, int columnOrY, CoordType gridOrPx)
   {
