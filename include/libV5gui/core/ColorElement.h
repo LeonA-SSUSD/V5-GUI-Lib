@@ -9,8 +9,7 @@ namespace libV5gui
 {
   class ColorElement : public ScreenElement
   {
-    private:
-      bool setColor(vex::color &color, const vex::color& newColor);
+    bool setColor(vex::color &color, const vex::color& newColor);
 
     protected:
       vex::color penColor;

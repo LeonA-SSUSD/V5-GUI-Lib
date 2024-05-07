@@ -11,9 +11,8 @@ namespace libV5gui
   {
     friend class Screen;
 
-    private:
-      /// @brief The ScreenElement's "layer" when drawn on a Screen
-      int zIndex;
+    /// @brief The ScreenElement's "layer" when drawn on a Screen
+    int zIndex;
 
     protected:
       /// @brief Whether the ScreenElement should be redrawn

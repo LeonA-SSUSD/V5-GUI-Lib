@@ -9,17 +9,16 @@ namespace libV5gui
 {
   class Circle : public Shape
   {
-    private:
-      unsigned int radius;
+    unsigned int radius;
 
-      int centerX;
-      int centerY;
+    int centerX;
+    int centerY;
 
 
-      
-      void drawShape(void) override { Brain.Screen.drawCircle(centerX, centerY, radius, fillColor); }
+    
+    void drawShape(void) override { Brain.Screen.drawCircle(centerX, centerY, radius, fillColor); }
 
-      int _sizeX(void) override { return 2 * radius; }
+    int _sizeX(void) override { return 2 * radius; }
 
     public:
       Circle(int posX, int posY, unsigned int diameter,

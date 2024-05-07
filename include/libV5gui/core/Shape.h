@@ -10,11 +10,10 @@ namespace libV5gui
   class Shape : public ColorElement
   {
     friend class ButtonElement;
-    
-    private:
-      virtual void drawShape(void) = 0;
 
-      virtual int _sizeX(void) = 0;
+    virtual void drawShape(void) = 0;
+
+    virtual int _sizeX(void) = 0;
 
     protected:
       int posX;

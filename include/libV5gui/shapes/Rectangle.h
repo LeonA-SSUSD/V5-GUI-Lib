@@ -9,15 +9,14 @@ namespace libV5gui
 {
   class Rectangle : public Shape
   {
-    private:
-      unsigned int sizeX;
-      unsigned int sizeY;
+    unsigned int sizeX;
+    unsigned int sizeY;
 
 
 
-      void drawShape(void) override { Brain.Screen.drawRectangle(posX, posY, sizeX, sizeY, fillColor); }
+    void drawShape(void) override { Brain.Screen.drawRectangle(posX, posY, sizeX, sizeY, fillColor); }
 
-      int _sizeX(void) override { return sizeX; }
+    int _sizeX(void) override { return sizeX; }
 
     public:
       Rectangle(int posX, int posY, unsigned int sizeX, unsigned int sizeY,

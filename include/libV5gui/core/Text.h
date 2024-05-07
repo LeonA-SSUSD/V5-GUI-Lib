@@ -10,28 +10,27 @@ namespace libV5gui
   class Text : public ColorElement
   {
     friend class ButtonElement;
-    
-    private:
-      /// @brief The stored string
-      std::string text = "";
 
-      /// @brief The whitespaced, printed string
-      std::string printedText = "";
+    /// @brief The stored string
+    std::string text = "";
 
-      int x;
-      int y;
+    /// @brief The whitespaced, printed string
+    std::string printedText = "";
 
-
-
-      void init(int rowOrX, int columnOrY, CoordType gridOrPx);
+    int x;
+    int y;
 
 
 
-      bool setTextRaw(std::string newText);
+    void init(int rowOrX, int columnOrY, CoordType gridOrPx);
 
-      /// @return The maximum length of a null-terminated character
-      ///         array that would fit on the screen
-      size_t maxLength(void) const { return floor(48 - x / xScale()); }
+
+
+    bool setTextRaw(std::string newText);
+
+    /// @return The maximum length of a null-terminated character
+    ///         array that would fit on the screen
+    size_t maxLength(void) const { return floor(48 - x / xScale()); }
 
     protected:
       void uniqueDraw(void) override;

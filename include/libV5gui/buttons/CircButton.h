@@ -10,12 +10,11 @@ namespace libV5gui
 {
   class CircButton : public ButtonElement
   {
-    private:
-      Circle circle;
+    Circle circle;
 
 
 
-      Shape *shape(void) override { return &circle; }
+    Shape *shape(void) override { return &circle; }
       
     public:
       CircButton(int posX, int posY, int diameter,
