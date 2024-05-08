@@ -17,7 +17,7 @@ namespace libV5gui
 
     static inline auto screen = Screen({ &auton1, &auton2, &auton3, &auton4 });
 
-    static std::function<void (void)> selectedAutonomous;
+    static inline std::function<void (void)> selectedAutonomous = 0;
 
     
 
