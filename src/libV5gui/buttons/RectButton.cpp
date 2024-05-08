@@ -23,5 +23,4 @@ namespace libV5gui
                               (std::function<bool ()>) std::bind(_rectNewPress, *this), callback
                             });
   }
-
 }
