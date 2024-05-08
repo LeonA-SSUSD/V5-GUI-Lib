@@ -16,6 +16,8 @@ namespace libV5gui
 
     Shape *shape(void) override { return &circle; }
       
+    static bool _circNewPress(CircButton &button) { return button.getNewPress(); }
+      
     public:
       CircButton(int posX, int posY, int diameter,
                  const std::string &text,
@@ -23,6 +25,10 @@ namespace libV5gui
 
       CircButton(int posX, int posY, int diameter,
                  const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
+
+
+
+      void addCallback(std::function<void (void)> callback) override;
   };
 }
 

@@ -16,4 +16,11 @@ namespace libV5gui
             : ButtonElement(posX, posY, diameter, diameter, penColor, fillColor),
               circle(posX, posY, diameter, penColor, fillColor)
   {}
+
+  void CircButton::addCallback(std::function<void ()> callback)
+  {
+    EventThreader::bindEvent({
+                              (std::function<bool ()>) std::bind(_circNewPress, *this), callback
+                            });
+  }
 }

@@ -16,6 +16,8 @@ namespace libV5gui
 
     Shape *shape(void) override { return &rectangle; }
       
+    static bool _rectNewPress(RectButton &button) { return button.getNewPress(); }
+      
     public:
       RectButton(int posX, int posY, int sizeX, int sizeY,
                  const std::string &text,
@@ -23,6 +25,10 @@ namespace libV5gui
 
       RectButton(int posX, int posY, int sizeX, int sizeY,
                  const vex::color &penColor = vex::white, const vex::color &fillColor = vex::black);
+
+
+      
+      void addCallback(std::function<void (void)> callback) override;
   };
 }
 

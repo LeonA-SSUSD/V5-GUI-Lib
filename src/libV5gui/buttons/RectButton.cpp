@@ -16,4 +16,12 @@ namespace libV5gui
             : ButtonElement(posX, posY, sizeX, sizeY, penColor, fillColor),
               rectangle(posX, posY, sizeX, sizeY, penColor, fillColor)
   {}
+
+  void RectButton::addCallback(std::function<void ()> callback)
+  {
+    EventThreader::bindEvent({
+                              (std::function<bool ()>) std::bind(_rectNewPress, *this), callback
+                            });
+  }
+
 }
