@@ -4,14 +4,17 @@
 
 namespace libV5gui
 {
-  Screen::Screen(std::vector<ScreenElement*> screenElements, const vex::color &screenColor) : screenColor(screenColor)
+  Screen::Screen(std::vector<ScreenElement*> screenElements, const vex::color &screenColor)
+        : screenColor(screenColor)
   {
     for (const auto &element : screenElements) add(element);
   }
 
   /// @brief Initializes a screen with a chosen color
   /// @param screenColor Screen background color
-  Screen::Screen(const vex::color &screenColor) : screenColor(screenColor) {}
+  Screen::Screen(const vex::color &screenColor)
+        : screenColor(screenColor)
+  {}
 
   /// @brief Sets the background color of the screen and
   ///        automatically determines refreshability
