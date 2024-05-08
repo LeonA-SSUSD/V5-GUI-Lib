@@ -22,5 +22,7 @@ namespace libV5gui
     EventThreader::bindEvent({
                               (std::function<bool ()>) std::bind(_rectNewPress, *this), callback
                             });
+    
+    _hasCallback = true;
   }
 }

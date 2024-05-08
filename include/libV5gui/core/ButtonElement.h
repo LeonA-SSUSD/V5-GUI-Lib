@@ -25,6 +25,10 @@ namespace libV5gui
     size_t maxLength(void) { return floor(shape() -> _sizeX() / xScale()) - 1; }
     
     protected:
+      bool _hasCallback = false;
+
+
+
       void uniqueDraw(void) override;
 
     public:
@@ -44,6 +48,8 @@ namespace libV5gui
 
       bool isPressed(void);
       bool getNewPress(void);
+
+      bool hasCallback(void) { return _hasCallback; }
 
       virtual void addCallback(std::function<void (void)> callback) = 0;
   };
