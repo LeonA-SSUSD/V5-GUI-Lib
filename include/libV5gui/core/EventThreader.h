@@ -1,12 +1,20 @@
 #ifndef EVENT_THREADER_H
 #define EVENT_THREADER_H
 
-#include "libV5gui/core/Event.h"
+#include "libV5gui/core/CoreFeatures.h"
+
+#include <functional>
 
 
 
 namespace libV5gui
 {
+  struct Event
+  {
+    std::function<bool (void)> condition;
+    std::function<void (void)>  callback;
+  };
+
   class EventThreader
   {
     inline static vex::thread *eventThread = 0;
