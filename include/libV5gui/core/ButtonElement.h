@@ -3,26 +3,26 @@
 
 #include "libV5gui/core/Text.h"
 #include "libV5gui/core/Shape.h"
+#include "libV5gui/core/EventThreader.h"
 
 
 
-namespace libv5gui
+namespace libV5gui
 {
   class ButtonElement : public ScreenElement
   {
-    private:
-      Text text;
+    Text text;
 
-      /// @brief Internal variable for tracking new button presses
-      mutable bool buttonDown = false;
-
+    /// @brief Internal variable for tracking new button presses
+    mutable bool buttonDown = false;
 
 
-      virtual Shape *shape(void) = 0;
 
-      /// @return The maximum amount of text that
-      ///         cleanly fits on the ButtonElement
-      size_t maxLength(void) { return floor(shape() -> _sizeX() / xScale()) - 1; }
+    virtual Shape *shape(void) = 0;
+
+    /// @return The maximum amount of text that
+    ///         cleanly fits on the ButtonElement
+    size_t maxLength(void) { return floor(shape() -> _sizeX() / xScale()) - 1; }
     
     protected:
       void uniqueDraw(void) override;
@@ -44,6 +44,8 @@ namespace libv5gui
 
       bool isPressed(void);
       bool getNewPress(void);
+
+      virtual void addCallback(std::function<void (void)> callback) = 0;
   };
 }
 

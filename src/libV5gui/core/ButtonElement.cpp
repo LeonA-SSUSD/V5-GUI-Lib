@@ -83,13 +83,6 @@ namespace libV5gui
     return false;
   }
 
-  void ButtonElement::addCallback(std::function<void (void)> callback)
-  {
-    EventThreader::bindEvent({
-                              (std::function<bool (void)>) std::bind(_getNewPress, *this), callback
-                            });
-  }
-
   void ButtonElement::uniqueDraw()
   {
     shape() -> uniqueDraw();
