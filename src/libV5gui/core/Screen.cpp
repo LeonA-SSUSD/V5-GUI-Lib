@@ -4,6 +4,11 @@
 
 namespace libV5gui
 {
+  Screen::Screen(std::vector<ScreenElement*> screenElements, const vex::color &screenColor) : screenColor(screenColor)
+  {
+    for (const auto &element : screenElements) add(element);
+  }
+
   /// @brief Initializes a screen with a chosen color
   /// @param screenColor Screen background color
   Screen::Screen(const vex::color &screenColor) : screenColor(screenColor) {}
@@ -23,17 +28,20 @@ namespace libV5gui
   /// @brief Adds an element to the screen
   /// @param element The screen element to add
   /// @param zIndex The "layer" that the screen element will be drawn on
-  void Screen::add(ScreenElement &element, int zIndex)
-  {
-    element.zIndex = (zIndex < 0) ? elements.size() : zIndex;
-    
-    ScreenElement *pElement = &element;
+  void Screen::add(ScreenElement &element, int zIndex) { add(&element, zIndex); }
 
-    Text *text = dynamic_cast<Text*>(pElement);
+  /// @brief Adds an element to the screen
+  /// @param element The pointer to the screen element to add
+  /// @param zIndex The "layer" that the screen element will be drawn on
+  void Screen::add(ScreenElement *element, int zIndex)
+  {
+    element -> zIndex = (zIndex < 0) ? elements.size() : zIndex;
+
+    Text *text = dynamic_cast<Text*>(element);
 
     if (text) text -> setFillColor(vex::transparent);
 
-    elements.push_back(pElement);
+    elements.push_back(element);
 
     elements.sort([](const ScreenElement *A, const ScreenElement *B) { return A -> zIndex < B -> zIndex; });
   }

@@ -3,6 +3,8 @@
 
 #include "libV5gui/core/Text.h"
 
+#include <vector>
+
 
 
 namespace libV5gui
@@ -23,6 +25,8 @@ namespace libV5gui
       /// @brief Initializes a screen with a black background
       Screen(void) {}
 
+      Screen(std::vector<ScreenElement*> screenElements, const vex::color &screenColor = vex::black);
+
       Screen(const vex::color &screenColor);
 
 
@@ -30,6 +34,7 @@ namespace libV5gui
       void setColor(const vex::color &screenColor);
 
       void add(ScreenElement &element, int zIndex = -1);
+      void add(ScreenElement *element, int zIndex = -1);
 
       void draw(void) const;
       void refresh(void) const;
