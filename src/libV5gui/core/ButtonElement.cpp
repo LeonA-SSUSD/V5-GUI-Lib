@@ -33,7 +33,7 @@ namespace libV5gui
 
     refreshable = true;
 
-    text.x = getCenterX(shape() -> posX, shape() -> _sizeX(), newText);
+    text.x = getCenterX(shape() -> posX, shape() -> width(), newText);
 
     return true;
   }

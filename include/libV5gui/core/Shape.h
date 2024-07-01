@@ -13,7 +13,7 @@ namespace libV5gui
 
     virtual void drawShape(void) = 0;
 
-    virtual int _sizeX(void) = 0;
+    virtual int width(void) = 0;
 
     protected:
       int posX;

@@ -22,7 +22,7 @@ namespace libV5gui
 
     /// @return The maximum amount of text that
     ///         cleanly fits on the ButtonElement
-    size_t maxLength(void) { return floor(shape() -> _sizeX() / xScale()) - 1; }
+    size_t maxLength(void) { return floor(shape() -> width() / xScale()) - 1; }
     
     protected:
       bool _hasCallback = false;

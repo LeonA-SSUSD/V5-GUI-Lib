@@ -16,7 +16,7 @@ namespace libV5gui
 
     void drawShape(void) override { Brain.Screen.drawRectangle(posX, posY, sizeX, sizeY, fillColor); }
 
-    int _sizeX(void) override { return sizeX; }
+    int width(void) override { return sizeX; }
 
     public:
       Rectangle(int posX, int posY, unsigned int sizeX, unsigned int sizeY,
